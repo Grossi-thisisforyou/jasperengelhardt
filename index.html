@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jasper Engelhardt</title>
+<meta name="description" content="Jasper Engelhardt. Actor and performer. Screen, stage, museum. Berlin and New York.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/gaze.jpg" media="(min-width: 701px)">
+<link rel="preload" as="image" href="img/gaze-tall.jpg" media="(max-width: 700px)">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#0c0c0c;
+  --mute:#8c8c87;
+  --line:#e6e6e2;
+  --soft:#f5f5f2;
+  --serif:"Instrument Serif","Times New Roman",serif;
+  --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --pad:clamp(20px,4.2vw,64px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:opacity .2s}
+a:hover{opacity:.55}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left}
+img{display:block;max-width:100%;height:auto}
+em,i{font-style:italic}
+.label{font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+.serif{font-family:var(--serif);font-weight:400}
+
+/* ---------- header ---------- */
+.head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:baseline;justify-content:space-between;padding:18px var(--pad);color:#fff;transition:color .4s var(--ease),background .4s var(--ease)}
+.head.onlight{color:var(--ink);background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.head .name{font-family:var(--serif);font-size:23px;line-height:1;letter-spacing:.005em;border:0}
+.head nav{display:flex;gap:22px;font-size:13.5px}
+.head nav button,.head nav a{border:0;opacity:1}
+.head nav button:hover,.head nav a:hover{opacity:.55}
+
+/* ---------- hero: the gaze ---------- */
+.gaze{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0c1416;color:#fff}
+.gaze picture,.gaze img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 38%}
+.gaze img{transform:scale(1.04);animation:settle 2.4s var(--ease) forwards}
+@keyframes settle{to{transform:scale(1)}}
+.gaze::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 38%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
+.gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.2vw,104px);line-height:.98;letter-spacing:-.012em}
+.gaze h1 span{display:block;color:rgba(255,255,255,.62)}
+.gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
+.gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
+.gaze .next a{border-color:rgba(255,255,255,.5)}
+.fade-in{opacity:0;transform:translateY(10px);animation:fadein 1.4s var(--ease) .5s forwards}
+@keyframes fadein{to{opacity:1;transform:none}}
+
+/* ---------- page sections ---------- */
+section.block{padding:clamp(80px,14vh,160px) var(--pad)}
+.read{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px}
+.read p{margin:0;font-family:var(--serif);font-size:clamp(25px,2.9vw,44px);line-height:1.17;letter-spacing:-.006em;max-width:23em}
+.read p + p{margin-top:.7em;color:var(--mute)}
+
+.bleed{margin:0;position:relative}
+.bleed img{width:100%;height:auto}
+.bleed figcaption{padding:12px var(--pad) 0;font-size:12.5px;color:var(--mute);display:flex;justify-content:space-between}
+
+/* rooms index */
+.rooms{border-top:1px solid var(--ink)}
+.rooms .row{display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr 24px;gap:32px;align-items:baseline;width:100%;padding:22px 0 20px;border-bottom:1px solid var(--line);transition:padding .5s var(--ease)}
+.rooms .row .n{font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+.rooms .row .t{font-family:var(--serif);font-size:clamp(40px,5.6vw,88px);line-height:.95;letter-spacing:-.015em}
+.rooms .row .d{font-size:14.5px;color:var(--ink);max-width:28em}
+.rooms .row .a{font-size:18px;transition:transform .5s var(--ease)}
+.rooms .row:hover .a{transform:translateX(6px)}
+.rooms .row:hover .t{font-style:italic}
+.rooms-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:28px}
+.rooms-head p{margin:0;max-width:34em;color:var(--mute)}
+
+/* floating image (desktop hover) */
+.float{position:fixed;left:0;top:0;width:min(26vw,380px);pointer-events:none;z-index:40;opacity:0;transition:opacity .35s var(--ease);will-change:transform}
+.float.on{opacity:1}
+.float img{width:100%;height:auto;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)}
+
+/* upcoming */
+.dates .row{display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr;gap:32px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.dates .row:first-of-type{border-top:1px solid var(--ink)}
+.dates .when{font-size:14px;font-variant-numeric:tabular-nums}
+.dates .what{font-family:var(--serif);font-size:clamp(26px,2.6vw,40px);line-height:1.08}
+.dates .what small{display:block;font-family:var(--sans);font-size:14px;color:var(--mute);margin-top:6px;line-height:1.45}
+.dates .where{font-size:14px}
+
+/* footer */
+footer{padding:clamp(80px,12vh,140px) var(--pad) 36px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr;gap:32px;font-size:14px}
+footer .big{font-family:var(--serif);font-size:clamp(30px,3.4vw,52px);line-height:1.05;margin:0 0 18px}
+footer .big a{border-bottom-width:1px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:0 0 4px}
+footer .fine{grid-column:1/-1;margin-top:64px;display:flex;justify-content:space-between;color:var(--mute);font-size:12.5px}
+
+/* ---------- layers ---------- */
+.scrim{position:fixed;inset:0;background:rgba(12,12,12,.28);opacity:0;pointer-events:none;transition:opacity .6s var(--ease);z-index:90}
+.scrim.on{opacity:1;pointer-events:auto}
+.layer{--depth:0;position:fixed;top:0;right:0;bottom:0;width:min(1120px,94vw);background:var(--bg);z-index:100;overflow-y:auto;overscroll-behavior:contain;transform:translateX(104%);transition:transform .8s var(--ease),filter .8s var(--ease);box-shadow:-40px 0 80px -40px rgba(0,0,0,.25);visibility:hidden}
+.layer.open{visibility:visible;transform:translateX(calc(var(--depth) * -56px)) scale(calc(1 - var(--depth) * .025));transform-origin:left center}
+.layer.open.under{filter:brightness(.94);cursor:pointer}
+.layer.open.under > *{pointer-events:none}
+.layer .bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-size:13.5px}
+.layer .bar .crumbs{color:var(--mute)}
+.layer .bar .crumbs b{font-weight:400;color:var(--ink)}
+.layer .bar .ctl{display:flex;gap:22px}
+.layer .bar .ctl button:hover{opacity:.55}
+.layer .in{padding:clamp(28px,6vh,72px) var(--pad) 96px}
+.layer h2{margin:0 0 .25em;font-family:var(--serif);font-weight:400;font-size:clamp(60px,9vw,148px);line-height:.9;letter-spacing:-.02em}
+.layer .lead{font-family:var(--serif);font-size:clamp(23px,2.35vw,34px);line-height:1.2;max-width:24em;margin:28px 0 0}
+.layer .sub{max-width:36em;margin:22px 0 0;color:var(--mute)}
+.layer h3{margin:clamp(56px,9vh,96px) 0 18px;font-family:var(--sans);font-weight:400;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+
+.figs{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(40px,7vh,72px)}
+.figs figure{margin:0;grid-column:span var(--s,12)}
+.figs .w12{--s:12}.figs .w8{--s:8}.figs .w7{--s:7}.figs .w6{--s:6}.figs .w5{--s:5}.figs .w4{--s:4}
+.figs .push2{grid-column:3 / span var(--s)}.figs .push5{grid-column:5 / span var(--s)}
+.figs figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+.zoom{cursor:zoom-in}
+
+.hl .row{display:grid;grid-template-columns:96px 1fr 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hl .row:first-child{border-top:1px solid var(--ink)}
+.hl .y{font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--mute)}
+.hl .w{font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.1}
+.hl .m{font-size:14px}
+
+table.rec{width:100%;border-collapse:collapse;font-size:14px}
+table.rec td{padding:9px 24px 9px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+table.rec td:last-child{padding-right:0;color:var(--mute)}
+table.rec td.y{width:96px;font-variant-numeric:tabular-nums;color:var(--mute)}
+table.rec tr:first-child td{border-top:1px solid var(--ink)}
+
+.cont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(64px,10vh,112px)}
+.cont button{display:block;padding:22px 24px 26px;background:var(--soft);transition:background .4s var(--ease)}
+.cont button:hover{background:#ecece8}
+.cont .label{display:block;margin-bottom:10px}
+.cont .serif{font-size:clamp(34px,3.6vw,56px);line-height:1}
+
+/* own-work projects */
+.proj{margin-top:clamp(56px,9vh,104px);padding-top:16px;border-top:1px solid var(--ink)}
+.proj h4{margin:10px 0 14px;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.2vw,64px);line-height:1;letter-spacing:-.012em}
+.proj p{margin:0;max-width:38em}
+.proj .figs{margin-top:28px}
+
+/* photographs sequence */
+.seq{margin-top:clamp(48px,8vh,88px);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,8vh,96px) 14px}
+.seq figure{margin:0}
+.seq .full{grid-column:1/-1}
+.seq .l{grid-column:1/span 8}
+.seq .r{grid-column:5/span 8}
+.seq .c{grid-column:3/span 8}
+.seq .np{grid-column:4/span 6}
+.seq .npl{grid-column:1/span 5}
+.seq .npr{grid-column:8/span 5}
+.seq .half{grid-column:span 6}
+.seq figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(255,255,255,.97);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
+.lb.on{opacity:1;pointer-events:auto}
+.lb .lbbar{display:flex;justify-content:space-between;padding:18px var(--pad);font-size:13.5px}
+.lb .lbbar .lbcap{color:var(--mute)}
+.lb .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:0 var(--pad) var(--pad);min-height:0;cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  body{font-size:15px}
+  .head{padding:14px 18px}
+  .head nav{gap:16px;font-size:13px}
+  .head .name{font-size:21px}
+  .gaze .cap{flex-direction:column;align-items:flex-start;gap:22px;left:18px;right:18px}
+  .gaze .next{text-align:left}
+  .gaze h1{font-size:clamp(38px,11vw,56px)}
+  section.block{padding:72px 18px}
+  .read,.rooms-head{grid-template-columns:1fr;gap:14px}
+  .rooms .row{grid-template-columns:28px 1fr 18px;gap:12px;padding:18px 0}
+  .rooms .row .d{grid-column:2/3;font-size:14px;margin-top:4px}
+  .rooms .row .a{grid-row:1;grid-column:3}
+  .dates .row{grid-template-columns:1fr;gap:6px}
+  footer{grid-template-columns:1fr;padding:72px 18px 28px;gap:28px}
+  footer .fine{flex-direction:column;gap:6px;margin-top:24px}
+  .bleed figcaption{padding:10px 18px 0;flex-direction:column}
+  .float{display:none}
+  .layer{width:100vw;box-shadow:none}
+  .layer.open{transform:translateX(calc(var(--depth) * -18px))}
+  .layer .bar{padding:14px 18px}
+  .layer .in{padding:24px 18px 72px}
+  .figs{gap:10px}
+  .figs figure{grid-column:1/-1 !important}
+  .hl .row{grid-template-columns:1fr;gap:4px}
+  table.rec,table.rec tbody,table.rec tr,table.rec td{display:block;width:auto}
+  table.rec tr{border-bottom:1px solid var(--line);padding:10px 0}
+  table.rec tr:first-child{border-top:1px solid var(--ink)}
+  table.rec td{border:0 !important;padding:0}
+  table.rec td.y{width:auto}
+  .cont{grid-template-columns:1fr;gap:10px}
+  .seq{gap:36px 10px}
+  .seq figure{grid-column:1/-1 !important}
+  .lb .stage{padding:0 10px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .fade-in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="head" id="head">
+  <a class="name" href="#" data-top>Jasper Engelhardt</a>
+  <nav>
+    <button data-layer="index-all" data-scroll="rooms">Work</button>
+    <button data-layer="photographs">Photographs</button>
+    <button data-scroll="contact">Contact</button>
+  </nav>
+</header>
+
+<!-- ================= THE GAZE ================= -->
+<section class="gaze" id="gaze">
+  <picture>
+    <source media="(max-width:700px)" srcset="img/gaze-tall.jpg">
+    <img src="img/gaze.jpg" alt="Jasper Engelhardt, portrait at dusk, looking into the camera" width="2400" height="1601" fetchpriority="high">
+  </picture>
+  <div class="cap fade-in">
+    <h1>Actor and performer.<span>Screen, stage, museum.</span></h1>
+    <div class="next">
+      <span class="label">Next</span>
+      Marina Abramović, <i>Balkan Erotic Epic</i><br>
+      Park Avenue Armory, New York<br>
+      8 – 20 December 2026 · <a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Tickets</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE READ ================= -->
+<section class="block read" id="read">
+  <div class="label">In short</div>
+  <div>
+    <p>Jasper Engelhardt is an actor trained in Zurich who has spent a decade moving between three rooms that rarely share their people: German-language film and television, the repertory stage, and the museum.</p>
+    <p>He led a <i>Polizeiruf 110</i> for Jan Bonny, played Kafka and Bernhard in Vienna, and performed Marina Abramović's <i>Imponderabilia</i> at Kunsthaus Zürich. Today he lives in New York, completing an MFA at The New School, assisting the curator Klaus Biesenbach, and making his own work. The common thread is one discipline: presence, held exactly as long as the work asks.</p>
+  </div>
+</section>
+
+<figure class="bleed">
+  <img src="img/mju/0895-2400.jpg" srcset="img/mju/0895-1200.jpg 1200w, img/mju/0895-2400.jpg 2400w" sizes="100vw" alt="Midtown skyline over the frozen lake in Central Park" width="2400" height="1591" loading="lazy">
+  <figcaption><span>Central Park, New York. Olympus mju III, colour film.</span><span>Photograph by Jasper Engelhardt</span></figcaption>
+</figure>
+
+<!-- ================= ROOMS ================= -->
+<section class="block" id="rooms">
+  <div class="rooms-head">
+    <div class="label">The work</div>
+    <p>Seven ways in. Each opens as a layer you can go deeper into, and each one points to the next.</p>
+  </div>
+  <div class="rooms">
+    <button class="row" data-layer="screen" data-img="img/polizeiruf-2017-a.jpg"><span class="n">01</span><span class="t">Screen</span><span class="d">Lead roles for ARD, Netflix and BR. Deutscher Schauspielpreis nomination.</span><span class="a">→</span></button>
+    <button class="row" data-layer="stage" data-img="img/kafka-wien-2024-a.jpg"><span class="n">02</span><span class="t">Stage</span><span class="d">Kafka and Bernhard in Vienna, Schauspielhaus Zürich, now New York.</span><span class="a">→</span></button>
+    <button class="row" data-layer="museum" data-img="img/abramovic-imponderabilia-2025.jpg"><span class="n">03</span><span class="t">Museum</span><span class="d">Marina Abramović, Florentina Holzinger, Manifesta 11.</span><span class="a">→</span></button>
+    <button class="row" data-layer="own" data-img="img/work/berghein-pass-1600.jpg"><span class="n">04</span><span class="t">Own work</span><span class="d">An AI-automated performance, solo work, directing, readings and writing.</span><span class="a">→</span></button>
+    <button class="row" data-layer="photographs" data-img="img/mju/0706-1200.jpg"><span class="n">05</span><span class="t">Photographs</span><span class="d">Olympus mju III, 35 mm film. Berlin, Zurich, Vienna, New York.</span><span class="a">→</span></button>
+    <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
+    <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach, and in technology with nolas.</span><span class="a">→</span></button>
+  </div>
+</section>
+
+<!-- ================= UPCOMING ================= -->
+<section class="block dates" id="upcoming" style="padding-top:0">
+  <div class="rooms-head"><div class="label">Upcoming</div><p></p></div>
+  <div class="row">
+    <div class="when">Until 11 Apr 2027</div>
+    <div class="what"><i>Reshaping Tales | Helga Gebert</i><small>His readings of the tales play in the exhibition's reading corner.</small></div>
+    <div class="where">GRIMMWELT Kassel<br><a href="https://www.grimmwelt.de/en/exhibitions/reshaping-tales">Exhibition</a></div>
+  </div>
+  <div class="row">
+    <div class="when">2 &amp; 9 Nov 2026</div>
+    <div class="what"><i>Douglass: The Reckoning</i><small>A working process. Conceived and directed by Charlotte Brathwaite.</small></div>
+    <div class="where"><a href="https://www.lamama.org">La MaMa</a>, 2 Nov · 651 ARTS, Brooklyn, 9 Nov<br>7 pm, free · <a href="https://event.newschool.edu/douglassthereckoning">RSVP</a></div>
+  </div>
+  <div class="row">
+    <div class="when">8 – 20 Dec 2026</div>
+    <div class="what">Marina Abramović, <i>Balkan Erotic Epic</i><small>North American premiere. An Armory commission.</small></div>
+    <div class="where">Park Avenue Armory, New York<br><a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Dates and tickets</a></div>
+  </div>
+  <div class="row">
+    <div class="when">2027</div>
+    <div class="what">Solo performance<small>On the main stage. Details to follow.</small></div>
+    <div class="where">The New School, New York</div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="label">Contact</div>
+  <div>
+    <p class="big"><a href="mailto:jasperengelhardt@protonmail.com">jasperengelhardt@protonmail.com</a></p>
+    <p style="margin:0">Berlin and New York</p>
+  </div>
+  <ul>
+    <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Documents</span><a href="pdf/Jasper-Engelhardt-CV.pdf">CV</a> · <a href="pdf/Jasper-Engelhardt-Portfolio.pdf">Portfolio</a></li>
+  </ul>
+  <div class="fine"><span>© 2026 Jasper Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
+</footer>
+
+<div class="float" id="float"><img alt=""></div>
+<div class="scrim" id="scrim"></div>
+
+<!-- ======================================================
+     LAYERS
+     ====================================================== -->
+
+<article class="layer" id="l-screen" data-n="01" data-title="Screen" aria-label="Screen">
+  <div class="in">
+    <h2>Screen</h2>
+    <p class="lead">A screen actor with lead credits across German public television, streaming and film-school features, first noticed as Farim in Jan Bonny's <i>Polizeiruf 110</i>.</p>
+    <p class="sub">Works in German, Swiss German and English. Showreel through <a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider</a>.</p>
+
+    <div class="figs">
+      <figure class="w12"><img class="zoom" src="img/polizeiruf-2017-a.jpg" alt="Two men face to face in an empty room" width="1280" height="720" loading="lazy"><figcaption><i>Polizeiruf 110 – Das Gespenst der Freiheit</i>, dir. Jan Bonny, ARD, 2017.</figcaption></figure>
+      <figure class="w5"><img class="zoom" src="img/polizeiruf-2017-b.jpg" alt="Man curled up on the floor" width="632" height="415" loading="lazy"></figure>
+      <figure class="w7"><img class="zoom" src="img/polizeiruf-2017-c.jpg" alt="Man in a light jacket raising one hand" width="1088" height="725" loading="lazy"><figcaption><i>Polizeiruf 110</i>, 2017.</figcaption></figure>
+      <figure class="w8 push5"><img class="zoom" src="img/nicht-nur-koerper-2020.jpg" alt="Young man with headphones on a train" width="1682" height="1009" loading="lazy"><figcaption><i>Nicht nur Körper</i>, dir. Frédéric Jaeger, UdK Berlin, 2020.</figcaption></figure>
+    </div>
+
+    <h3>Selected</h3>
+    <div class="hl">
+      <div class="row"><span class="y">2017</span><span class="w"><i>Polizeiruf 110 – Das Gespenst der Freiheit</i></span><span class="m">Farim, lead · ARD, dir. Jan Bonny<br>Deutscher Schauspielpreis 2019, nomination Best Newcomer</span></div>
+      <div class="row"><span class="y">2023</span><span class="w"><i>The Grimm Reality</i></span><span class="m">Hänsel, lead · Netflix, dir. Sven Bohse</span></div>
+      <div class="row"><span class="y">2024</span><span class="w"><i>Herr L.</i></span><span class="m">Philipp L., lead · HFF München / BR, dir. Ivan Dubrovin</span></div>
+      <div class="row"><span class="y">2025</span><span class="w"><i>Der Kroatien-Krimi: Mord am Jadro</i></span><span class="m">Miran · ARD, dir. Carolina Hellsgård</span></div>
+    </div>
+
+    <h3>Complete</h3>
+    <table class="rec">
+      <tr><td class="y">2025</td><td><i>Der Kroatien-Krimi: Mord am Jadro</i>, Miran</td><td>ARD, dir. Carolina Hellsgård</td></tr>
+      <tr><td class="y">2024</td><td><i>Herr L.</i>, Philipp L. (lead)</td><td>HFF München / BR, dir. Ivan Dubrovin</td></tr>
+      <tr><td class="y">2023</td><td><i>The Grimm Reality</i>, Hänsel (lead)</td><td>Netflix, dir. Sven Bohse</td></tr>
+      <tr><td class="y">2023</td><td><i>Der totale Traum</i>, Romeo</td><td>dir. Roman Toulany</td></tr>
+      <tr><td class="y">2023</td><td><i>Morden im Norden – Niemandsland</i></td><td>ARD, dir. Christoph Eichhorn</td></tr>
+      <tr><td class="y">2022</td><td><i>Tańcząca chmura</i>, short</td><td>Łódź Film School, dir. Platon Ogareov</td></tr>
+      <tr><td class="y">2021</td><td><i>Die Heiland – Wir sind Anwalt: Brandstiftung</i></td><td>ARD, dir. Oliver Schmitz</td></tr>
+      <tr><td class="y">2021</td><td><i>SOKO Köln – Party bis zum bitteren Ende</i></td><td>ZDF, dir. Ulrike Hamacher</td></tr>
+      <tr><td class="y">2021</td><td><i>Ununterbrochen reden</i>, short</td><td>dir. Frédéric Jaeger</td></tr>
+      <tr><td class="y">2021</td><td><i>Der Geruch von nassem Stein</i>, short</td><td>dir. Moritz Buchmann</td></tr>
+      <tr><td class="y">2020</td><td><i>Nicht nur Körper</i>, Levi (lead), short</td><td>UdK Berlin, dir. Frédéric Jaeger</td></tr>
+      <tr><td class="y">2019</td><td><i>Der gute Bulle – Nur Tote reden nicht</i>, Don Quixote</td><td>ZDF / Arte, dir. Lars Becker</td></tr>
+      <tr><td class="y">2019</td><td><i>Blind ermittelt</i>, Uli</td><td>ORF, dir. Jano Ben Chaabane</td></tr>
+      <tr><td class="y">2018</td><td><i>Beats</i>, Sefi (lead), short</td><td>HFF München, dir. Simon Pfister</td></tr>
+      <tr><td class="y">2017</td><td><i>Polizeiruf 110 – Das Gespenst der Freiheit</i>, Farim (lead)</td><td>ARD, dir. Jan Bonny</td></tr>
+    </table>
+
+    <div class="cont">
+      <button data-layer="stage"><span class="label">Continue · 02</span><span class="serif">Stage</span></button>
+      <button data-layer="museum"><span class="label">Or · 03</span><span class="serif">Museum</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-stage" data-n="02" data-title="Stage" aria-label="Stage">
+  <div class="in">
+    <h2>Stage</h2>
+    <p class="lead">Leading roles in the German-language repertory system, from Kafka and Thomas Bernhard at Theater der Jugend Wien to Staatstheater Darmstadt and Schauspielhaus Zürich. Since 2025, New York's experimental stages.</p>
+
+    <div class="figs">
+      <figure class="w12"><img class="zoom" src="img/kafka-wien-2024-a.jpg" alt="Actor in a white shirt shouting, black feathers behind him" width="1632" height="1005" loading="lazy"><figcaption><i>Im Panoptikum des Franz K.</i>, Theater der Jugend Wien, 2024.</figcaption></figure>
+      <figure class="w6"><img class="zoom" src="img/kafka-wien-2024-b.jpg" alt="Actor in a grey coat looking up" width="1613" height="1073" loading="lazy"><figcaption>Franz Kafka, 2024.</figcaption></figure>
+      <figure class="w6"><img class="zoom" src="img/bernhard-wien-2023.jpg" alt="Actor emptying a crate of apples over his head" width="1613" height="1075" loading="lazy"><figcaption><i>Ein Kind</i>, Thomas Bernhard, 2023.</figcaption></figure>
+      <figure class="w8 push5"><img class="zoom" src="img/endstation-sehnsucht-dessau-2022.jpg" alt="Stage with a glowing moon and four actors" width="2400" height="1601" loading="lazy"><figcaption><i>Endstation Sehnsucht</i>, Anhaltisches Theater Dessau, dir. Mîzgîn Bilmen, 2022.</figcaption></figure>
+    </div>
+
+    <h3>Selected</h3>
+    <div class="hl">
+      <div class="row"><span class="y">2026</span><span class="w"><i>Douglass: The Reckoning</i></span><span class="m">A working process · <a href="https://www.lamama.org">La MaMa</a> and 651 ARTS, New York, dir. Charlotte Brathwaite</span></div>
+      <div class="row"><span class="y">2025</span><span class="w"><i>Robin Hood</i></span><span class="m">Red Squirrel · Schauspielhaus Zürich, Moved by the Motion / Wu Tsang</span></div>
+      <div class="row"><span class="y">2024</span><span class="w"><i>Im Panoptikum des Franz K.</i></span><span class="m">Franz Kafka, lead · Theater der Jugend Wien, dir. Gerald Maria Bauer</span></div>
+      <div class="row"><span class="y">2023</span><span class="w"><i>Ein Kind</i></span><span class="m">Thomas Bernhard, lead · Theater der Jugend Wien, dir. Gerald Maria Bauer</span></div>
+    </div>
+
+    <h3>Complete</h3>
+    <table class="rec">
+      <tr><td class="y">2026</td><td><i>Douglass: The Reckoning</i>, a working process</td><td>La MaMa / 651 ARTS, New York, dir. Charlotte Brathwaite</td></tr>
+      <tr><td class="y">2026</td><td><i>The Seagull, New York, 2029</i>, director</td><td>Advanced Directing, The New School, New York</td></tr>
+      <tr><td class="y">2026</td><td><i>Die Cute</i>, Cute Bunny</td><td>The Brick, New York, dir. Yiseul LeMieux</td></tr>
+      <tr><td class="y">2025</td><td><i>Robin Hood</i>, Red Squirrel</td><td>Schauspielhaus Zürich, Moved by the Motion / Wu Tsang</td></tr>
+      <tr><td class="y">2024</td><td><i>Zwei Fleischfachverkäuferinnen</i></td><td>HfS Ernst Busch, Berlin, dir. Michi Jansky</td></tr>
+      <tr><td class="y">2024</td><td><i>Im Panoptikum des Franz K.</i>, Franz Kafka (lead)</td><td>Theater der Jugend Wien, dir. Gerald Maria Bauer</td></tr>
+      <tr><td class="y">2023</td><td><i>Ein Kind</i>, Thomas Bernhard (lead)</td><td>Theater der Jugend Wien, dir. Gerald Maria Bauer</td></tr>
+      <tr><td class="y">2022</td><td><i>Endstation Sehnsucht</i>, Alan Grey</td><td>Anhaltisches Theater Dessau, dir. Mîzgîn Bilmen</td></tr>
+      <tr><td class="y">2022</td><td><i>Supergute Tage</i>, Christopher Boone (lead)</td><td>Theater der Jugend Wien, dir. Carmen Schwarz</td></tr>
+      <tr><td class="y">2021</td><td><i>Tom und Huck</i>, Alfred</td><td>Theater der Jugend Wien, dir. Felix Metzner</td></tr>
+      <tr><td class="y">2020</td><td><i>Aladin</i>, Aladin (lead)</td><td>Staatstheater Darmstadt, dir. Annette Raffalt</td></tr>
+      <tr><td class="y">2019</td><td><i>Der Process</i>, Titorelli</td><td>Theater der Künste Zürich, dir. Mélanie Huber</td></tr>
+      <tr><td class="y">2018</td><td><i>Aleppo. A Portrait of Absence</i>, Adam (lead)</td><td>Theater Spektakel Zürich, dir. Mohammad Al Attar</td></tr>
+      <tr><td class="y">2017</td><td><i>Peter Pan</i>, Curly</td><td>Schauspielhaus Zürich, dir. Ingo Berk</td></tr>
+    </table>
+
+    <div class="cont">
+      <button data-layer="museum"><span class="label">Continue · 03</span><span class="serif">Museum</span></button>
+      <button data-layer="own"><span class="label">Or · 04</span><span class="serif">Own work</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-museum" data-n="03" data-title="Museum" aria-label="Museum">
+  <div class="in">
+    <h2>Museum</h2>
+    <p class="lead">Durational, body-based work for artists who ask a performer to hold still, stay exposed and repeat. Reperformer in Marina Abramović's retrospective at Kunsthaus Zürich, and this December in her <i>Balkan Erotic Epic</i> at Park Avenue Armory.</p>
+
+    <div class="figs">
+      <figure class="w5"><img class="zoom" src="img/abramovic-imponderabilia-2025.jpg" alt="Two naked performers facing each other in a narrow doorway" width="1494" height="2241" loading="lazy"><figcaption>Marina Abramović, <i>Imponderabilia</i>. Kunsthaus Zürich, 2025.</figcaption></figure>
+      <figure class="w7"><img class="zoom" src="img/abramovic-nude-with-skeleton-2025.jpg" alt="Performer lying under a skeleton on a white plinth" width="2187" height="1458" loading="lazy"><figcaption>Marina Abramović, <i>Nude with Skeleton</i>. Kunsthaus Zürich, 2025.</figcaption></figure>
+      <figure class="w5 push5"><img class="zoom" src="img/abramovic-luminosity-2025.jpg" alt="Naked performer suspended on a wall, arms raised" width="1600" height="2400" loading="lazy"><figcaption>Marina Abramović, <i>Luminosity</i>. Kunsthaus Zürich, 2025.</figcaption></figure>
+    </div>
+
+    <h3>Selected</h3>
+    <div class="hl">
+      <div class="row"><span class="y">2026</span><span class="w">Marina Abramović, <i>Balkan Erotic Epic</i></span><span class="m">Park Avenue Armory, New York · 8 – 20 December · <a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Tickets</a></span></div>
+      <div class="row"><span class="y">2024–25</span><span class="w">Marina Abramović, retrospective</span><span class="m"><i>Imponderabilia</i>, <i>Luminosity</i>, <i>Nude with Skeleton</i> · Kunsthaus Zürich</span></div>
+      <div class="row"><span class="y">2019</span><span class="w">Florentina Holzinger, <i>Bolero</i></span><span class="m">HKB Bern</span></div>
+      <div class="row"><span class="y">2016</span><span class="w">Michel Kessler, <i>The Artist's Arm</i></span><span class="m">Manifesta 11, Cabaret Voltaire, Zürich</span></div>
+    </div>
+
+    <h3>Complete</h3>
+    <table class="rec">
+      <tr><td class="y">2026</td><td>Marina Abramović, <i>Balkan Erotic Epic</i></td><td>Park Avenue Armory, New York</td></tr>
+      <tr><td class="y">2026</td><td><i>Berghein</i>, solo performance</td><td>The New School, New York</td></tr>
+      <tr><td class="y">2024–25</td><td>Marina Abramović retrospective: <i>Luminosity</i>, <i>Imponderabilia</i>, <i>Nude with Skeleton</i></td><td>Kunsthaus Zürich</td></tr>
+      <tr><td class="y">2019</td><td>Florentina Holzinger, <i>Bolero</i></td><td>HKB Bern</td></tr>
+      <tr><td class="y">2017</td><td>Gregory Hari, <i>The Odyssey</i></td><td>Tanzhaus Zürich</td></tr>
+      <tr><td class="y">2016</td><td>Michel Kessler, <i>The Artist's Arm</i></td><td>Manifesta 11, Cabaret Voltaire, Zürich</td></tr>
+      <tr><td class="y">2016</td><td>Darrel Toulon, <i>Story Without Soldier</i></td><td>Contemporary Dance, ZHdK Zürich</td></tr>
+    </table>
+
+    <div class="cont">
+      <button data-layer="own"><span class="label">Continue · 04</span><span class="serif">Own work</span></button>
+      <button data-layer="alongside"><span class="label">Or · 07</span><span class="serif">Alongside</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-own" data-n="04" data-title="Own work" aria-label="Own work">
+  <div class="in">
+    <h2>Own work</h2>
+    <p class="lead">Work that starts from research and from machines: a family archive, recorded conversations, small computers and language models that read the room. Made for the black box, the page and the classroom.</p>
+
+    <section class="proj">
+      <div class="label">AI-automated performance · 2026, in development</div>
+      <h4><i>Infinite Jest</i></h4>
+      <p>A performance about making the performer obsolete. After David Foster Wallace's novel, whose film is so entertaining that no one can look away, a machine takes over the show: a 2009 Nokia N900 becomes a haptic controller for up to eight channels of video projection, while a Raspberry Pi 5 on stage listens, reacts and re-cues the projections in real time, working with large language models. The system reads the room, the day and the audience, so no two performances are alike. Developed in David Carroll's course <i>Small Linux Devices, Large Language Models</i> at Parsons School of Design, in open collaboration with AI.</p>
+    </section>
+
+    <section class="proj">
+      <div class="label">Solo performance · The New School, April 2026</div>
+      <h4><i>Berghein</i></h4>
+      <p>A solo with live projection: the Furka Pass on film, a grandfather's front-line letters from the Second World War, archive documents, and the news of present wars. Built from the same archive as <i>Never Again. Next Time.</i> Shown in <i>Solo Together</i>, 151 Bank Street, New York, 17 and 18 April 2026.</p>
+      <div class="figs">
+        <figure class="w12"><img class="zoom" src="img/work/berghein-pass-1600.jpg" data-full="img/work/berghein-pass-full.jpg" alt="Projection still: an Alpine valley in sepia" width="1600" height="873" loading="lazy"><figcaption><i>Berghein</i>, projection still, 2026.</figcaption></figure>
+        <figure class="w6"><img class="zoom" src="img/work/berghein-letters-1600.jpg" data-full="img/work/berghein-letters-full.jpg" alt="Projection still: handwritten letters in German script" width="1600" height="873" loading="lazy"><figcaption>Front-line letters, projection still.</figcaption></figure>
+        <figure class="w6"><img class="zoom" src="img/work/berghein-word-1600.jpg" data-full="img/work/berghein-word-full.jpg" alt="Black frame with the subtitle: Nothing else. There is no word." width="1600" height="873" loading="lazy"><figcaption>“Nothing else. There is no word.”</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="proj">
+      <div class="label">Director · The New School, 7 May 2026</div>
+      <h4><i>The Seagull, New York, 2029</i></h4>
+      <p>Chekhov's <i>The Seagull</i>, moved to New York three years from now. With Aster Drewe, Shannon Stowe, Magdi Hazaa and Bryce Hayden Henry. Sound by Catherine Ashley, souffleuse Rebecca Berger. Advanced Directing, The New School.</p>
+      <div class="figs">
+        <figure class="w12"><img class="zoom" src="img/work/seagull-two-1600.jpg" data-full="img/work/seagull-two-full.jpg" alt="Two performers seated side by side, one with an afro and a dark red suit, one in a crop top and camouflage trousers" width="1600" height="778" loading="lazy"><figcaption><i>The Seagull, New York, 2029</i>, The New School, 2026.</figcaption></figure>
+        <figure class="w12"><img class="zoom" src="img/work/seagull-stage-1600.jpg" data-full="img/work/seagull-stage-full.jpg" alt="The studio set: a red neon tube and a chair, stepped black cubes before a skyline print, the audience on the floor, a performer with an afro crossing the space" width="1600" height="873" loading="lazy"></figure>
+        <figure class="w6"><img class="zoom" src="img/work/seagull-afro-1600.jpg" data-full="img/work/seagull-afro-full.jpg" alt="A performer with an afro and long earrings in front of a chalkboard" width="1600" height="778" loading="lazy"></figure>
+        <figure class="w6"><img class="zoom" src="img/work/seagull-poster-1600.jpg" data-full="img/work/seagull-poster-full.jpg" alt="A wooden stairwell; a dead bird lies on the landing above" width="1600" height="1072" loading="lazy"><figcaption>Poster image.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="proj">
+      <div class="label">Readings · GRIMMWELT Kassel, 2026 – 2027</div>
+      <h4>Reading Helga</h4>
+      <p>For <a href="https://www.grimmwelt.de/en/exhibitions/reshaping-tales"><i>Reshaping Tales | Helga Gebert</i></a> (<i>Zwischen Gestalten</i>), the first comprehensive solo exhibition of his grandmother's work, he recorded the stories for the reading corner of GRIMMWELT Kassel: Grimm tales in their 1857 versions, from <i>Aschenputtel</i> to <i>Frau Holle</i>, and Helga Gebert's own retellings, from <i>Die Seejungfrau</i> to <i>Igel und Maus</i>. Visitors can listen to them in the museum until 11 April 2027.</p>
+      <div class="figs">
+        <figure class="w6"><img class="zoom" src="img/work/igel-maus-reading-1600.jpg" data-full="img/work/igel-maus-reading-full.jpg" alt="Watercolour: a large spotted creature on a stool reads a book aloud to a small grey mouse" width="1081" height="1600" loading="lazy"><figcaption>Helga Gebert, illustration for <i>Igel und Maus</i>.</figcaption></figure>
+        <figure class="w6"><img class="zoom" src="img/work/igel-maus-table-1600.jpg" data-full="img/work/igel-maus-table-full.jpg" alt="Watercolour: a mouse in a tall red cap stands on a stool at a table under a bare light bulb" width="1089" height="1600" loading="lazy"><figcaption>Helga Gebert, illustration for <i>Igel und Maus</i>.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="proj">
+      <div class="label">Writing and performance · 2026, in progress</div>
+      <h4><i>Never Again. Next Time.</i></h4>
+      <p>Prose and solo performance on a German family's war history, built from recorded interviews with relatives in their nineties and more than five hundred pages of front-line letters. Research in Romania, summer 2026.</p>
+    </section>
+
+    <section class="proj">
+      <div class="label">Participatory theatre · in development</div>
+      <h4><i>Echoes Across Oceans</i></h4>
+      <p>Youth theatre on climate justice, linking Neukölln in Berlin with Chinatown and Two Bridges in New York.</p>
+    </section>
+
+    <div class="cont">
+      <button data-layer="photographs"><span class="label">Continue · 05</span><span class="serif">Photographs</span></button>
+      <button data-layer="study"><span class="label">Or · 06</span><span class="serif">Study</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-photographs" data-n="05" data-title="Photographs" aria-label="Photographs">
+  <div class="in">
+    <h2>Photographs</h2>
+    <p class="lead">Shot on an Olympus mju III point-and-shoot, on 35 mm colour and black-and-white film, between Berlin, Zurich, Vienna, Rome, the Alps and New York.</p>
+    <p class="sub">Click any image for the full-resolution scan.</p>
+
+    <div class="seq">
+      <figure class="full"><img class="zoom" src="img/mju/0895-2400.jpg" srcset="img/mju/0895-1200.jpg 1200w, img/mju/0895-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 1000px" data-full="img/mju/0895-full.jpg" alt="Midtown skyline over the frozen lake in Central Park" width="2400" height="1591" loading="lazy"><figcaption>Central Park, New York. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="np"><img class="zoom" src="img/mju/0871-2400.jpg" data-full="img/mju/0871-full.jpg" alt="The Empire State Building from the street" width="1592" height="2400" loading="lazy"><figcaption>Empire State Building, New York. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="l"><img class="zoom" src="img/mju/0706-2400.jpg" srcset="img/mju/0706-1200.jpg 1200w, img/mju/0706-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/0706-full.jpg" alt="A peeled orange on a concrete ledge" width="2400" height="1591" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="r"><img class="zoom" src="img/mju/0879-2400.jpg" srcset="img/mju/0879-1200.jpg 1200w, img/mju/0879-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/0879-full.jpg" alt="A white sack on a New York sidewalk, a pigeon beside it" width="2400" height="1591" loading="lazy"><figcaption>New York. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="c"><img class="zoom" src="img/mju/0234-2400.jpg" srcset="img/mju/0234-1200.jpg 1200w, img/mju/0234-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/0234-full.jpg" alt="A window at night, black and white" width="2400" height="1591" loading="lazy"><figcaption>Olympus mju III, black-and-white film.</figcaption></figure>
+      <figure class="half"><img class="zoom" src="img/mju/0563-1200.jpg" srcset="img/mju/0563-1200.jpg 1200w, img/mju/0563-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 520px" data-full="img/mju/0563-full.jpg" alt="Yellow work gloves on a blue metal surface" width="1200" height="817" loading="lazy"><figcaption>Berlin. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="half"><img class="zoom" src="img/mju/0313-1200.jpg" srcset="img/mju/0313-1200.jpg 1200w, img/mju/0313-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 520px" data-full="img/mju/0313-full.jpg" alt="Sparrows on a café table beside a coffee cup" width="1200" height="804" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="l"><img class="zoom" src="img/mju/0308-2400.jpg" srcset="img/mju/0308-1200.jpg 1200w, img/mju/0308-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/0308-full.jpg" alt="Two photographs taped to a wall under a fluorescent tube" width="2400" height="1609" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="full"><img class="zoom" src="img/mju/0629-2400.jpg" srcset="img/mju/0629-1200.jpg 1200w, img/mju/0629-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 1000px" data-full="img/mju/0629-full.jpg" alt="The white rotunda of a museum with a red sofa" width="2400" height="1591" loading="lazy"><figcaption>Pinakothek der Moderne, Munich. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="npl"><img class="zoom" src="img/mju/0125-1200.jpg" srcset="img/mju/0125-1200.jpg 1200w, img/mju/0125-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 440px" data-full="img/mju/0125-full.jpg" alt="Looking up a stairwell, black and white" width="1200" height="805" loading="lazy"><figcaption>Berlin. Olympus mju III, black-and-white film.</figcaption></figure>
+      <figure class="npr"><img class="zoom" src="img/mju/0618-1200.jpg" srcset="img/mju/0618-1200.jpg 1200w, img/mju/0618-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 440px" data-full="img/mju/0618-full.jpg" alt="A framed landscape photograph on a white wall" width="1200" height="796" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="full"><img class="zoom" src="img/mju/0207-2400.jpg" srcset="img/mju/0207-1200.jpg 1200w, img/mju/0207-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 1000px" data-full="img/mju/0207-full.jpg" alt="Alpine valley with snow under cloud" width="2400" height="1591" loading="lazy"><figcaption>Furka Pass. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="r"><img class="zoom" src="img/mju/1054-2400.jpg" srcset="img/mju/1054-1200.jpg 1200w, img/mju/1054-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/1054-full.jpg" alt="Subway station tiles reading Elmhurst, black and white" width="2400" height="1604" loading="lazy"><figcaption>Elmhurst, Queens. Olympus mju III, black-and-white film.</figcaption></figure>
+      <figure class="l"><img class="zoom" src="img/mju/0914-2400.jpg" srcset="img/mju/0914-1200.jpg 1200w, img/mju/0914-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/0914-full.jpg" alt="A dried branch in a vase against an orange wall" width="2400" height="1609" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="half"><img class="zoom" src="img/mju/0448-1200.jpg" srcset="img/mju/0448-1200.jpg 1200w, img/mju/0448-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 520px" data-full="img/mju/0448-full.jpg" alt="A pool seen from above" width="1200" height="804" loading="lazy"><figcaption>Vienna. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="half"><img class="zoom" src="img/mju/0796-1200.jpg" srcset="img/mju/0796-1200.jpg 1200w, img/mju/0796-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 520px" data-full="img/mju/0796-full.jpg" alt="Two old hands resting on each other" width="1200" height="796" loading="lazy"><figcaption>Olympus mju III, colour film.</figcaption></figure>
+      <figure class="c"><img class="zoom" src="img/mju/1029-2400.jpg" srcset="img/mju/1029-1200.jpg 1200w, img/mju/1029-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 700px" data-full="img/mju/1029-full.jpg" alt="A brick apartment block above trees at dusk" width="2400" height="1604" loading="lazy"><figcaption>New York. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="npl"><img class="zoom" src="img/mju/0899-1200.jpg" srcset="img/mju/0899-1200.jpg 1200w, img/mju/0899-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 440px" data-full="img/mju/0899-full.jpg" alt="Shop sign offering a free ride in a police car to shoplifters" width="1200" height="796" loading="lazy"><figcaption>New York. Olympus mju III, colour film.</figcaption></figure>
+      <figure class="npr"><img class="zoom" src="img/mju/0491-1200.jpg" srcset="img/mju/0491-1200.jpg 1200w, img/mju/0491-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 440px" data-full="img/mju/0491-full.jpg" alt="A traffic mirror at night, black and white" width="1200" height="817" loading="lazy"><figcaption>Olympus mju III, black-and-white film.</figcaption></figure>
+    </div>
+
+    <div class="cont">
+      <button data-layer="study"><span class="label">Continue · 06</span><span class="serif">Study</span></button>
+      <button data-layer="screen"><span class="label">Or back to · 01</span><span class="serif">Screen</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-study" data-n="06" data-title="Study" aria-label="Study">
+  <div class="in">
+    <h2>Study</h2>
+    <p class="lead">An MFA in Contemporary Theatre and Performance at The New School, supported by the DAAD, on top of a full actor's training in Zurich and New York.</p>
+
+    <h3>Education</h3>
+    <table class="rec">
+      <tr><td class="y">2025–28</td><td>MFA Contemporary Theatre and Performance</td><td>The New School, New York</td></tr>
+      <tr><td class="y">2021–23</td><td>History and Social Sciences</td><td>Humboldt-Universität zu Berlin</td></tr>
+      <tr><td class="y">2019</td><td>Summer Conservatory</td><td>Stella Adler Studio of Acting, New York University</td></tr>
+      <tr><td class="y">2018–20</td><td>MA Acting</td><td>Zurich University of the Arts (ZHdK)</td></tr>
+      <tr><td class="y">2014–17</td><td>BA Acting</td><td>Zurich University of the Arts (ZHdK)</td></tr>
+    </table>
+
+    <h3>Awards and positions</h3>
+    <table class="rec">
+      <tr><td class="y">2026</td><td>DAAD scholarship</td><td>German Academic Exchange Service</td></tr>
+      <tr><td class="y">2026</td><td>Research assistant</td><td>The New School, New York</td></tr>
+      <tr><td class="y">2025</td><td>Performing Arts Scholarship</td><td>The New School / Parsons</td></tr>
+      <tr><td class="y">2019</td><td>Deutscher Schauspielpreis, nomination</td><td>Best Newcomer, <i>Polizeiruf 110</i></td></tr>
+    </table>
+
+    <p class="sub" style="margin-top:28px">Teachers include Harald Schmidt, Heike M. Goetze, Philipp Becker and Peter Ender for theatre, and Mel Churcher, Florian Kerber, Martin Ostermeier, Oliver Paulus, Stefan Hillebrand and Pierre Mennel for film.</p>
+
+    <div class="figs">
+      <figure class="w8 push5"><img class="zoom" src="img/mju/1054-1200.jpg" srcset="img/mju/1054-1200.jpg 1200w, img/mju/1054-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 60vw" data-full="img/mju/1054-full.jpg" alt="Subway station tiles reading Elmhurst" width="1200" height="802" loading="lazy"><figcaption>Elmhurst, Queens. Olympus mju III, black-and-white film.</figcaption></figure>
+    </div>
+
+    <div class="cont">
+      <button data-layer="alongside"><span class="label">Continue · 07</span><span class="serif">Alongside</span></button>
+      <button data-layer="own"><span class="label">Or · 04</span><span class="serif">Own work</span></button>
+    </div>
+  </div>
+</article>
+
+<article class="layer" id="l-alongside" data-n="07" data-title="Alongside" aria-label="Alongside">
+  <div class="in">
+    <h2>Alongside</h2>
+    <p class="lead">He also knows the other side of the table: how exhibitions are made, and how a technology company explains itself to the people it serves.</p>
+
+    <div class="hl" style="margin-top:56px">
+      <div class="row"><span class="y">2026–</span><span class="w">Klaus Biesenbach</span><span class="m">Assistant to the curator · New York and Berlin</span></div>
+      <div class="row"><span class="y">2025–</span><span class="w">nolas</span><span class="m">Business development · <a href="https://www.nolasworkspace.com">nolas</a> / epostbox epb GmbH, Berlin. European software for document workflows in public administration and healthcare.</span></div>
+    </div>
+
+    <h3>Languages and skills</h3>
+    <table class="rec">
+      <tr><td class="y">Languages</td><td>German (native), Swiss German, English (fluent), French, Romanian</td><td></td></tr>
+      <tr><td class="y">Voice</td><td>Baritone. Guitar, piano, drums</td><td></td></tr>
+      <tr><td class="y">Movement</td><td>Ballet, modern dance, acrobatics, boxing, bouldering, riding</td><td></td></tr>
+    </table>
+
+    <div class="figs">
+      <figure class="w12"><img class="zoom" src="img/mju/0629-2400.jpg" srcset="img/mju/0629-1200.jpg 1200w, img/mju/0629-2400.jpg 2400w" sizes="(max-width:760px) 100vw, 1000px" data-full="img/mju/0629-full.jpg" alt="The white rotunda of a museum" width="2400" height="1591" loading="lazy"><figcaption>Pinakothek der Moderne, Munich. Olympus mju III, colour film.</figcaption></figure>
+    </div>
+
+    <div class="cont">
+      <button data-layer="screen"><span class="label">Start again · 01</span><span class="serif">Screen</span></button>
+      <button data-close-all><span class="label">Or</span><span class="serif">Contact</span></button>
+    </div>
+  </div>
+</article>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image">
+  <div class="lbbar"><span class="lbcap" id="lbcap"></span><button id="lbclose">Close</button></div>
+  <div class="stage" id="lbstage"><img id="lbimg" alt=""></div>
+</div>
+
+<script>
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var mqPhone=window.matchMedia('(max-width:760px)');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- header colour over the photo ---------- */
+  var head=$('#head'),gaze=$('#gaze');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){
+      head.classList.toggle('onlight',!e[0].isIntersecting);
+    },{rootMargin:'-60px 0px 0px 0px'}).observe(gaze);
+  }
+
+  /* ---------- layers (stack in history) ---------- */
+  var layers={};
+  $$('.layer').forEach(function(el){
+    var id=el.id.slice(2);layers[id]=el;
+    var bar=document.createElement('div');bar.className='bar';
+    bar.innerHTML='<span class="crumbs"></span><span class="ctl"><button class="back">Back</button><button class="close">Close</button></span>';
+    el.insertBefore(bar,el.firstChild);
+    bar.querySelector('.back').addEventListener('click',function(){history.back()});
+    bar.querySelector('.close').addEventListener('click',closeAll);
+    el.addEventListener('click',function(e){
+      if(el.classList.contains('under')){
+        var idx=stack.indexOf(id);history.go(idx-(stack.length-1));
+      }
+    });
+  });
+  var stack=[];
+  var scrim=$('#scrim');
+
+  function render(){
+    Object.keys(layers).forEach(function(id){
+      var el=layers[id],i=stack.indexOf(id);
+      if(i<0){el.classList.remove('open','under');el.setAttribute('aria-hidden','true');return}
+      var depth=stack.length-1-i;
+      el.style.setProperty('--depth',depth);
+      el.style.zIndex=100+i;
+      el.classList.add('open');el.classList.toggle('under',depth>0);
+      el.setAttribute('aria-hidden',depth>0?'true':'false');
+      var crumbs=stack.slice(0,i+1).map(function(s,k){
+        var t=layers[s].getAttribute('data-n')+' '+layers[s].getAttribute('data-title');
+        return k===i?'<b>'+t+'</b>':t;
+      }).join('  /  ');
+      el.querySelector('.crumbs').innerHTML=crumbs;
+      el.querySelector('.back').style.display=i>0?'':'none';
+    });
+    scrim.classList.toggle('on',stack.length>0);
+    document.body.classList.toggle('locked',stack.length>0);
+    hideFloat();
+  }
+  function open(id){
+    if(!layers[id])return;
+    if(stack[stack.length-1]===id)return;
+    var existing=stack.indexOf(id);
+    if(existing>-1){history.go(existing-(stack.length-1));return}
+    stack=stack.concat([id]);
+    history.pushState({stack:stack},'','#'+id);
+    render();
+    var el=layers[id];el.scrollTop=0;
+    setTimeout(function(){var b=el.querySelector('.close');b&&b.focus({preventScroll:true})},50);
+  }
+  function closeAll(){
+    if(stack.length)history.go(-stack.length);
+  }
+  window.addEventListener('popstate',function(e){
+    if(e.state&&e.state.stack){stack=e.state.stack;render();return}
+    /* a typed or pasted #hash: open that layer on top */
+    var h=location.hash.slice(1);
+    stack=[];render();
+    if(layers[h]){history.replaceState({stack:[]},'',location.pathname+location.search);open(h)}
+  });
+  scrim.addEventListener('click',closeAll);
+
+  /* ---------- clicks ---------- */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-layer]');
+    if(b){
+      var s=b.getAttribute('data-scroll');
+      if(s&&!layers[b.getAttribute('data-layer')]){e.preventDefault();scrollToId(s);return}
+      e.preventDefault();open(b.getAttribute('data-layer'));return;
+    }
+    var sc=e.target.closest('[data-scroll]');
+    if(sc){e.preventDefault();if(stack.length){closeAll();setTimeout(function(){scrollToId(sc.getAttribute('data-scroll'))},420)}else scrollToId(sc.getAttribute('data-scroll'));return}
+    var ca=e.target.closest('[data-close-all]');
+    if(ca){e.preventDefault();closeAll();setTimeout(function(){scrollToId('contact')},420);return}
+    var top=e.target.closest('[data-top]');
+    if(top){e.preventDefault();if(stack.length)closeAll();window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});return}
+    var z=e.target.closest('img.zoom');
+    if(z){e.preventDefault();lightbox(z);return}
+  });
+  function scrollToId(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}
+
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(lb.classList.contains('on')){closeLb();return}
+    if(stack.length)history.back();
+  });
+
+  /* ---------- floating image on the index ---------- */
+  var fl=$('#float'),fli=fl.querySelector('img');
+  var tx=0,ty=0,cx=0,cy=0,raf=null,showing=false;
+  function loop(){
+    cx+=(tx-cx)*.14;cy+=(ty-cy)*.14;
+    fl.style.transform='translate3d('+cx+'px,'+cy+'px,0)';
+    if(showing||Math.abs(tx-cx)>.5)raf=requestAnimationFrame(loop);else raf=null;
+  }
+  function hideFloat(){showing=false;fl.classList.remove('on')}
+  $$('.rooms .row').forEach(function(r){
+    r.addEventListener('mouseenter',function(e){
+      if(mqPhone.matches)return;
+      fli.src=r.getAttribute('data-img');
+      tx=e.clientX+28;ty=e.clientY-120;
+      if(!showing){cx=tx;cy=ty}
+      showing=true;fl.classList.add('on');
+      if(!raf)raf=requestAnimationFrame(loop);
+    });
+    r.addEventListener('mousemove',function(e){
+      var w=fl.offsetWidth||300,h=fl.offsetHeight||200;
+      tx=Math.min(e.clientX+28,window.innerWidth-w-16);
+      ty=Math.max(16,Math.min(e.clientY-h/2,window.innerHeight-h-16));
+    });
+    r.addEventListener('mouseleave',hideFloat);
+  });
+  window.addEventListener('scroll',function(){if(showing)hideFloat()},{passive:true});
+
+  /* ---------- lightbox: full resolution on demand ---------- */
+  var lb=$('#lb'),lbimg=$('#lbimg'),lbcap=$('#lbcap');
+  function lightbox(img){
+    var cap=img.closest('figure');cap=cap&&cap.querySelector('figcaption');
+    lbcap.textContent=cap?cap.textContent:'';
+    lbimg.alt=img.alt;
+    lbimg.src=img.currentSrc||img.src;
+    var full=img.getAttribute('data-full');
+    if(full){var pre=new Image();pre.onload=function(){if(lb.classList.contains('on'))lbimg.src=full};pre.src=full}
+    lb.classList.add('on');
+  }
+  function closeLb(){lb.classList.remove('on')}
+  $('#lbclose').addEventListener('click',closeLb);
+  $('#lbstage').addEventListener('click',closeLb);
+
+  /* ---------- deep links: #museum, #screen … (runs last) ---------- */
+  var start=location.hash.slice(1);
+  history.replaceState({stack:[]},'',location.pathname+location.search);
+  if(layers[start]){open(start)}
+})();
+</script>
+</body>
+</html>
