@@ -2,7 +2,7 @@
 
 Website of Jasper Engelhardt, actor and performer. Berlin and New York.
 
-A single static page: `index.html` with inline CSS and JavaScript, images in `img/`, CV and portfolio in `pdf/`. No build step. Hosted on GitHub Pages.
+A single static page: `index.html` with inline CSS and JavaScript, images in `img/`. No build step. Hosted on GitHub Pages.
 
 To preview locally:
 

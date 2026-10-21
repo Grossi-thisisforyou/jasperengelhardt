@@ -301,13 +301,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <footer id="contact">
   <div class="label">Contact</div>
   <div>
-    <p class="big"><a href="mailto:jasperengelhardt@protonmail.com">jasperengelhardt@protonmail.com</a></p>
+    <p class="big"><a id="mail" href="#contact" data-u="tdrahlegnerepsaj" data-h="moc.liamnotorp">Email</a></p>
     <p style="margin:0">Berlin and New York</p>
   </div>
   <ul>
     <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
     <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram</a></li>
-    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Documents</span><a href="pdf/Jasper-Engelhardt-CV.pdf">CV</a> · <a href="pdf/Jasper-Engelhardt-Portfolio.pdf">Portfolio</a></li>
   </ul>
   <div class="fine"><span>© 2026 Jasper Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
 </footer>
@@ -757,6 +756,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   function closeLb(){lb.classList.remove('on')}
   $('#lbclose').addEventListener('click',closeLb);
   $('#lbstage').addEventListener('click',closeLb);
+
+  /* ---------- email, assembled here so it never sits in the page source ---------- */
+  var mail=document.getElementById('mail');
+  if(mail){
+    var rev=function(x){return x.split('').reverse().join('')};
+    var addr=rev(mail.getAttribute('data-u'))+String.fromCharCode(64)+rev(mail.getAttribute('data-h'));
+    mail.textContent=addr;
+    mail.addEventListener('click',function(e){e.preventDefault();location.href='mai'+'lto:'+addr});
+  }
 
   /* ---------- deep links: #museum, #screen … (runs last) ---------- */
   var start=location.hash.slice(1);
