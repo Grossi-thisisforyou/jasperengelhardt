@@ -56,64 +56,27 @@ em,i{font-style:italic}
 .js .head:not(.onlight) .name{opacity:0;pointer-events:none}
 
 /* ---------- hero: the gaze ---------- */
-.gaze{position:relative;height:200vh;height:200svh;background:#0c1416;color:#fff}
-.gaze .pin{position:sticky;top:0;height:100vh;height:100svh;min-height:560px;overflow:hidden}
+.gaze{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0c1416;color:#fff}
 .gaze picture,.gaze img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 38%}
 .gaze img{transform:scale(1.04);animation:settle 2.4s var(--ease) forwards}
 @keyframes settle{to{transform:scale(1)}}
-.gaze .pin::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 62%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
+.gaze::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 55%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(56px,min(7.2vw,10.5svh),136px);line-height:var(--lh);letter-spacing:-.018em}
-/* the name follows the scroll: Jasper Engelhardt; Ruben and Alvar slide out (--o); all but the initials
-   dim (--d); the rest folds away until only JRA is left (--e). On wide screens J R A then travel like a
-   flipped L: straight up to the top while shrinking (--u), a pause, then across to the top right (--v),
-   where they land on the J R A next to Contact. --p is the whole run. All 0 to 1, set by the script. */
-.gaze{--p:0;--o:1;--d:1;--e:0;--u:0;--v:0}
-.jra{--lh:.9}
-.jra .ln{display:block}
-.jra .line{display:block;position:relative;border:0;color:inherit}
-.jra .line:hover{opacity:1}
-.jra .x{display:flex;flex-direction:column;justify-content:flex-end;height:calc(var(--o) * var(--lh) * 1em);opacity:calc(var(--o) * 2);clip-path:inset(0 -100vw 0 0)}
-.gaze.m .jra .x{clip-path:none}
-.jra .ln.e{display:flex;flex-direction:column;justify-content:flex-end;height:calc((1 - var(--e)) * var(--lh) * 1em);clip-path:inset(0 -100vw -.3em 0)}
-.jra .ini{display:inline-block;transform-origin:0 0;transform:translate(calc(var(--v) * var(--dx,0px)),calc(var(--u) * var(--dy,0px) + (var(--u) - var(--v)) * var(--k,0px))) scale(calc(1 + var(--u) * (var(--s,1) - 1)))}
-.gaze.done .jra .ini{visibility:hidden}
-.jra .tail,.jra .fam{display:inline-block;vertical-align:top;overflow:hidden;white-space:nowrap;padding:.3em 0;margin:-.3em 0;max-width:calc((1 - var(--e)) * 6em)}
-.jra .tail{opacity:calc((1 - .7 * var(--d)) * (1 - var(--e)))}
-.jra .fam{opacity:calc(1 - var(--e))}
-.jra .line:hover .tail{opacity:calc(1 - var(--e))}
-/* actor, artist, becoming */
-.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;opacity:calc(.88 * var(--d) * (1 - var(--u)));transform:translateY(calc((1 - var(--d)) * 6px));pointer-events:none}
-.jra .who span{border-bottom:1px solid rgba(255,255,255,.4)}
-.gaze.s2 .jra .who{pointer-events:auto}
-.jra .line:hover .who{opacity:calc(1 - var(--u))}
-.jra .line:hover .who span{border-color:#fff}
-.gaze .key{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px;opacity:calc(var(--d) * (1 - var(--e)))}
-.gaze picture{transform:scale(calc(1 + .04 * var(--p)));transform-origin:52% 38%}
-
-.gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,112px);line-height:.92;letter-spacing:-.018em}
+.gaze .role{margin:14px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
+/* who J, R and A are, in one line */
+.gaze .jra{margin:10px 0 0;font-size:13.5px;color:rgba(255,255,255,.7)}
+.gaze .jra a{border:0;color:rgba(255,255,255,.92)}
+.gaze .jra a b{font-weight:400;font-family:var(--serif);font-size:17px}
+.gaze .jra a:hover{opacity:1;border-bottom:1px solid rgba(255,255,255,.5)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
-.js .fade-in{opacity:0}
-.js.awake .fade-in{opacity:1;animation:appear .7s var(--ease) both}
-/* the face and J R A Contact are there at once; the words follow (or come at the first touch, scroll,
-   key or mouse move) in a short fade */
-@keyframes appear{from{opacity:0}to{opacity:1}}
-
-}
 
 /* recognition strip */
 .recog{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:22px var(--pad);border-bottom:1px solid var(--line);align-items:baseline}
 .recog ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;font-size:14px}
 .recog li:not(:last-child)::after{content:"·";margin:0 12px;color:var(--mute)}
-
-@media (min-width:761px){
-  .gaze .pin::after{background:linear-gradient(to top,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 50%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%)}
-  .jra{width:max-content}
-  .jra .who{position:absolute;top:0;left:calc(100% + .42em);display:block;margin:0;font-family:var(--serif);font-size:inherit;line-height:inherit;letter-spacing:0;text-transform:none;white-space:nowrap}
-  .jra .who span{font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1}
-}
 
 /* ---------- page sections ---------- */
 section.block{padding:clamp(80px,14vh,160px) var(--pad)}
@@ -139,25 +102,6 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 
 /* the three umbrellas */
 .umb{margin-top:clamp(56px,10vh,120px);scroll-margin-top:84px}
-/* Alvar is not finished: the r stays an outline with its construction lines showing, and now and then
-   the v, the a or the r slips (cut, shifted, outlined, or for a moment complete) */
-.alv{--bl:.789em;--xh:.43em}
-.umb-name .alv{--bl:.764em}
-.alv .v,.alv .a,.alv .r{display:inline-block;position:relative}
-.alv .r,.alv .g-ol{-webkit-text-fill-color:transparent;-webkit-text-stroke:1px currentColor}
-.alv .r.g-fill{-webkit-text-fill-color:currentColor}
-.alv .v::before,.alv .a::before,.alv .r::before,.alv .v::after,.alv .a::after,.alv .r::after{content:"";position:absolute;left:-.1em;right:-.16em;border-top:1px solid currentColor;opacity:0;pointer-events:none}
-.alv span::before{top:var(--bl)}
-.alv span::after{top:calc(var(--bl) - var(--xh))}
-.alv .r::before,.alv .r::after,.alv .g-guide::before,.alv .g-guide::after{opacity:.4}
-.alv .g-cut{clip-path:inset(0 0 46% 0)}
-.alv .g-shift{transform:translateX(.04em)}
-/* each name opens into its chapters: the rows follow the name, one after another */
-.js .umb .rooms .row{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .7s var(--ease),padding .5s var(--ease)}
-.js .umb .rooms .row.in{opacity:1;transform:none}
-.umb-name{opacity:.22}
-#contact{scroll-margin-top:60px}
-.umb-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:18px;align-items:end}
 .umb-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(72px,11vw,176px);line-height:.85;letter-spacing:-.025em;white-space:nowrap}
 .umb-name .rest{display:inline-block;overflow:hidden;vertical-align:bottom;max-width:0;opacity:0;transition:max-width 1.6s var(--ease) .25s,opacity 1.2s var(--ease) .45s}
 .umb.seen .umb-name .rest{max-width:5em;opacity:1}
@@ -272,9 +216,8 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .head .name{font-size:21px}
   .gaze .cap{flex-direction:column;align-items:flex-start;gap:22px;left:18px;right:18px}
   .gaze .next{text-align:left}
-  .gaze h1{font-size:clamp(48px,16.5vw,96px);letter-spacing:-.02em}
-  .jra{--lh:.86}
-  .jra .alv{--bl:.769em}
+  .gaze h1{font-size:clamp(40px,12vw,64px)}
+  .gaze .jra{font-size:13px}
   section.block{padding:72px 18px}
   .read,.rooms-head,.umb-head,.recog{grid-template-columns:1fr;gap:14px}
   .recog{padding:20px 18px}
@@ -308,9 +251,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .fade-in,.head,.gaze img,.js .fade-in{opacity:1}
-  .gaze{height:auto}
-  .js .umb .rooms .row{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -329,21 +269,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 
 <!-- ================= THE GAZE ================= -->
 <section class="gaze" id="gaze">
- <div class="pin">
   <picture>
     <source media="(max-width:700px)" srcset="img/gaze-tall.jpg">
     <img src="img/gaze.jpg" alt="Jasper Engelhardt, portrait at dusk, looking into the camera" width="2400" height="1601" fetchpriority="high">
   </picture>
-  <div class="cap fade-in">
+  <div class="cap">
     <div>
-      <span class="key" aria-hidden="true">JRA</span>
-      <h1 class="jra" aria-label="Jasper Ruben Alvar Engelhardt, JRA Engelhardt">
-        <span class="ln" aria-hidden="true"><a class="line" href="#jasper" data-scroll="jasper" tabindex="-1"><span class="ini">J</span><span class="tail">asper</span><span class="who"><span>Actor</span></span></a></span>
-        <span class="ln x" aria-hidden="true"><a class="line" href="#ruben" data-scroll="ruben" tabindex="-1"><span class="ini">R</span><span class="tail">uben</span><span class="who"><span>Artist</span></span></a></span>
-        <span class="ln x" aria-hidden="true"><a class="line" href="#alvar" data-scroll="alvar" tabindex="-1"><span class="ini">A</span><span class="tail alv">l<span class="v">v</span><span class="a">a</span><span class="r">r</span></span><span class="who"><span>Becoming</span></span></a></span>
-        <span class="ln e" aria-hidden="true"><span class="line"><span class="fam">Engelhardt</span></span></span>
-      </h1>
+      <h1>Jasper Engelhardt</h1>
       <p class="role">Performance artist and actor. Berlin / New York.</p>
+      <p class="jra"><a href="#jasper" data-scroll="jasper"><b>J</b>asper, the actor</a> · <a href="#ruben" data-scroll="ruben"><b>R</b>uben, the artist</a> · <a href="#alvar" data-scroll="alvar"><b>A</b>lvar, still becoming</a></p>
     </div>
     <div class="next">
       <span class="label">Next</span>
@@ -352,7 +286,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       8–20&nbsp;December 2026 · <a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Tickets</a>
     </div>
   </div>
- </div>
 </section>
 
 <!-- ================= RECOGNITION ================= -->
@@ -364,6 +297,16 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <li>Reperformer, Marina Abramović retrospective, <a href="https://www.kunsthaus.ch">Kunsthaus Zürich</a>, 2024–25</li>
     <li>Marina Abramović, <i>Balkan Erotic Epic</i>, <a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Park Avenue Armory</a>, Dec 2026</li>
   </ul>
+</section>
+
+<!-- ================= THE READ ================= -->
+<section class="block read" id="read">
+  <div class="label">J · R · A</div>
+  <div>
+    <p>Trained as an actor in Zurich, he works on screen and stage: a <i>Polizeiruf&nbsp;110</i> for Jan Bonny, a lead for Netflix, Kafka and Bernhard in Vienna.</p>
+    <p>In the museum he performs for Marina Abramović, at Kunsthaus Zürich and Park Avenue Armory, and makes original work: performance, directing, readings and writing.</p>
+    <p>And study: an MFA at The New School in New York, as a DAAD scholar. The rest is still becoming.</p>
+  </div>
 </section>
 
 <!-- ================= ROOMS ================= -->
@@ -388,21 +331,11 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a</span><span class="r">r</span></span></h2></div></div>
+    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true">lvar</span></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
     <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach.</span><span class="a">→</span></button>
     </div>
-  </div>
-</section>
-
-<!-- ================= THE READ ================= -->
-<section class="block read" id="read">
-  <div class="label">J · R · A</div>
-  <div>
-    <p>Trained as an actor in Zurich, he works on screen and stage: a <i>Polizeiruf&nbsp;110</i> for Jan Bonny, a lead for Netflix, Kafka and Bernhard in Vienna.</p>
-    <p>In the museum he performs for Marina Abramović, at Kunsthaus Zürich and Park Avenue Armory, and makes original work: performance, directing, readings and writing.</p>
-    <p>And study: an MFA at The New School in New York, as a DAAD scholar. The rest is still becoming.</p>
   </div>
 </section>
 
@@ -807,17 +740,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   var mqPhone=window.matchMedia('(max-width:760px)');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- the words come right after the face, or sooner with the first sign of the visitor ---------- */
-  var woke=false,wakeOn=['pointermove','pointerdown','wheel','scroll','keydown','touchstart'];
-  function wake(){
-    if(woke)return;woke=true;
-    document.documentElement.classList.add('awake');
-    wakeOn.forEach(function(t){window.removeEventListener(t,wake,true)});
-  }
-  wakeOn.forEach(function(t){window.addEventListener(t,wake,{capture:true,passive:true})});
-  if(window.scrollY>0||location.hash)wake();
-  setTimeout(wake,600);
-
   /* ---------- header colour over the photo ---------- */
   var head=$('#head'),gaze=$('#gaze');
   if('IntersectionObserver' in window){
@@ -826,83 +748,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     },{rootMargin:'-60px 0px 0px 0px'}).observe(gaze);
   }
 
-  /* ---------- the name follows the scroll, frame by frame ---------- */
-  var inis=$$('.jra .ini'),mkis=$$('.head nav .n');
-  var mqDesk=window.matchMedia('(min-width:761px)'),morph=false;
-  function ease(t){t=t<0?0:t>1?1:t;return t*t*(3-2*t)}
-  function heroAt(){var run=gaze.offsetHeight-window.innerHeight;return run>0?Math.min(1,Math.max(0,-gaze.getBoundingClientRect().top/run)):1}
-  /* how far each initial travels to land on its letter in the header, measured without its own transform;
-     --k keeps them stacked as a small column while they pause at the top
-     (only while the portrait is pinned, so the distances hold for the whole way) */
-  function measure(){
-    inis.forEach(function(el,i){
-      el.style.transform='none';
-      var a=el.getBoundingClientRect(),t=mkis[i].getBoundingClientRect();
-      el.style.transform='';
-      el.style.setProperty('--dx',(t.left-a.left)+'px');
-      el.style.setProperty('--dy',(t.top-a.top)+'px');
-      var f=parseFloat(getComputedStyle(mkis[i]).fontSize);
-      el.style.setProperty('--s',(f/parseFloat(getComputedStyle(el).fontSize)).toFixed(4));
-      el.style.setProperty('--k',(i*f*1.15)+'px');
-    });
-    morph=true;
-  }
-  function paint(p,still){
-    var go=!still&&mqDesk.matches,
-        o=ease((p-.04)/.26),d=ease((p-.34)/.16),e=ease((p-.54)/.14),
-        u=go?ease((p-.72)/.08):0,v=go?ease((p-.85)/.08):0;
-    gaze.style.setProperty('--p',p.toFixed(4));
-    gaze.style.setProperty('--o',o.toFixed(4));
-    gaze.style.setProperty('--d',d.toFixed(4));
-    gaze.style.setProperty('--e',e.toFixed(4));
-    if(u<=0||v>=1)morph=false;else if(!morph)measure();
-    gaze.style.setProperty('--u',u.toFixed(4));
-    gaze.style.setProperty('--v',v.toFixed(4));
-    gaze.classList.toggle('s2',d>.5&&u<.5);
-    gaze.classList.toggle('m',u>0);
-    gaze.classList.toggle('done',v>=1);
-  }
-  var heroNow=0,heroGoal=0,heroRaf=null;
-  function heroTick(){
-    heroNow+=(heroGoal-heroNow)*.22;
-    if(Math.abs(heroGoal-heroNow)<.0005)heroNow=heroGoal;
-    paint(heroNow);
-    heroRaf=heroNow!==heroGoal?requestAnimationFrame(heroTick):null;
-  }
-  function heroScroll(){heroGoal=heroAt();if(!heroRaf)heroRaf=requestAnimationFrame(heroTick)}
-  if(reduce)paint(1,true);
-  else {
-    heroNow=heroGoal=heroAt();paint(heroNow);
-    window.addEventListener('scroll',heroScroll,{passive:true});
-    window.addEventListener('resize',function(){morph=false;heroNow=heroGoal=heroAt();paint(heroNow)});
-  }
-
-  /* ---------- Alvar is not ready yet: small faults in the v, the a and above all the r ---------- */
-  var alv=$$('.alv .v,.alv .a,.alv .r');
-  function fault(){
-    var rs=alv.filter(function(el){return el.classList.contains('r')}),
-        el=Math.random()<.5?rs[Math.random()*rs.length|0]:alv[Math.random()*alv.length|0],
-        kinds=el.classList.contains('r')?['g-fill','g-cut','g-shift']:['g-ol','g-guide','g-cut','g-shift'],
-        k=kinds[Math.random()*kinds.length|0];
-    el.classList.add(k);
-    setTimeout(function(){el.classList.remove(k)},70+Math.random()*170);
-    setTimeout(fault,450+Math.random()*1500);
-  }
-  if(!reduce&&alv.length)setTimeout(fault,1200);
-
   /* ---------- the initials unfold into names when reached ---------- */
   var umbs=$$('.umb');
   if('IntersectionObserver' in window){
     var uo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');uo.unobserve(e.target)}})},{rootMargin:'0px 0px -35% 0px'});
     umbs.forEach(function(u){uo.observe(u)});
   } else umbs.forEach(function(u){u.classList.add('seen')});
-  /* the chapters open one by one, each as it comes into view */
-  var rows=$$('.umb .rooms .row');
-  if('IntersectionObserver' in window){
-    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
-    rows.forEach(function(r){ro.observe(r)});
-  } else rows.forEach(function(r){r.classList.add('in')});
-
   /* ---------- in the header, the letter of the name you are reading is set darker ---------- */
   var nav=$('.head nav'),mlinks=$$('.head nav .n'),spyRaf=null;
   function spy(){
