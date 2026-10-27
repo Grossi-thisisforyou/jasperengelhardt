@@ -94,15 +94,15 @@ em,i{font-style:italic}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
 .js .fade-in,.js .head{opacity:0}
 .js.awake .fade-in,.js.awake .head{opacity:1;animation:flicker .5s steps(1,end) both}
-/* first black; boo, the face flickers on; the words wait for the first touch, scroll, key or mouse move,
-   then flicker on like a tube light */
+/* first black; boo, the face flickers on; right after it (or at the first touch, scroll, key or mouse
+   move) the words flicker on like a tube light */
 @keyframes flicker{0%{opacity:0}18%{opacity:.9}26%{opacity:.1}38%{opacity:1}46%{opacity:.25}54%,100%{opacity:1}}
 
 /* bookmarks: J R A docked at the top right, next to Contact, once they have travelled there */
 .marks{display:none}
 @media (min-width:761px){
   .js .head nav .n{display:none}
-  .marks{position:fixed;z-index:55;top:20px;right:calc(var(--pad) / 2 - .28em);display:flex;flex-direction:column;align-items:flex-start;gap:.5em;font-family:var(--serif);font-size:22px;line-height:.9;letter-spacing:-.018em;color:#fff;mix-blend-mode:difference;visibility:hidden}
+  .marks{position:fixed;z-index:55;top:calc(37px - .765em);right:calc(var(--pad) / 2 - .28em);display:flex;flex-direction:column;align-items:flex-start;gap:.45em;font-family:var(--serif);font-size:34px;line-height:.9;letter-spacing:-.018em;color:#fff;mix-blend-mode:difference;visibility:hidden}
   .marks.on{visibility:visible}
   .marks a{display:block;border:0}
   .marks a:hover{opacity:1}
@@ -801,7 +801,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   var mqPhone=window.matchMedia('(max-width:760px)');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- the words come with the first sign of the visitor ---------- */
+  /* ---------- the words come right after the face, or sooner with the first sign of the visitor ---------- */
   var woke=false,wakeOn=['pointermove','pointerdown','wheel','scroll','keydown','touchstart'];
   function wake(){
     if(woke)return;woke=true;
@@ -810,7 +810,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   }
   wakeOn.forEach(function(t){window.addEventListener(t,wake,{capture:true,passive:true})});
   if(window.scrollY>0||location.hash)wake();
-  setTimeout(wake,4000);
+  setTimeout(wake,750);
 
   /* ---------- header colour over the photo ---------- */
   var head=$('#head'),gaze=$('#gaze');
