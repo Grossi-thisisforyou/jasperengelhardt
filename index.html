@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>JRA Engelhardt</title>
+<script>document.documentElement.className+=' js'</script>
 <meta name="description" content="JRA Engelhardt (Jasper Engelhardt). Performance artist and actor. Berlin / New York.">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +48,10 @@ em,i{font-style:italic}
 .head nav{display:flex;gap:22px;font-size:13.5px}
 .head nav button,.head nav a{border:0;opacity:1}
 .head nav button:hover,.head nav a:hover{opacity:.55}
+.head .name,.head nav .n{transition:opacity .5s var(--ease)}
+.js .head:not(.onlight) .name,.js .head:not(.onlight) nav .n{opacity:0;pointer-events:none}
+.head nav[data-cur] .n:not(.cur){opacity:.4}
+.head nav[data-cur] .n:not(.cur):hover{opacity:.8}
 
 /* ---------- hero: the gaze ---------- */
 .gaze{position:relative;height:250vh;height:250svh;background:#0c1416;color:#fff}
@@ -56,32 +61,30 @@ em,i{font-style:italic}
 @keyframes settle{to{transform:scale(1)}}
 .gaze .pin::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 62%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(56px,min(7.2vw,10.5svh),136px);line-height:.9;letter-spacing:-.018em}
-/* the name opens: Jasper Engelhardt, then Ruben and Alvar, then JRA */
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(56px,min(7.2vw,10.5svh),136px);line-height:var(--lh);letter-spacing:-.018em}
+/* the name follows the scroll: Jasper Engelhardt, then Ruben and Alvar, then JRA.
+   --o opens the two middle names, --d dims all but the initials, --p is the whole run; 0 to 1, set by the script */
+.gaze{--p:0;--o:1;--d:1}
+.jra{--lh:.9}
 .jra .ln{display:block}
-.jra .x{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 1.2s var(--ease),opacity 1s var(--ease)}
-.jra .x > span{overflow:hidden;min-height:0}
-.gaze.s1 .jra .x{grid-template-rows:1fr;opacity:1}
-.jra .tail{transition:opacity 1s var(--ease)}
-.gaze.s2 .jra .tail{opacity:.3}
-.gaze.s2 .jra .ln > span:has(.who:hover) .tail{opacity:1}
-/* the actor, the artist, not yet: links down to each name */
-.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-style:normal;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;border:0;opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.jra .who span{border-bottom:1px solid rgba(255,255,255,.4);transition:border-color .3s}
-.gaze.s2 .jra .who{opacity:.88;pointer-events:auto;transform:none}
-.gaze.s2 .jra .who:hover{opacity:1}
-.jra .who:hover span{border-color:#fff}
-.gaze .key{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px;height:1.2em}
-.gaze .key span{transition:opacity .8s var(--ease)}
-.gaze .key .k2,.gaze.s2 .key .k1{opacity:0}
-.gaze.s2 .key .k2{opacity:1}
-.gaze .key .k2{margin-left:-.1em;position:absolute;left:0}
-.gaze .key{position:relative}
+.jra .line{display:block;position:relative;border:0;color:inherit}
+.jra .line:hover{opacity:1}
+.jra .x{display:flex;flex-direction:column;justify-content:flex-end;height:calc(var(--o) * var(--lh) * 1em);opacity:calc(var(--o) * 2);clip-path:inset(0 -100vw 0 0)}
+.jra .tail{opacity:calc(1 - .7 * var(--d))}
+.jra .line:hover .tail{opacity:1}
+/* the actor, the artist, not yet */
+.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;opacity:calc(.88 * var(--d));transform:translateY(calc((1 - var(--d)) * 6px));pointer-events:none}
+.jra .who span{border-bottom:1px solid rgba(255,255,255,.4)}
+.gaze.s2 .jra .who{pointer-events:auto}
+.jra .line:hover .who{opacity:1}
+.jra .line:hover .who span{border-color:#fff}
+.gaze .key{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px;opacity:var(--d)}
+.gaze picture{transform:scale(calc(1 + .04 * var(--p)));transform-origin:52% 38%}
 .gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
-.fade-in{opacity:0;transform:translateY(10px);animation:fadein 1.4s var(--ease) .5s forwards}
+.fade-in{opacity:0;transform:translateY(10px);animation:fadein 1s var(--ease) .2s forwards}
 @keyframes fadein{to{opacity:1;transform:none}}
 
 /* recognition strip */
@@ -92,8 +95,6 @@ em,i{font-style:italic}
 @media (min-width:761px){
   .gaze .pin::after{background:linear-gradient(to top,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 50%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%)}
   .jra{width:max-content}
-  .jra .ln > span{position:relative;display:block}
-  .jra .x > span{overflow:visible;clip-path:inset(0 -100vw 0 0)}
   .jra .who{position:absolute;top:0;left:calc(100% + .42em);display:block;margin:0;font-family:var(--serif);font-size:inherit;line-height:inherit;letter-spacing:0;text-transform:none;white-space:nowrap}
   .jra .who span{font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1}
 }
@@ -239,7 +240,8 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .head .name{font-size:21px}
   .gaze .cap{flex-direction:column;align-items:flex-start;gap:22px;left:18px;right:18px}
   .gaze .next{text-align:left}
-  .gaze h1{font-size:clamp(48px,16.5vw,96px);line-height:.86;letter-spacing:-.02em}
+  .gaze h1{font-size:clamp(48px,16.5vw,96px);letter-spacing:-.02em}
+  .jra{--lh:.86}
   section.block{padding:72px 18px}
   .read,.rooms-head,.umb-head,.recog{grid-template-columns:1fr;gap:14px}
   .recog{padding:20px 18px}
@@ -284,9 +286,9 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <header class="head" id="head">
   <a class="name" href="#" data-top><span class="caps">JRA</span> Engelhardt</a>
   <nav>
-    <button data-scroll="jasper" aria-label="Jasper, the actor">J</button>
-    <button data-scroll="ruben" aria-label="Ruben, the artist">R</button>
-    <button data-scroll="alvar" aria-label="Alvar, not yet">A</button>
+    <button class="n" data-scroll="jasper" aria-label="Jasper, the actor">Jasper</button>
+    <button class="n" data-scroll="ruben" aria-label="Ruben, the artist">Ruben</button>
+    <button class="n" data-scroll="alvar" aria-label="Alvar, not yet">Alvar</button>
     <button data-scroll="contact" class="nav-contact">Contact</button>
   </nav>
 </header>
@@ -300,12 +302,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   </picture>
   <div class="cap fade-in">
     <div>
-      <span class="key" aria-hidden="true"><span class="k1">Scroll</span><span class="k2">JRA</span></span>
+      <span class="key" aria-hidden="true">JRA</span>
       <h1 class="jra" aria-label="Jasper Ruben Alvar Engelhardt, JRA Engelhardt">
-        <span class="ln" aria-hidden="true"><span><span class="ini">J</span><span class="tail">asper</span><a class="who" href="#jasper" data-scroll="jasper" tabindex="-1"><span>The actor</span></a></span></span>
-        <span class="ln x" aria-hidden="true"><span><span class="ini">R</span><span class="tail">uben</span><a class="who" href="#ruben" data-scroll="ruben" tabindex="-1"><span>The artist</span></a></span></span>
-        <span class="ln x" aria-hidden="true"><span><span class="ini">A</span><span class="tail">lvar</span><a class="who" href="#alvar" data-scroll="alvar" tabindex="-1"><span>Not yet</span></a></span></span>
-        <span class="ln" aria-hidden="true"><span>Engelhardt</span></span>
+        <span class="ln" aria-hidden="true"><a class="line" href="#jasper" data-scroll="jasper" tabindex="-1"><span class="ini">J</span><span class="tail">asper</span><span class="who"><span>The actor</span></span></a></span>
+        <span class="ln x" aria-hidden="true"><a class="line" href="#ruben" data-scroll="ruben" tabindex="-1"><span class="ini">R</span><span class="tail">uben</span><span class="who"><span>The artist</span></span></a></span>
+        <span class="ln x" aria-hidden="true"><a class="line" href="#alvar" data-scroll="alvar" tabindex="-1"><span class="ini">A</span><span class="tail">lvar</span><span class="who"><span>Not yet</span></span></a></span>
+        <span class="ln" aria-hidden="true"><span class="line">Engelhardt</span></span>
       </h1>
       <p class="role">Performance artist and actor. Berlin / New York.</p>
     </div>
@@ -778,15 +780,26 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     },{rootMargin:'-60px 0px 0px 0px'}).observe(gaze);
   }
 
-  /* ---------- the name opens as the hero scrolls ---------- */
-  function stage(){
-    var r=gaze.getBoundingClientRect(),run=gaze.offsetHeight-window.innerHeight;
-    var p=run>0?Math.min(1,Math.max(0,-r.top/run)):1;
-    gaze.classList.toggle('s1',p>.12);
-    gaze.classList.toggle('s2',p>.5);
+  /* ---------- the name follows the scroll, frame by frame ---------- */
+  function ease(t){t=t<0?0:t>1?1:t;return t*t*(3-2*t)}
+  function heroAt(){var run=gaze.offsetHeight-window.innerHeight;return run>0?Math.min(1,Math.max(0,-gaze.getBoundingClientRect().top/run)):1}
+  function paint(p){
+    var o=ease((p-.04)/.36),d=ease((p-.45)/.3);
+    gaze.style.setProperty('--p',p.toFixed(4));
+    gaze.style.setProperty('--o',o.toFixed(4));
+    gaze.style.setProperty('--d',d.toFixed(4));
+    gaze.classList.toggle('s2',d>.5);
   }
-  if(reduce){gaze.classList.add('s1','s2')}
-  else{stage();window.addEventListener('scroll',stage,{passive:true});window.addEventListener('resize',stage)}
+  var heroNow=0,heroGoal=0,heroRaf=null;
+  function heroTick(){
+    heroNow+=(heroGoal-heroNow)*.22;
+    if(Math.abs(heroGoal-heroNow)<.0005)heroNow=heroGoal;
+    paint(heroNow);
+    heroRaf=heroNow!==heroGoal?requestAnimationFrame(heroTick):null;
+  }
+  function heroScroll(){heroGoal=heroAt();if(!heroRaf)heroRaf=requestAnimationFrame(heroTick)}
+  if(reduce)paint(1);
+  else{heroNow=heroGoal=heroAt();paint(heroNow);window.addEventListener('scroll',heroScroll,{passive:true});window.addEventListener('resize',heroScroll)}
 
   /* ---------- the initials unfold into names when reached ---------- */
   var umbs=$$('.umb');
@@ -794,6 +807,20 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var uo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');uo.unobserve(e.target)}})},{rootMargin:'0px 0px -35% 0px'});
     umbs.forEach(function(u){uo.observe(u)});
   } else umbs.forEach(function(u){u.classList.add('seen')});
+
+  /* ---------- the nav marks the name you are reading, like a running head ---------- */
+  var nav=$('.head nav'),navs=$$('.head nav .n'),spyRaf=null;
+  function spy(){
+    spyRaf=null;
+    var mid=window.innerHeight/2,cur=null;
+    if(umbs[0].getBoundingClientRect().top<=mid&&umbs[umbs.length-1].getBoundingClientRect().bottom>mid){
+      umbs.forEach(function(u){if(u.getBoundingClientRect().top<=mid)cur=u.id});
+    }
+    navs.forEach(function(b){b.classList.toggle('cur',b.getAttribute('data-scroll')===cur)});
+    if(cur)nav.setAttribute('data-cur',cur);else nav.removeAttribute('data-cur');
+  }
+  spy();
+  window.addEventListener('scroll',function(){if(!spyRaf)spyRaf=requestAnimationFrame(spy)},{passive:true});
 
   /* ---------- layers (stack in history) ---------- */
   var layers={};
