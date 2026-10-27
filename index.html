@@ -44,13 +44,29 @@ em,i{font-style:italic}
 .head nav button:hover,.head nav a:hover{opacity:.55}
 
 /* ---------- hero: the gaze ---------- */
-.gaze{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0c1416;color:#fff}
+.gaze{position:relative;height:250vh;height:250svh;background:#0c1416;color:#fff}
+.gaze .pin{position:sticky;top:0;height:100vh;height:100svh;min-height:560px;overflow:hidden}
 .gaze picture,.gaze img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 38%}
 .gaze img{transform:scale(1.04);animation:settle 2.4s var(--ease) forwards}
 @keyframes settle{to{transform:scale(1)}}
-.gaze::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 38%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
+.gaze .pin::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 62%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.4vw,92px);line-height:.98;letter-spacing:-.012em}
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(56px,min(12vw,16svh),210px);line-height:.86;letter-spacing:-.02em}
+/* the name opens: Jasper Engelhardt, then Ruben and Alvar, then JRA */
+.jra .ln{display:block}
+.jra .x{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 1.2s var(--ease),opacity 1s var(--ease)}
+.jra .x > span{overflow:hidden;min-height:0}
+.gaze.s1 .jra .x{grid-template-rows:1fr;opacity:1}
+.jra .tail{transition:opacity 1s var(--ease)}
+.gaze.s2 .jra .tail{opacity:.32}
+.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-style:normal;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;opacity:0;transform:translateY(6px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.gaze.s2 .jra .who{opacity:.85;transform:none}
+.gaze .key{display:block;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px;height:1.2em}
+.gaze .key span{transition:opacity .8s var(--ease)}
+.gaze .key .k2,.gaze.s2 .key .k1{opacity:0}
+.gaze.s2 .key .k2{opacity:1}
+.gaze .key .k2{margin-left:-.1em;position:absolute;left:0}
+.gaze .key{position:relative}
 .gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
@@ -204,7 +220,8 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .head .name{font-size:21px}
   .gaze .cap{flex-direction:column;align-items:flex-start;gap:22px;left:18px;right:18px}
   .gaze .next{text-align:left}
-  .gaze h1{font-size:clamp(38px,11vw,56px)}
+  .gaze h1{font-size:clamp(48px,16.5vw,96px)}
+  .jra .who{font-size:11px}
   section.block{padding:72px 18px}
   .read,.rooms-head,.umb-head,.recog{grid-template-columns:1fr;gap:14px}
   .recog{padding:20px 18px}
@@ -240,6 +257,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
   .fade-in{opacity:1;transform:none}
+  .gaze{height:auto}
 }
 </style>
 </head>
@@ -257,13 +275,20 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 
 <!-- ================= THE GAZE ================= -->
 <section class="gaze" id="gaze">
+ <div class="pin">
   <picture>
     <source media="(max-width:700px)" srcset="img/gaze-tall.jpg">
     <img src="img/gaze.jpg" alt="Jasper Engelhardt, portrait at dusk, looking into the camera" width="2400" height="1601" fetchpriority="high">
   </picture>
   <div class="cap fade-in">
     <div>
-      <h1>JRA Engelhardt</h1>
+      <span class="key" aria-hidden="true"><span class="k1">Scroll</span><span class="k2">J · R · A = JRA Engelhardt</span></span>
+      <h1 class="jra" aria-label="Jasper Ruben Alvar Engelhardt, JRA Engelhardt">
+        <span class="ln" aria-hidden="true"><span><b>J</b><span class="tail">asper</span><em class="who">The actor</em></span></span>
+        <span class="ln x" aria-hidden="true"><span><b>R</b><span class="tail">uben</span><em class="who">The artist</em></span></span>
+        <span class="ln x" aria-hidden="true"><span><b>A</b><span class="tail">lvar</span><em class="who">Not yet</em></span></span>
+        <span class="ln" aria-hidden="true"><span>Engelhardt</span></span>
+      </h1>
       <p class="role">Performance artist and actor. Berlin / New York.</p>
     </div>
     <div class="next">
@@ -273,6 +298,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       8 – 20 December 2026 · <a href="https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/#dates">Tickets</a>
     </div>
   </div>
+ </div>
 </section>
 
 <!-- ================= RECOGNITION ================= -->
@@ -733,6 +759,16 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       head.classList.toggle('onlight',!e[0].isIntersecting);
     },{rootMargin:'-60px 0px 0px 0px'}).observe(gaze);
   }
+
+  /* ---------- the name opens as the hero scrolls ---------- */
+  function stage(){
+    var r=gaze.getBoundingClientRect(),run=gaze.offsetHeight-window.innerHeight;
+    var p=run>0?Math.min(1,Math.max(0,-r.top/run)):1;
+    gaze.classList.toggle('s1',p>.12);
+    gaze.classList.toggle('s2',p>.5);
+  }
+  if(reduce){gaze.classList.add('s1','s2')}
+  else{stage();window.addEventListener('scroll',stage,{passive:true});window.addEventListener('resize',stage)}
 
   /* ---------- the initials unfold into names when reached ---------- */
   var umbs=$$('.umb');
