@@ -45,7 +45,10 @@ em,i{font-style:italic}
 .head.onlight{color:var(--ink);background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .head .name{font-family:var(--serif);font-size:23px;line-height:1;letter-spacing:.005em;border:0}
 .head .name .caps{letter-spacing:.04em}
-.head nav{display:flex;gap:22px;font-size:13.5px}
+.head nav{display:flex;align-items:baseline;gap:22px;font-size:13.5px}
+.head nav .n{font-family:var(--serif);font-size:19px;line-height:.9;letter-spacing:-.018em}
+.head nav[data-cur] .n:not(.cur){opacity:.35}
+.head nav[data-cur] .n:not(.cur):hover{opacity:1}
 .head nav a{border:0;opacity:1;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.45);transition:text-decoration-color .3s}
 .head.onlight nav a{text-decoration-color:rgba(12,12,12,.28)}
 .head nav a:hover{opacity:1;text-decoration-color:currentColor}
@@ -56,7 +59,7 @@ em,i{font-style:italic}
 .gaze{position:relative;height:200vh;height:200svh;background:#0c1416;color:#fff}
 .gaze .pin{position:sticky;top:0;height:100vh;height:100svh;min-height:560px;overflow:hidden}
 .gaze picture,.gaze img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 38%}
-.gaze img{transform:scale(1.04);animation:flicker .45s steps(1,end) .35s both,settle 2.4s var(--ease) .35s forwards}
+.gaze img{transform:scale(1.04);animation:flicker .45s steps(1,end) .7s both,settle 2.4s var(--ease) .7s forwards}
 @keyframes settle{to{transform:scale(1)}}
 .gaze .pin::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 62%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
@@ -64,7 +67,7 @@ em,i{font-style:italic}
 /* the name follows the scroll: Jasper Engelhardt; Ruben and Alvar slide out (--o); all but the initials
    dim (--d); the rest folds away until only JRA is left (--e). On wide screens J R A then travel like a
    flipped L: straight up to the top while shrinking (--u), a pause, then across to the top right (--v),
-   where they stay as bookmarks next to Contact. --p is the whole run. All 0 to 1, set by the script. */
+   where they land on the J R A next to Contact. --p is the whole run. All 0 to 1, set by the script. */
 .gaze{--p:0;--o:1;--d:1;--e:0;--u:0;--v:0}
 .jra{--lh:.9}
 .jra .ln{display:block}
@@ -73,7 +76,7 @@ em,i{font-style:italic}
 .jra .x{display:flex;flex-direction:column;justify-content:flex-end;height:calc(var(--o) * var(--lh) * 1em);opacity:calc(var(--o) * 2);clip-path:inset(0 -100vw 0 0)}
 .gaze.m .jra .x{clip-path:none}
 .jra .ln.e{display:flex;flex-direction:column;justify-content:flex-end;height:calc((1 - var(--e)) * var(--lh) * 1em);clip-path:inset(0 -100vw -.3em 0)}
-.jra .ini{display:inline-block;transform-origin:0 0;transform:translate(calc(var(--v) * var(--dx,0px)),calc(var(--u) * var(--dy,0px))) scale(calc(1 + var(--u) * (var(--s,1) - 1)))}
+.jra .ini{display:inline-block;transform-origin:0 0;transform:translate(calc(var(--v) * var(--dx,0px)),calc(var(--u) * var(--dy,0px) + (var(--u) - var(--v)) * var(--k,0px))) scale(calc(1 + var(--u) * (var(--s,1) - 1)))}
 .gaze.done .jra .ini{visibility:hidden}
 .jra .tail,.jra .fam{display:inline-block;vertical-align:top;overflow:hidden;white-space:nowrap;padding:.3em 0;margin:-.3em 0;max-width:calc((1 - var(--e)) * 6em)}
 .jra .tail{opacity:calc((1 - .7 * var(--d)) * (1 - var(--e)))}
@@ -92,23 +95,13 @@ em,i{font-style:italic}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
-.js .fade-in,.js .head{opacity:0}
-.js.awake .fade-in,.js.awake .head{opacity:1;animation:flicker .5s steps(1,end) both}
-/* first black; boo, the face flickers on; right after it (or at the first touch, scroll, key or mouse
-   move) the words flicker on like a tube light */
+.head{animation:flicker .45s steps(1,end) .15s both}
+.js .fade-in{opacity:0}
+.js.awake .fade-in{opacity:1;animation:flicker .5s steps(1,end) both}
+/* first black; J R A Contact flickers on; boo, the face; then (or at the first touch, scroll, key or
+   mouse move) the words, like a tube light */
 @keyframes flicker{0%{opacity:0}18%{opacity:.9}26%{opacity:.1}38%{opacity:1}46%{opacity:.25}54%,100%{opacity:1}}
 
-/* bookmarks: J R A docked at the top right, next to Contact, once they have travelled there */
-.marks{display:none}
-@media (min-width:761px){
-  .js .head nav .n{display:none}
-  .marks{position:fixed;z-index:55;top:calc(37px - .765em);right:calc(var(--pad) / 2 - .28em);display:flex;flex-direction:column;align-items:flex-start;gap:.45em;font-family:var(--serif);font-size:34px;line-height:.9;letter-spacing:-.018em;color:#fff;mix-blend-mode:difference;visibility:hidden}
-  .marks.on{visibility:visible}
-  .marks a{display:block;border:0}
-  .marks a:hover{opacity:1}
-  .marks .i{display:inline-block}
-  .marks[data-cur] a:not(.cur){opacity:.35}
-  .marks[data-cur] a:not(.cur):hover{opacity:1}
 }
 
 /* recognition strip */
@@ -162,10 +155,8 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .alv .g-shift{transform:translateX(.04em)}
 /* each name opens into its chapters: the rows follow the name, one after another */
 .js .umb .rooms .row{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .7s var(--ease),padding .5s var(--ease)}
-.js .umb.seen .rooms .row{opacity:1;transform:none}
-.umb.seen .rooms .row:nth-child(1){transition-delay:.45s}
-.umb.seen .rooms .row:nth-child(2){transition-delay:.57s}
-.umb.seen .rooms .row:nth-child(3){transition-delay:.69s}
+.js .umb .rooms .row.in{opacity:1;transform:none}
+.umb-name{opacity:.22}
 #contact{scroll-margin-top:60px}
 .umb-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:18px;align-items:end}
 .umb-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(72px,11vw,176px);line-height:.85;letter-spacing:-.025em;white-space:nowrap}
@@ -290,7 +281,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .recog{padding:20px 18px}
   .recog ul{flex-direction:column}
   .recog li:not(:last-child)::after{content:none}
-  .head nav .nav-contact{display:none}
   .rooms .row{grid-template-columns:28px 1fr 18px;gap:12px;padding:18px 0}
   .rooms .row .d{grid-column:2/3;font-size:14px;margin-top:4px}
   .rooms .row .a{grid-row:1;grid-column:3}
@@ -319,7 +309,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .fade-in,.head,.gaze img,.js .fade-in,.js .head{opacity:1}
+  .fade-in,.head,.gaze img,.js .fade-in{opacity:1}
   .gaze{height:auto}
   .js .umb .rooms .row{opacity:1;transform:none}
 }
@@ -337,11 +327,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   </nav>
 </header>
 
-<nav class="marks" id="marks" aria-label="Jasper, Ruben, Alvar">
-  <a href="#jasper" data-scroll="jasper" title="Jasper, actor" aria-label="Jasper, actor"><span class="i">J</span></a>
-  <a href="#ruben" data-scroll="ruben" title="Ruben, artist" aria-label="Ruben, artist"><span class="i">R</span></a>
-  <a href="#alvar" data-scroll="alvar" title="Alvar, becoming" aria-label="Alvar, becoming"><span class="i">A</span></a>
-</nav>
 
 <!-- ================= THE GAZE ================= -->
 <section class="gaze" id="gaze">
@@ -832,7 +817,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   }
   wakeOn.forEach(function(t){window.addEventListener(t,wake,{capture:true,passive:true})});
   if(window.scrollY>0||location.hash)wake();
-  setTimeout(wake,750);
+  setTimeout(wake,1150);
 
   /* ---------- header colour over the photo ---------- */
   var head=$('#head'),gaze=$('#gaze');
@@ -843,11 +828,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   }
 
   /* ---------- the name follows the scroll, frame by frame ---------- */
-  var marks=$('#marks'),inis=$$('.jra .ini'),mkis=$$('#marks .i');
+  var inis=$$('.jra .ini'),mkis=$$('.head nav .n');
   var mqDesk=window.matchMedia('(min-width:761px)'),morph=false;
   function ease(t){t=t<0?0:t>1?1:t;return t*t*(3-2*t)}
   function heroAt(){var run=gaze.offsetHeight-window.innerHeight;return run>0?Math.min(1,Math.max(0,-gaze.getBoundingClientRect().top/run)):1}
-  /* how far each initial travels to land on its bookmark, measured without its own transform
+  /* how far each initial travels to land on its letter in the header, measured without its own transform;
+     --k keeps them stacked as a small column while they pause at the top
      (only while the portrait is pinned, so the distances hold for the whole way) */
   function measure(){
     inis.forEach(function(el,i){
@@ -856,7 +842,9 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       el.style.transform='';
       el.style.setProperty('--dx',(t.left-a.left)+'px');
       el.style.setProperty('--dy',(t.top-a.top)+'px');
-      el.style.setProperty('--s',(parseFloat(getComputedStyle(mkis[i]).fontSize)/parseFloat(getComputedStyle(el).fontSize)).toFixed(4));
+      var f=parseFloat(getComputedStyle(mkis[i]).fontSize);
+      el.style.setProperty('--s',(f/parseFloat(getComputedStyle(el).fontSize)).toFixed(4));
+      el.style.setProperty('--k',(i*f*1.15)+'px');
     });
     morph=true;
   }
@@ -874,7 +862,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     gaze.classList.toggle('s2',d>.5&&u<.5);
     gaze.classList.toggle('m',u>0);
     gaze.classList.toggle('done',v>=1);
-    if(!still)marks.classList.toggle('on',v>=1);
   }
   var heroNow=0,heroGoal=0,heroRaf=null;
   function heroTick(){
@@ -884,10 +871,8 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     heroRaf=heroNow!==heroGoal?requestAnimationFrame(heroTick):null;
   }
   function heroScroll(){heroGoal=heroAt();if(!heroRaf)heroRaf=requestAnimationFrame(heroTick)}
-  if(reduce){
-    paint(1,true);
-    if('IntersectionObserver' in window)new IntersectionObserver(function(e){marks.classList.toggle('on',!e[0].isIntersecting)}).observe(gaze);
-  } else {
+  if(reduce)paint(1,true);
+  else {
     heroNow=heroGoal=heroAt();paint(heroNow);
     window.addEventListener('scroll',heroScroll,{passive:true});
     window.addEventListener('resize',function(){morph=false;heroNow=heroGoal=heroAt();paint(heroNow)});
@@ -912,9 +897,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var uo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');uo.unobserve(e.target)}})},{rootMargin:'0px 0px -35% 0px'});
     umbs.forEach(function(u){uo.observe(u)});
   } else umbs.forEach(function(u){u.classList.add('seen')});
+  /* the chapters open one by one, each as it comes into view */
+  var rows=$$('.umb .rooms .row');
+  if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});
+    rows.forEach(function(r){ro.observe(r)});
+  } else rows.forEach(function(r){r.classList.add('in')});
 
-  /* ---------- the bookmark of the name you are reading is set darker ---------- */
-  var mlinks=$$('#marks a'),spyRaf=null;
+  /* ---------- in the header, the letter of the name you are reading is set darker ---------- */
+  var nav=$('.head nav'),mlinks=$$('.head nav .n'),spyRaf=null;
   function spy(){
     spyRaf=null;
     var mid=window.innerHeight/2,cur=null;
@@ -922,7 +913,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       umbs.forEach(function(u){if(u.getBoundingClientRect().top<=mid)cur=u.id});
     }
     mlinks.forEach(function(a){a.classList.toggle('cur',a.getAttribute('data-scroll')===cur)});
-    if(cur)marks.setAttribute('data-cur',cur);else marks.removeAttribute('data-cur');
+    if(cur)nav.setAttribute('data-cur',cur);else nav.removeAttribute('data-cur');
   }
   spy();
   window.addEventListener('scroll',function(){if(!spyRaf)spyRaf=requestAnimationFrame(spy)},{passive:true});
