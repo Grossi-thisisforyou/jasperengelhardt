@@ -100,14 +100,15 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .umb.seen .umb-name .rest{max-width:5em;opacity:1}
 /* Alvar is not finished: the a shows its construction lines, the v starts to break at its tip,
    and the r dissolves into tiny ones and zeros that drift off like pixels */
-#alvar .umb-name .rest{padding-right:.7em}
+#alvar .umb-name .rest{padding-right:2.6em}
 .alv .a,.alv .v,.alv .r{display:inline-block;position:relative}
 .alv .a::before,.alv .a::after{content:"";position:absolute;left:-.07em;right:-.07em;border-top:1px solid currentColor;opacity:.4}
 .alv .a::before{top:.764em}
 .alv .a::after{top:.334em}
+.alv .a .o{position:absolute;left:-.015em;top:.33em;width:.44em;height:.44em;border:1px solid currentColor;border-radius:50%;opacity:.45}
 .alv .v::after{content:"";position:absolute;left:50%;top:.75em;width:.028em;height:.028em;background:currentColor;box-shadow:.045em .035em 0 currentColor,-.035em .07em 0 currentColor,.02em .11em 0 rgba(12,12,12,.5)}
 .alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 30%,transparent 92%);mask-image:linear-gradient(to right,#000 30%,transparent 92%)}
-.alv .r canvas{position:absolute;left:.1em;top:0;width:.8em;height:100%;pointer-events:none}
+.alv .r canvas{position:absolute;left:.1em;top:0;width:2.8em;height:100%;pointer-events:none}
 .layer .owner{margin-bottom:14px}
 
 /* floating image (desktop hover) */
@@ -567,7 +568,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a</span><span class="r"><span class="g">r</span><canvas></canvas></span></span></h2></div></div>
+    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a<i class="o"></i></span><span class="r"><span class="g">r</span><canvas></canvas></span></span></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-study" data-n="Alvar" data-title="Study" aria-label="Study">
@@ -817,12 +818,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var cv=document.querySelector('.alv .r canvas');if(!cv)return;
     var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,ps=[],run=false,raf2=null;
     function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
-    function spawn(){var f=Math.max(5,H*.055);return{x:Math.random()*W*.22,y:H*(.42+Math.random()*.4),vx:.12+Math.random()*.45,vy:(Math.random()-.5)*.12,a:.9,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')}}
+    function spawn(){var k=Math.random(),f=Math.max(4,H*(.025+k*k*.13));return{x:Math.random()*W*.07,y:H*(.38+Math.random()*.44),vx:.15+Math.random()*.7,vy:(Math.random()-.5)*.18,a:.95,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')}}
     function frame(){
       cx.clearRect(0,0,W,H);
-      if(ps.length<70)ps.push(spawn(),spawn());
+      if(ps.length<130)ps.push(spawn(),spawn());
       ps.forEach(function(p){
-        p.x+=p.vx;p.y+=p.vy;p.a-=.004+p.x/W*.006;
+        p.x+=p.vx;p.y+=p.vy;p.a-=.0012+p.x/W*.004;
         cx.fillStyle='rgba(12,12,12,'+Math.max(0,p.a)+')';
         if(p.c){cx.font=p.f+'px "Instrument Sans",Helvetica,sans-serif';cx.fillText(p.c,p.x,p.y)}
         else cx.fillRect(p.x,p.y-p.f*.6,p.f*.5,p.f*.5);
