@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JRA Engelhardt</title>
-<meta name="description" content="JRA Engelhardt. Actor and artist. Berlin and New York.">
+<title>Jasper Engelhardt</title>
+<meta name="description" content="Jasper Engelhardt. Actor and performer. Screen, stage, museum. Berlin and New York.">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +50,8 @@ em,i{font-style:italic}
 @keyframes settle{to{transform:scale(1)}}
 .gaze::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 38%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.4vw,92px);line-height:.98;letter-spacing:-.012em}
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.2vw,104px);line-height:.98;letter-spacing:-.012em}
+.gaze h1 span{display:block;color:rgba(255,255,255,.62)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
@@ -78,16 +79,6 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .rooms .row:hover .t{font-style:italic}
 .rooms-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:28px}
 .rooms-head p{margin:0;max-width:34em;color:var(--mute)}
-
-/* the three umbrellas */
-.umb{margin-top:clamp(56px,10vh,120px);scroll-margin-top:84px}
-#contact{scroll-margin-top:60px}
-.umb-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:18px;align-items:end}
-.umb-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(72px,11vw,176px);line-height:.85;letter-spacing:-.025em;white-space:nowrap}
-.umb-name .rest{display:inline-block;overflow:hidden;vertical-align:bottom;max-width:0;opacity:0;transition:max-width 1.6s var(--ease) .25s,opacity 1.2s var(--ease) .45s}
-.umb.seen .umb-name .rest{max-width:5em;opacity:1}
-#alvar .umb-name .rest{color:var(--mute);font-style:italic}
-.layer .owner{margin-bottom:14px}
 
 /* floating image (desktop hover) */
 .float{position:fixed;left:0;top:0;width:min(26vw,380px);pointer-events:none;z-index:40;opacity:0;transition:opacity .35s var(--ease);will-change:transform}
@@ -190,8 +181,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .gaze .next{text-align:left}
   .gaze h1{font-size:clamp(38px,11vw,56px)}
   section.block{padding:72px 18px}
-  .read,.rooms-head,.umb-head{grid-template-columns:1fr;gap:14px}
-  .head nav .nav-contact{display:none}
+  .read,.rooms-head{grid-template-columns:1fr;gap:14px}
   .rooms .row{grid-template-columns:28px 1fr 18px;gap:12px;padding:18px 0}
   .rooms .row .d{grid-column:2/3;font-size:14px;margin-top:4px}
   .rooms .row .a{grid-row:1;grid-column:3}
@@ -218,7 +208,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   .lb .stage{padding:0 10px 10px}
 }
 @media (prefers-reduced-motion:reduce){
-  .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
   .fade-in{opacity:1;transform:none}
 }
@@ -227,12 +216,11 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <body>
 
 <header class="head" id="head">
-  <a class="name" href="#" data-top>JRA Engelhardt</a>
+  <a class="name" href="#" data-top>Jasper Engelhardt</a>
   <nav>
-    <button data-scroll="jasper" aria-label="J">J</button>
-    <button data-scroll="ruben" aria-label="R">R</button>
-    <button data-scroll="alvar" aria-label="A">A</button>
-    <button data-scroll="contact" class="nav-contact">Contact</button>
+    <button data-layer="index-all" data-scroll="rooms">Work</button>
+    <button data-layer="photographs">Photographs</button>
+    <button data-scroll="contact">Contact</button>
   </nav>
 </header>
 
@@ -243,7 +231,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <img src="img/gaze.jpg" alt="Jasper Engelhardt, portrait at dusk, looking into the camera" width="2400" height="1601" fetchpriority="high">
   </picture>
   <div class="cap fade-in">
-    <h1>JRA Engelhardt</h1>
+    <h1>Actor and performer.<span>Screen, stage, museum.</span></h1>
     <div class="next">
       <span class="label">Next</span>
       Marina Abramović, <i>Balkan Erotic Epic</i><br>
@@ -255,10 +243,10 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 
 <!-- ================= THE READ ================= -->
 <section class="block read" id="read">
-  <div class="label">J · R · A</div>
+  <div class="label">In short</div>
   <div>
-    <p>Trained as an actor in Zurich, he gave his twenties to the screen and the stage: a <i>Polizeiruf 110</i> for Jan Bonny, a lead for Netflix, Kafka and Bernhard in Vienna.</p>
-    <p>His thirties belong to the museum and to his own work: Marina Abramović's <i>Imponderabilia</i> at Kunsthaus Zürich, performances on inheritance, history and machines, an MFA at The New School in New York. A third chapter is still unwritten. What runs through all of it is conflict: the Second World War, in which his family as Germans was very much involved, its repercussions through the generations since, and the continuous conflicts in the world right now.</p>
+    <p>Jasper Engelhardt is an actor trained in Zurich who has spent a decade moving between three rooms that rarely share their people: German-language film and television, the repertory stage, and the museum.</p>
+    <p>He led a <i>Polizeiruf 110</i> for Jan Bonny, played Kafka and Bernhard in Vienna, and performed Marina Abramović's <i>Imponderabilia</i> at Kunsthaus Zürich. Today he lives in New York, completing an MFA at The New School, assisting the curator Klaus Biesenbach, and making his own work. The common thread is one discipline: presence, held exactly as long as the work asks.</p>
   </div>
 </section>
 
@@ -271,29 +259,16 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <section class="block" id="rooms">
   <div class="rooms-head">
     <div class="label">The work</div>
-    <p>Every row opens as a layer you can go deeper into, and every layer points to the next.</p>
+    <p>Seven ways in. Each opens as a layer you can go deeper into, and each one points to the next.</p>
   </div>
-  <div class="umb" id="jasper">
-    <div class="umb-head"><div class="label">I</div><div><h2 class="umb-name"><span class="ini">J</span><span class="rest" aria-hidden="true">asper</span></h2></div></div>
-    <div class="rooms">
+  <div class="rooms">
     <button class="row" data-layer="screen" data-img="img/polizeiruf-2017-a.jpg"><span class="n">01</span><span class="t">Screen</span><span class="d">Lead roles for ARD, Netflix and BR. Deutscher Schauspielpreis nomination.</span><span class="a">→</span></button>
     <button class="row" data-layer="stage" data-img="img/kafka-wien-2024-a.jpg"><span class="n">02</span><span class="t">Stage</span><span class="d">Kafka and Bernhard in Vienna, Schauspielhaus Zürich, now New York.</span><span class="a">→</span></button>
-    </div>
-  </div>
-  <div class="umb" id="ruben">
-    <div class="umb-head"><div class="label">II</div><div><h2 class="umb-name"><span class="ini">R</span><span class="rest" aria-hidden="true">uben</span></h2></div></div>
-    <div class="rooms">
     <button class="row" data-layer="museum" data-img="img/abramovic-imponderabilia-2025.jpg"><span class="n">03</span><span class="t">Museum</span><span class="d">Marina Abramović, Florentina Holzinger, Manifesta 11.</span><span class="a">→</span></button>
     <button class="row" data-layer="own" data-img="img/work/berghein-pass-1600.jpg"><span class="n">04</span><span class="t">Own work</span><span class="d">An AI-automated performance, solo work, directing, readings and writing.</span><span class="a">→</span></button>
     <button class="row" data-layer="photographs" data-img="img/mju/0706-1200.jpg"><span class="n">05</span><span class="t">Photographs</span><span class="d">Olympus mju III, 35 mm film. Berlin, Zurich, Vienna, New York.</span><span class="a">→</span></button>
-    </div>
-  </div>
-  <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true">lvar</span></h2></div></div>
-    <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
     <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach, and in technology with nolas.</span><span class="a">→</span></button>
-    </div>
   </div>
 </section>
 
@@ -333,7 +308,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
     <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram</a></li>
   </ul>
-  <div class="fine"><span>© 2026 JRA Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
+  <div class="fine"><span>© 2026 Jasper Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
 </footer>
 
 <div class="float" id="float"><img alt=""></div>
@@ -343,9 +318,8 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
      LAYERS
      ====================================================== -->
 
-<article class="layer" id="l-screen" data-n="Jasper" data-title="Screen" aria-label="Screen">
+<article class="layer" id="l-screen" data-n="01" data-title="Screen" aria-label="Screen">
   <div class="in">
-    <div class="label owner">Jasper</div>
     <h2>Screen</h2>
     <p class="lead">A screen actor with lead credits across German public television, streaming and film-school features, first noticed as Farim in Jan Bonny's <i>Polizeiruf 110</i>.</p>
     <p class="sub">Works in German, Swiss German and English. Showreel through <a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider</a>.</p>
@@ -385,15 +359,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </table>
 
     <div class="cont">
-      <button data-layer="stage"><span class="label">Continue · Jasper</span><span class="serif">Stage</span></button>
-      <button data-layer="museum"><span class="label">Or · Ruben</span><span class="serif">Museum</span></button>
+      <button data-layer="stage"><span class="label">Continue · 02</span><span class="serif">Stage</span></button>
+      <button data-layer="museum"><span class="label">Or · 03</span><span class="serif">Museum</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-stage" data-n="Jasper" data-title="Stage" aria-label="Stage">
+<article class="layer" id="l-stage" data-n="02" data-title="Stage" aria-label="Stage">
   <div class="in">
-    <div class="label owner">Jasper</div>
     <h2>Stage</h2>
     <p class="lead">Leading roles in the German-language repertory system, from Kafka and Thomas Bernhard at Theater der Jugend Wien to Staatstheater Darmstadt and Schauspielhaus Zürich. Since 2025, New York's experimental stages.</p>
 
@@ -431,15 +404,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </table>
 
     <div class="cont">
-      <button data-layer="museum"><span class="label">Continue · Ruben</span><span class="serif">Museum</span></button>
-      <button data-layer="own"><span class="label">Or · Ruben</span><span class="serif">Own work</span></button>
+      <button data-layer="museum"><span class="label">Continue · 03</span><span class="serif">Museum</span></button>
+      <button data-layer="own"><span class="label">Or · 04</span><span class="serif">Own work</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-museum" data-n="Ruben" data-title="Museum" aria-label="Museum">
+<article class="layer" id="l-museum" data-n="03" data-title="Museum" aria-label="Museum">
   <div class="in">
-    <div class="label owner">Ruben</div>
     <h2>Museum</h2>
     <p class="lead">Durational, body-based work for artists who ask a performer to hold still, stay exposed and repeat. Reperformer in Marina Abramović's retrospective at Kunsthaus Zürich, and this December in her <i>Balkan Erotic Epic</i> at Park Avenue Armory.</p>
 
@@ -469,15 +441,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </table>
 
     <div class="cont">
-      <button data-layer="own"><span class="label">Continue · Ruben</span><span class="serif">Own work</span></button>
-      <button data-layer="alongside"><span class="label">Or · Alvar</span><span class="serif">Alongside</span></button>
+      <button data-layer="own"><span class="label">Continue · 04</span><span class="serif">Own work</span></button>
+      <button data-layer="alongside"><span class="label">Or · 07</span><span class="serif">Alongside</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-own" data-n="Ruben" data-title="Own work" aria-label="Own work">
+<article class="layer" id="l-own" data-n="04" data-title="Own work" aria-label="Own work">
   <div class="in">
-    <div class="label owner">Ruben</div>
     <h2>Own work</h2>
     <p class="lead">Work that starts from research and from machines: a family archive, recorded conversations, small computers and language models that read the room. Made for the black box, the page and the classroom.</p>
 
@@ -533,15 +504,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </section>
 
     <div class="cont">
-      <button data-layer="photographs"><span class="label">Continue · Ruben</span><span class="serif">Photographs</span></button>
-      <button data-layer="study"><span class="label">Or · Alvar</span><span class="serif">Study</span></button>
+      <button data-layer="photographs"><span class="label">Continue · 05</span><span class="serif">Photographs</span></button>
+      <button data-layer="study"><span class="label">Or · 06</span><span class="serif">Study</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-photographs" data-n="Ruben" data-title="Photographs" aria-label="Photographs">
+<article class="layer" id="l-photographs" data-n="05" data-title="Photographs" aria-label="Photographs">
   <div class="in">
-    <div class="label owner">Ruben</div>
     <h2>Photographs</h2>
     <p class="lead">Shot on an Olympus mju III point-and-shoot, on 35 mm colour and black-and-white film, between Berlin, Zurich, Vienna, Rome, the Alps and New York.</p>
     <p class="sub">Click any image for the full-resolution scan.</p>
@@ -569,15 +539,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
 
     <div class="cont">
-      <button data-layer="study"><span class="label">Continue · Alvar</span><span class="serif">Study</span></button>
-      <button data-layer="screen"><span class="label">Or back to · Jasper</span><span class="serif">Screen</span></button>
+      <button data-layer="study"><span class="label">Continue · 06</span><span class="serif">Study</span></button>
+      <button data-layer="screen"><span class="label">Or back to · 01</span><span class="serif">Screen</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-study" data-n="Alvar" data-title="Study" aria-label="Study">
+<article class="layer" id="l-study" data-n="06" data-title="Study" aria-label="Study">
   <div class="in">
-    <div class="label owner">Alvar</div>
     <h2>Study</h2>
     <p class="lead">An MFA in Contemporary Theatre and Performance at The New School, supported by the DAAD, on top of a full actor's training in Zurich and New York.</p>
 
@@ -605,15 +574,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
 
     <div class="cont">
-      <button data-layer="alongside"><span class="label">Continue · Alvar</span><span class="serif">Alongside</span></button>
-      <button data-layer="own"><span class="label">Or · Ruben</span><span class="serif">Own work</span></button>
+      <button data-layer="alongside"><span class="label">Continue · 07</span><span class="serif">Alongside</span></button>
+      <button data-layer="own"><span class="label">Or · 04</span><span class="serif">Own work</span></button>
     </div>
   </div>
 </article>
 
-<article class="layer" id="l-alongside" data-n="Alvar" data-title="Alongside" aria-label="Alongside">
+<article class="layer" id="l-alongside" data-n="07" data-title="Alongside" aria-label="Alongside">
   <div class="in">
-    <div class="label owner">Alvar</div>
     <h2>Alongside</h2>
     <p class="lead">He also knows the other side of the table: how exhibitions are made, and how a technology company explains itself to the people it serves.</p>
 
@@ -634,7 +602,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
 
     <div class="cont">
-      <button data-layer="screen"><span class="label">Start again · Jasper</span><span class="serif">Screen</span></button>
+      <button data-layer="screen"><span class="label">Start again · 01</span><span class="serif">Screen</span></button>
       <button data-close-all><span class="label">Or</span><span class="serif">Contact</span></button>
     </div>
   </div>
@@ -660,13 +628,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       head.classList.toggle('onlight',!e[0].isIntersecting);
     },{rootMargin:'-60px 0px 0px 0px'}).observe(gaze);
   }
-
-  /* ---------- the initials unfold into names when reached ---------- */
-  var umbs=$$('.umb');
-  if('IntersectionObserver' in window){
-    var uo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');uo.unobserve(e.target)}})},{rootMargin:'0px 0px -35% 0px'});
-    umbs.forEach(function(u){uo.observe(u)});
-  } else umbs.forEach(function(u){u.classList.add('seen')});
 
   /* ---------- layers (stack in history) ---------- */
   var layers={};
@@ -696,7 +657,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       el.classList.add('open');el.classList.toggle('under',depth>0);
       el.setAttribute('aria-hidden',depth>0?'true':'false');
       var crumbs=stack.slice(0,i+1).map(function(s,k){
-        var t=layers[s].getAttribute('data-n')+' · '+layers[s].getAttribute('data-title');
+        var t=layers[s].getAttribute('data-n')+' '+layers[s].getAttribute('data-title');
         return k===i?'<b>'+t+'</b>':t;
       }).join('  /  ');
       el.querySelector('.crumbs').innerHTML=crumbs;
