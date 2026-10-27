@@ -1005,23 +1005,26 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     if(showing||Math.abs(tx-cx)>.5)raf=requestAnimationFrame(loop);else raf=null;
   }
   function hideFloat(){showing=false;fl.classList.remove('on')}
-  $$('.rooms .row').forEach(function(r){
-    r.addEventListener('mouseenter',function(e){
-      if(mqPhone.matches)return;
-      fli.src=r.getAttribute('data-img');
-      tx=e.clientX+28;ty=e.clientY-120;
-      if(!showing){cx=tx;cy=ty}
-      showing=true;fl.classList.add('on');
-      if(!raf)raf=requestAnimationFrame(loop);
-    });
-    r.addEventListener('mousemove',function(e){
-      var w=fl.offsetWidth||300,h=fl.offsetHeight||200;
-      tx=Math.min(e.clientX+28,window.innerWidth-w-16);
-      ty=Math.max(16,Math.min(e.clientY-h/2,window.innerHeight-h-16));
-    });
-    r.addEventListener('mouseleave',hideFloat);
-  });
-  window.addEventListener('scroll',function(){if(showing)hideFloat()},{passive:true});
+  /* the chapter under the cursor shows its picture, also while the page scrolls beneath a still mouse */
+  var px=-1,py=-1,floatRaf=null;
+  function floatAt(){
+    floatRaf=null;
+    if(mqPhone.matches||px<0)return;
+    var el=document.elementFromPoint(px,py),r=el&&el.closest('.rooms .row');
+    if(!r){if(showing)hideFloat();return}
+    var src=r.getAttribute('data-img');
+    if(fli.getAttribute('src')!==src)fli.src=src;
+    var w=fl.offsetWidth||300,h=fl.offsetHeight||200;
+    tx=Math.min(px+28,window.innerWidth-w-16);
+    ty=Math.max(16,Math.min(py-h/2,window.innerHeight-h-16));
+    if(!showing){cx=tx;cy=ty}
+    showing=true;fl.classList.add('on');
+    if(!raf)raf=requestAnimationFrame(loop);
+  }
+  function floatSoon(){if(!floatRaf)floatRaf=requestAnimationFrame(floatAt)}
+  window.addEventListener('mousemove',function(e){px=e.clientX;py=e.clientY;floatSoon()},{passive:true});
+  window.addEventListener('scroll',floatSoon,{passive:true});
+  document.addEventListener('mouseleave',function(){px=-1;hideFloat()});
 
   /* ---------- lightbox: full resolution on demand ---------- */
   var lb=$('#lb'),lbimg=$('#lbimg'),lbcap=$('#lbcap');
