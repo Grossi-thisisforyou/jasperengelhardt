@@ -62,9 +62,10 @@ em,i{font-style:italic}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(56px,min(7.2vw,10.5svh),136px);line-height:var(--lh);letter-spacing:-.018em}
 /* the name follows the scroll: Jasper Engelhardt; Ruben and Alvar slide out (--o); all but the initials
-   dim (--d); the rest folds away until only JRA is left (--e); on wide screens the three initials then glide
-   to the left edge and stay there as bookmarks (--m). --p is the whole run. All 0 to 1, set by the script. */
-.gaze{--p:0;--o:1;--d:1;--e:0;--m:0}
+   dim (--d); the rest folds away until only JRA is left (--e). On wide screens J R A then travel like a
+   flipped L: straight up to the top while shrinking (--u), a pause, then across to the top right (--v),
+   where they stay as bookmarks next to Contact. --p is the whole run. All 0 to 1, set by the script. */
+.gaze{--p:0;--o:1;--d:1;--e:0;--u:0;--v:0}
 .jra{--lh:.9}
 .jra .ln{display:block}
 .jra .line{display:block;position:relative;border:0;color:inherit}
@@ -72,40 +73,40 @@ em,i{font-style:italic}
 .jra .x{display:flex;flex-direction:column;justify-content:flex-end;height:calc(var(--o) * var(--lh) * 1em);opacity:calc(var(--o) * 2);clip-path:inset(0 -100vw 0 0)}
 .gaze.m .jra .x{clip-path:none}
 .jra .ln.e{display:flex;flex-direction:column;justify-content:flex-end;height:calc((1 - var(--e)) * var(--lh) * 1em);clip-path:inset(0 -100vw -.3em 0)}
-.jra .ini{display:inline-block;transform-origin:0 0;transform:translate(calc(var(--m) * var(--dx,0px)),calc(var(--m) * var(--dy,0px))) scale(calc(1 + var(--m) * (var(--s,1) - 1)))}
+.jra .ini{display:inline-block;transform-origin:0 0;transform:translate(calc(var(--v) * var(--dx,0px)),calc(var(--u) * var(--dy,0px))) scale(calc(1 + var(--u) * (var(--s,1) - 1)))}
 .gaze.done .jra .ini{visibility:hidden}
 .jra .tail,.jra .fam{display:inline-block;vertical-align:top;overflow:hidden;white-space:nowrap;padding:.3em 0;margin:-.3em 0;max-width:calc((1 - var(--e)) * 6em)}
 .jra .tail{opacity:calc((1 - .7 * var(--d)) * (1 - var(--e)))}
 .jra .fam{opacity:calc(1 - var(--e))}
 .jra .line:hover .tail{opacity:calc(1 - var(--e))}
 /* actor, artist, becoming */
-.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;opacity:calc(.88 * var(--d) * (1 - var(--m)));transform:translateY(calc((1 - var(--d)) * 6px));pointer-events:none}
+.jra .who{display:inline-block;vertical-align:top;margin:.5em 0 0 .7em;font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1;opacity:calc(.88 * var(--d) * (1 - var(--u)));transform:translateY(calc((1 - var(--d)) * 6px));pointer-events:none}
 .jra .who span{border-bottom:1px solid rgba(255,255,255,.4)}
 .gaze.s2 .jra .who{pointer-events:auto}
-.jra .line:hover .who{opacity:calc(1 - var(--m))}
+.jra .line:hover .who{opacity:calc(1 - var(--u))}
 .jra .line:hover .who span{border-color:#fff}
 .gaze .key{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px;opacity:calc(var(--d) * (1 - var(--e)))}
 .gaze picture{transform:scale(calc(1 + .04 * var(--p)));transform-origin:52% 38%}
 
-/* bookmarks: J R A at the left edge, once the portrait has gone */
-.marks{display:none}
-@media (min-width:761px){
-  .marks{position:fixed;z-index:45;left:calc(var(--pad) / 2 - .28em);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.5em;font-family:var(--serif);font-size:22px;line-height:.9;letter-spacing:-.018em;color:#fff;mix-blend-mode:difference;visibility:hidden}
-  .marks.on{visibility:visible}
-  .marks a{display:block;border:0;white-space:nowrap}
-  .marks a:hover{opacity:1}
-  .marks .i{display:inline-block}
-  .marks .t{display:inline-block;vertical-align:top;overflow:hidden;white-space:nowrap;padding:.3em 0;margin:-.3em 0;max-width:0;opacity:0;transition:max-width .6s var(--ease),opacity .4s var(--ease)}
-  .marks a:hover .t,.marks a:focus-visible .t{max-width:5em;opacity:1}
-  .marks[data-cur] a:not(.cur){opacity:.35}
-  .marks[data-cur] a:not(.cur):hover{opacity:1}
-}
 .gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
 .fade-in{opacity:0;transform:translateY(10px);animation:fadein 1s var(--ease) .2s forwards}
 @keyframes fadein{to{opacity:1;transform:none}}
+
+/* bookmarks: J R A docked at the top right, next to Contact, once they have travelled there */
+.marks{display:none}
+@media (min-width:761px){
+  .js .head nav .n{display:none}
+  .marks{position:fixed;z-index:55;top:20px;right:calc(var(--pad) / 2 - .28em);display:flex;flex-direction:column;align-items:flex-start;gap:.5em;font-family:var(--serif);font-size:22px;line-height:.9;letter-spacing:-.018em;color:#fff;mix-blend-mode:difference;visibility:hidden}
+  .marks.on{visibility:visible}
+  .marks a{display:block;border:0}
+  .marks a:hover{opacity:1}
+  .marks .i{display:inline-block}
+  .marks[data-cur] a:not(.cur){opacity:.35}
+  .marks[data-cur] a:not(.cur):hover{opacity:1}
+}
 
 /* recognition strip */
 .recog{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:22px var(--pad);border-bottom:1px solid var(--line);align-items:baseline}
@@ -306,17 +307,17 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <header class="head" id="head">
   <a class="name" href="#" data-top><span class="caps">JRA</span> Engelhardt</a>
   <nav>
-    <a href="#jasper" data-scroll="jasper" aria-label="Jasper, actor" title="Jasper, actor">J</a>
-    <a href="#ruben" data-scroll="ruben" aria-label="Ruben, artist" title="Ruben, artist">R</a>
-    <a href="#alvar" data-scroll="alvar" aria-label="Alvar, becoming" title="Alvar, becoming">A</a>
+    <a class="n" href="#jasper" data-scroll="jasper" aria-label="Jasper, actor" title="Jasper, actor">J</a>
+    <a class="n" href="#ruben" data-scroll="ruben" aria-label="Ruben, artist" title="Ruben, artist">R</a>
+    <a class="n" href="#alvar" data-scroll="alvar" aria-label="Alvar, becoming" title="Alvar, becoming">A</a>
     <a href="#contact" data-scroll="contact" class="nav-contact">Contact</a>
   </nav>
 </header>
 
 <nav class="marks" id="marks" aria-label="Jasper, Ruben, Alvar">
-  <a href="#jasper" data-scroll="jasper"><span class="i">J</span><span class="t">asper</span></a>
-  <a href="#ruben" data-scroll="ruben"><span class="i">R</span><span class="t">uben</span></a>
-  <a href="#alvar" data-scroll="alvar"><span class="i">A</span><span class="t">lvar</span></a>
+  <a href="#jasper" data-scroll="jasper" title="Jasper, actor" aria-label="Jasper, actor"><span class="i">J</span></a>
+  <a href="#ruben" data-scroll="ruben" title="Ruben, artist" aria-label="Ruben, artist"><span class="i">R</span></a>
+  <a href="#alvar" data-scroll="alvar" title="Alvar, becoming" aria-label="Alvar, becoming"><span class="i">A</span></a>
 </nav>
 
 <!-- ================= THE GAZE ================= -->
@@ -812,7 +813,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   function ease(t){t=t<0?0:t>1?1:t;return t*t*(3-2*t)}
   function heroAt(){var run=gaze.offsetHeight-window.innerHeight;return run>0?Math.min(1,Math.max(0,-gaze.getBoundingClientRect().top/run)):1}
   /* how far each initial travels to land on its bookmark, measured without its own transform
-     (only while the portrait is pinned, so the distances hold for the whole glide) */
+     (only while the portrait is pinned, so the distances hold for the whole way) */
   function measure(){
     inis.forEach(function(el,i){
       el.style.transform='none';
@@ -825,18 +826,20 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     morph=true;
   }
   function paint(p,still){
-    var o=ease((p-.04)/.28),d=ease((p-.36)/.18),e=ease((p-.58)/.16),
-        m=(still||!mqDesk.matches)?0:ease((p-.8)/.14);
+    var go=!still&&mqDesk.matches,
+        o=ease((p-.04)/.26),d=ease((p-.34)/.16),e=ease((p-.54)/.14),
+        u=go?ease((p-.72)/.08):0,v=go?ease((p-.85)/.08):0;
     gaze.style.setProperty('--p',p.toFixed(4));
     gaze.style.setProperty('--o',o.toFixed(4));
     gaze.style.setProperty('--d',d.toFixed(4));
     gaze.style.setProperty('--e',e.toFixed(4));
-    if(m<=0||m>=1)morph=false;else if(!morph)measure();
-    gaze.style.setProperty('--m',m.toFixed(4));
-    gaze.classList.toggle('s2',d>.5&&m<.5);
-    gaze.classList.toggle('m',m>0);
-    gaze.classList.toggle('done',m>=1);
-    if(!still)marks.classList.toggle('on',m>=1);
+    if(u<=0||v>=1)morph=false;else if(!morph)measure();
+    gaze.style.setProperty('--u',u.toFixed(4));
+    gaze.style.setProperty('--v',v.toFixed(4));
+    gaze.classList.toggle('s2',d>.5&&u<.5);
+    gaze.classList.toggle('m',u>0);
+    gaze.classList.toggle('done',v>=1);
+    if(!still)marks.classList.toggle('on',v>=1);
   }
   var heroNow=0,heroGoal=0,heroRaf=null;
   function heroTick(){
