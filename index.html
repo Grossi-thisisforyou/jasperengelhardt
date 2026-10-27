@@ -108,6 +108,13 @@ footer .big{font-family:var(--serif);font-size:clamp(30px,3.4vw,52px);line-heigh
 footer .big a{border-bottom-width:1px}
 footer ul{list-style:none;margin:0;padding:0}
 footer li{margin:0 0 4px}
+footer .invite{margin-top:40px;max-width:30em}
+footer .invite .label{display:block;margin-bottom:10px}
+footer .invite div{display:flex;border-bottom:1px solid var(--ink)}
+footer .invite input{flex:1;min-width:0;font:inherit;font-size:16px;color:inherit;background:none;border:0;padding:8px 0;outline:0}
+footer .invite button{padding:8px 0 8px 16px;white-space:nowrap}
+footer .invite button:hover{opacity:.55}
+footer .invite .note{margin:8px 0 0;color:var(--mute);font-size:12.5px}
 footer .fine{grid-column:1/-1;margin-top:64px;display:flex;justify-content:space-between;color:var(--mute);font-size:12.5px}
 
 /* ---------- layers ---------- */
@@ -292,7 +299,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true">lvar</span></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
-    <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach, and in technology with nolas.</span><span class="a">→</span></button>
+    <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach.</span><span class="a">→</span></button>
     </div>
   </div>
 </section>
@@ -328,10 +335,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <div>
     <p class="big"><a id="mail" href="#contact" data-u="tdrahlegnerepsaj" data-h="moc.liamnotorp">Email</a></p>
     <p style="margin:0">Berlin and New York</p>
+    <form class="invite" id="invite">
+      <label class="label" for="invite-mail">Invite me to the next showing</label>
+      <div><input id="invite-mail" type="email" name="email" placeholder="Your email" required autocomplete="email"><button type="submit">Invite me</button></div>
+      <p class="note" id="invite-note">A few times a year, only when there is something to see.</p>
+    </form>
   </div>
   <ul>
     <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
-    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram @jasper_engelhardt</a></li>
   </ul>
   <div class="fine"><span>© 2026 JRA Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
 </footer>
@@ -615,11 +627,10 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <div class="in">
     <div class="label owner">Alvar</div>
     <h2>Alongside</h2>
-    <p class="lead">He also knows the other side of the table: how exhibitions are made, and how a technology company explains itself to the people it serves.</p>
+    <p class="lead">He also knows the other side of the table: how exhibitions are made.</p>
 
     <div class="hl" style="margin-top:56px">
       <div class="row"><span class="y">2026–</span><span class="w">Klaus Biesenbach</span><span class="m">Assistant to the curator · New York and Berlin</span></div>
-      <div class="row"><span class="y">2025–</span><span class="w">nolas</span><span class="m">Business development · <a href="https://www.nolasworkspace.com">nolas</a> / epostbox epb GmbH, Berlin. European software for document workflows in public administration and healthcare.</span></div>
     </div>
 
     <h3>Languages and skills</h3>
@@ -803,6 +814,14 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var addr=rev(mail.getAttribute('data-u'))+String.fromCharCode(64)+rev(mail.getAttribute('data-h'));
     mail.textContent=addr;
     mail.addEventListener('click',function(e){e.preventDefault();location.href='mai'+'lto:'+addr});
+    /* the invite opens a short email to the same address */
+    var inv=document.getElementById('invite');
+    inv.addEventListener('submit',function(e){
+      e.preventDefault();
+      var who=document.getElementById('invite-mail').value;
+      location.href='mai'+'lto:'+addr+'?subject='+encodeURIComponent('Invite me to the next showing')+'&body='+encodeURIComponent('Please add '+who+' to the invitations for your next showing.');
+      document.getElementById('invite-note').textContent='Your mail app opens with the request. Send it and you are on the list.';
+    });
   }
 
   /* ---------- deep links: #museum, #screen … (runs last) ---------- */
