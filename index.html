@@ -332,7 +332,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       <h1 class="jra" aria-label="Jasper Ruben Alvar Engelhardt, JRA Engelhardt">
         <span class="ln" aria-hidden="true"><a class="line" href="#jasper" data-scroll="jasper" tabindex="-1"><span class="ini">J</span><span class="tail">asper</span><span class="who"><span>Actor</span></span></a></span>
         <span class="ln x" aria-hidden="true"><a class="line" href="#ruben" data-scroll="ruben" tabindex="-1"><span class="ini">R</span><span class="tail">uben</span><span class="who"><span>Artist</span></span></a></span>
-        <span class="ln x" aria-hidden="true"><a class="line" href="#alvar" data-scroll="alvar" tabindex="-1"><span class="ini">A</span><span class="tail">lvar</span><span class="who"><span>Becoming</span></span></a></span>
+        <span class="ln x" aria-hidden="true"><a class="line" href="#alvar" data-scroll="alvar" tabindex="-1"><span class="ini">A</span><span class="tail" data-glitch>lvar</span><span class="who"><span>Becoming</span></span></a></span>
         <span class="ln e" aria-hidden="true"><span class="line"><span class="fam">Engelhardt</span></span></span>
       </h1>
       <p class="role">Performance artist and actor. Berlin / New York.</p>
@@ -394,7 +394,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true">lvar</span></h2></div></div>
+    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true" data-glitch>lvar</span></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
     <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach.</span><span class="a">→</span></button>
@@ -856,6 +856,24 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     window.addEventListener('scroll',heroScroll,{passive:true});
     window.addEventListener('resize',function(){morph=false;heroNow=heroGoal=heroAt();paint(heroNow)});
   }
+
+  /* ---------- Alvar is not ready yet: its letters keep slipping into code, DNA and nothing ---------- */
+  var glitches=$$('[data-glitch]'),DNA='ACGT',NUM='0123456789',burst=0;
+  function glitch(){
+    if(burst>0)burst--;else if(Math.random()<.03)burst=6;
+    var keep=burst?.25:.8;
+    glitches.forEach(function(el){
+      if(el.getBoundingClientRect().bottom<0||el.getBoundingClientRect().top>window.innerHeight)return;
+      var src=el.getAttribute('data-src')||el.textContent,out='';
+      el.setAttribute('data-src',src);
+      for(var i=0;i<src.length;i++){
+        var r=Math.random();
+        out+=r<keep?src[i]:r<keep+(1-keep)*.4?DNA[Math.random()*4|0]:r<keep+(1-keep)*.75?NUM[Math.random()*10|0]:'\u2009';
+      }
+      el.textContent=out;
+    });
+  }
+  if(!reduce&&glitches.length)setInterval(glitch,110);
 
   /* ---------- the initials unfold into names when reached ---------- */
   var umbs=$$('.umb');
