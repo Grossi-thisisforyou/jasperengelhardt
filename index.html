@@ -92,8 +92,10 @@ em,i{font-style:italic}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
-.fade-in,.head{animation:flicker .5s steps(1,end) 1.15s both}
-/* first black; boo, the face flickers on; then the words, like a tube light */
+.js .fade-in,.js .head{opacity:0}
+.js.awake .fade-in,.js.awake .head{opacity:1;animation:flicker .5s steps(1,end) both}
+/* first black; boo, the face flickers on; the words wait for the first touch, scroll, key or mouse move,
+   then flicker on like a tube light */
 @keyframes flicker{0%{opacity:0}18%{opacity:.9}26%{opacity:.1}38%{opacity:1}46%{opacity:.25}54%,100%{opacity:1}}
 
 /* bookmarks: J R A docked at the top right, next to Contact, once they have travelled there */
@@ -297,7 +299,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .fade-in,.head,.gaze img{opacity:1}
+  .fade-in,.head,.gaze img,.js .fade-in,.js .head{opacity:1}
   .gaze{height:auto}
 }
 </style>
@@ -798,6 +800,17 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
   var mqPhone=window.matchMedia('(max-width:760px)');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- the words come with the first sign of the visitor ---------- */
+  var woke=false,wakeOn=['pointermove','pointerdown','wheel','scroll','keydown','touchstart'];
+  function wake(){
+    if(woke)return;woke=true;
+    document.documentElement.classList.add('awake');
+    wakeOn.forEach(function(t){window.removeEventListener(t,wake,true)});
+  }
+  wakeOn.forEach(function(t){window.addEventListener(t,wake,{capture:true,passive:true})});
+  if(window.scrollY>0||location.hash)wake();
+  setTimeout(wake,4000);
 
   /* ---------- header colour over the photo ---------- */
   var head=$('#head'),gaze=$('#gaze');
