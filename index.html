@@ -92,8 +92,9 @@ em,i{font-style:italic}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
 .gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
 .gaze .next a{border-color:rgba(255,255,255,.5)}
-.fade-in{opacity:0;transform:translateY(10px);animation:fadein 1s var(--ease) .2s forwards}
-@keyframes fadein{to{opacity:1;transform:none}}
+.fade-in,.head{animation:flicker .5s steps(1,end) .9s both}
+/* first only the face; then the words flicker on like a tube light */
+@keyframes flicker{0%{opacity:0}18%{opacity:.9}26%{opacity:.1}38%{opacity:1}46%{opacity:.25}54%,100%{opacity:1}}
 
 /* bookmarks: J R A docked at the top right, next to Contact, once they have travelled there */
 .marks{display:none}
@@ -296,7 +297,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .umb-name .rest{max-width:none;opacity:1}
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .fade-in{opacity:1;transform:none}
+  .fade-in,.head{opacity:1}
   .gaze{height:auto}
 }
 </style>
