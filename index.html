@@ -86,8 +86,7 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .rooms .row .n{font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
 .rooms .row .t{font-family:var(--serif);font-size:clamp(40px,5.6vw,88px);line-height:.95;letter-spacing:-.015em}
 .rooms .row .d{font-size:14.5px;color:var(--ink);max-width:28em}
-.rooms .row .a{font-size:18px;transition:transform .5s var(--ease)}
-.rooms .row:hover .a{transform:translateX(6px)}
+.rooms .row .a{font-size:22px;font-weight:300;line-height:1;text-align:right;transition:transform .5s var(--ease)}
 .rooms .row:hover .t{font-style:italic}
 .rooms-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:28px}
 .rooms-head p{margin:0;max-width:34em;color:var(--mute)}
@@ -99,7 +98,16 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .umb-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(72px,11vw,176px);line-height:.85;letter-spacing:-.025em;white-space:nowrap}
 .umb-name .rest{display:inline-block;overflow:hidden;vertical-align:bottom;max-width:0;opacity:0;transition:max-width 1.6s var(--ease) .25s,opacity 1.2s var(--ease) .45s}
 .umb.seen .umb-name .rest{max-width:5em;opacity:1}
-#alvar .umb-name .rest{color:var(--mute);font-style:italic}
+/* Alvar is not finished: the a shows its construction lines, the v starts to break at its tip,
+   and the r dissolves into tiny ones and zeros that drift off like pixels */
+#alvar .umb-name .rest{padding-right:.7em}
+.alv .a,.alv .v,.alv .r{display:inline-block;position:relative}
+.alv .a::before,.alv .a::after{content:"";position:absolute;left:-.07em;right:-.07em;border-top:1px solid currentColor;opacity:.4}
+.alv .a::before{top:.764em}
+.alv .a::after{top:.334em}
+.alv .v::after{content:"";position:absolute;left:50%;top:.75em;width:.028em;height:.028em;background:currentColor;box-shadow:.045em .035em 0 currentColor,-.035em .07em 0 currentColor,.02em .11em 0 rgba(12,12,12,.5)}
+.alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 30%,transparent 92%);mask-image:linear-gradient(to right,#000 30%,transparent 92%)}
+.alv .r canvas{position:absolute;left:.1em;top:0;width:.8em;height:100%;pointer-events:none}
 .layer .owner{margin-bottom:14px}
 
 /* floating image (desktop hover) */
@@ -147,8 +155,7 @@ footer .fine{grid-column:1/-1;margin-top:64px;display:flex;justify-content:space
 .layer .sub{max-width:34em;margin:22px 0 0;color:var(--mute)}
 .layer h3{margin:clamp(48px,8vh,80px) 0 18px;font-family:var(--sans);font-weight:400;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
 .rooms .row.open .t{font-style:italic}
-.rooms .row.open .a{transform:rotate(90deg)}
-.rooms .row.open:hover .a{transform:rotate(90deg) translateX(6px)}
+.rooms .row.open .a{transform:rotate(45deg)}
 
 .figs{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(40px,7vh,72px)}
 .figs figure{margin:0;grid-column:span var(--s,12)}
@@ -251,7 +258,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <body>
 
 <header class="head" id="head">
-  <a class="name" href="#" data-top>JRA Engelhardt</a>
+  <a class="name" href="#" data-top>Jasper Ruben Alvar Engelhardt</a>
   <nav>
     <button data-scroll="jasper" aria-label="J">J</button>
     <button data-scroll="ruben" aria-label="R">R</button>
@@ -305,12 +312,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <section class="block" id="rooms">
   <div class="rooms-head">
     <div class="label">The work</div>
-    <p>Each row opens here on the page, and each chapter points to the next.</p>
+    <p></p>
   </div>
   <div class="umb" id="jasper">
     <div class="umb-head"><div class="label">I</div><div><h2 class="umb-name"><span class="ini">J</span><span class="rest" aria-hidden="true">asper</span></h2></div></div>
     <div class="rooms">
-    <button class="row" data-layer="screen" data-img="img/polizeiruf-2017-a.jpg"><span class="n">01</span><span class="t">Screen</span><span class="d">Lead roles for ARD, Netflix and BR. Deutscher Schauspielpreis nomination.</span><span class="a">→</span></button>
+    <button class="row" data-layer="screen" data-img="img/polizeiruf-2017-a.jpg"><span class="n">01</span><span class="t">Screen</span><span class="d">Lead roles for ARD, Netflix and BR. Deutscher Schauspielpreis nomination.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-screen" data-n="Jasper" data-title="Screen" aria-label="Screen">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Jasper · Screen</div><button class="shut">Close</button></div>
@@ -360,7 +367,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div></div>
 </article>
-    <button class="row" data-layer="stage" data-img="img/kafka-wien-2024-a.jpg"><span class="n">02</span><span class="t">Stage</span><span class="d">Kafka and Bernhard in Vienna, Schauspielhaus Zürich, now New York.</span><span class="a">→</span></button>
+    <button class="row" data-layer="stage" data-img="img/kafka-wien-2024-a.jpg"><span class="n">02</span><span class="t">Stage</span><span class="d">Kafka and Bernhard in Vienna, Schauspielhaus Zürich, now New York.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-stage" data-n="Jasper" data-title="Stage" aria-label="Stage">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Jasper · Stage</div><button class="shut">Close</button></div>
@@ -413,7 +420,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <div class="umb" id="ruben">
     <div class="umb-head"><div class="label">II</div><div><h2 class="umb-name"><span class="ini">R</span><span class="rest" aria-hidden="true">uben</span></h2></div></div>
     <div class="rooms">
-    <button class="row" data-layer="own" data-img="img/work/berghein-pass-1600.jpg"><span class="n">03</span><span class="t">Own work</span><span class="d">An AI-automated performance, solo work, directing, readings and writing.</span><span class="a">→</span></button>
+    <button class="row" data-layer="own" data-img="img/work/berghein-pass-1600.jpg"><span class="n">03</span><span class="t">Own work</span><span class="d">An AI-automated performance, solo work, directing, readings and writing.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-own" data-n="Ruben" data-title="Own work" aria-label="Own work">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Ruben · Museum</div><button class="shut">Close</button></div>
@@ -479,7 +486,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div></div>
 </article>
-    <button class="row" data-layer="museum" data-img="img/abramovic-imponderabilia-2025.jpg"><span class="n">04</span><span class="t">Museum</span><span class="d">Marina Abramović, Florentina Holzinger, Manifesta&nbsp;11.</span><span class="a">→</span></button>
+    <button class="row" data-layer="museum" data-img="img/abramovic-imponderabilia-2025.jpg"><span class="n">04</span><span class="t">Museum</span><span class="d">Marina Abramović, Florentina Holzinger, Manifesta&nbsp;11.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-museum" data-n="Ruben" data-title="Museum" aria-label="Museum">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Ruben · Own work</div><button class="shut">Close</button></div>
@@ -519,7 +526,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div></div>
 </article>
-    <button class="row" data-layer="photographs" data-img="img/mju/0706-1200.jpg"><span class="n">05</span><span class="t">Photographs</span><span class="d">Olympus mju&nbsp;III, 35&#8239;mm film. Berlin, Zurich, Vienna, New York.</span><span class="a">→</span></button>
+    <button class="row" data-layer="photographs" data-img="img/mju/0706-1200.jpg"><span class="n">05</span><span class="t">Photographs</span><span class="d">Olympus mju&nbsp;III, 35&#8239;mm film. Berlin, Zurich, Vienna, New York.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-photographs" data-n="Ruben" data-title="Photographs" aria-label="Photographs">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Ruben · Photographs</div><button class="shut">Close</button></div>
@@ -560,9 +567,9 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest" aria-hidden="true">lvar</span></h2></div></div>
+    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a</span><span class="r"><span class="g">r</span><canvas></canvas></span></span></h2></div></div>
     <div class="rooms">
-    <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a">→</span></button>
+    <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-study" data-n="Alvar" data-title="Study" aria-label="Study">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Alvar · Study</div><button class="shut">Close</button></div>
@@ -600,7 +607,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div></div>
 </article>
-    <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach.</span><span class="a">→</span></button>
+    <button class="row" data-layer="alongside" data-img="img/mju/0629-1200.jpg"><span class="n">07</span><span class="t">Alongside</span><span class="d">With the curator Klaus Biesenbach.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-alongside" data-n="Alvar" data-title="Alongside" aria-label="Alongside">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Alvar · Alongside</div><button class="shut">Close</button></div>
@@ -668,7 +675,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <section class="block" id="press-kit" style="padding-top:0">
   <div class="rooms-head"><div class="label">Press</div><p></p></div>
   <div class="rooms">
-    <button class="row" data-layer="press"><span class="n">08</span><span class="t">Press kit</span><span class="d">Short and long biography, photographs with credits, contact.</span><span class="a">→</span></button>
+    <button class="row" data-layer="press"><span class="n">08</span><span class="t">Press kit</span><span class="d">Short and long biography, photographs with credits, contact.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-press" data-n="Press kit" data-title="" aria-label="Press kit">
   <div class="wrap"><div class="in">
     <div class="side"><div class="label owner">Press kit</div><button class="shut">Close</button></div>
@@ -804,6 +811,29 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     if(scroll)scrollToRow(id);
   }
   function closeAll(){closeCh(false)}
+
+  /* ---------- Alvar's r runs out into code ---------- */
+  (function(){
+    var cv=document.querySelector('.alv .r canvas');if(!cv)return;
+    var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,ps=[],run=false,raf2=null;
+    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    function spawn(){var f=Math.max(5,H*.055);return{x:Math.random()*W*.22,y:H*(.42+Math.random()*.4),vx:.12+Math.random()*.45,vy:(Math.random()-.5)*.12,a:.9,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')}}
+    function frame(){
+      cx.clearRect(0,0,W,H);
+      if(ps.length<70)ps.push(spawn(),spawn());
+      ps.forEach(function(p){
+        p.x+=p.vx;p.y+=p.vy;p.a-=.004+p.x/W*.006;
+        cx.fillStyle='rgba(12,12,12,'+Math.max(0,p.a)+')';
+        if(p.c){cx.font=p.f+'px "Instrument Sans",Helvetica,sans-serif';cx.fillText(p.c,p.x,p.y)}
+        else cx.fillRect(p.x,p.y-p.f*.6,p.f*.5,p.f*.5);
+      });
+      ps=ps.filter(function(p){return p.a>0&&p.x<W});
+      raf2=run?requestAnimationFrame(frame):null;
+    }
+    size();window.addEventListener('resize',size);
+    if(reduce){for(var i=0;i<60;i++){var p=spawn();p.x+=Math.random()*W*.6;p.a=.7-p.x/W*.6;ps.push(p)}run=false;frame();return}
+    new IntersectionObserver(function(e){run=e[0].isIntersecting;if(run){size();if(!raf2)raf2=requestAnimationFrame(frame)}}).observe(cv);
+  })();
 
   /* ---------- clicks ---------- */
   document.addEventListener('click',function(e){
