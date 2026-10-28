@@ -512,13 +512,25 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,R=0,ps=[],run=false,raf2=null,t=0;
     var lastY=window.scrollY,wind=0,E=.25,acc=0,m1=88,m2=100;
     var bites='radial-gradient(circle at 92% 30%,#0000 .07em,#000 .075em),radial-gradient(circle at 74% 12%,#0000 .05em,#000 .055em),radial-gradient(circle at 98% 52%,#0000 .045em,#000 .05em),radial-gradient(circle at 60% 96%,#0000 .04em,#000 .045em)';
-    var gw=0;
-    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;R=W/6.5;gw=g.getBoundingClientRect().width;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    var gw=0,ink=[];
+    /* where the r has ink: sample the real glyph so the leak starts inside its strokes */
+    function sample(){
+      var cr=cv.getBoundingClientRect(),gr=g.getBoundingClientRect(),cs=getComputedStyle(g),fs=parseFloat(cs.fontSize);
+      var o=document.createElement('canvas'),w=Math.ceil(W),h=Math.ceil(H);o.width=w;o.height=h;
+      var c=o.getContext('2d');c.font=cs.fontStyle+' '+cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;c.textBaseline='alphabetic';c.fillStyle='#000';
+      var ox=gr.left-cr.left,oy=gr.top-cr.top+.99*fs;c.fillText(g.textContent,ox,oy);
+      var d=c.getImageData(0,0,w,h).data,st=Math.max(1,Math.round(fs/90));ink=[];
+      for(var y=0;y<h;y+=st)for(var x=0;x<w;x+=st)if(d[(y*w+x)*4+3]>140)ink.push([x,y,(x-ox)/gw]);
+    }
+    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;R=W/6.5;gw=g.getBoundingClientRect().width;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);sample()}
+    if(document.fonts)document.fonts.ready.then(function(){size()});
     function spawn(){
-      /* born where the r comes apart: anywhere in its fading part, between x-height and baseline */
-      var k=R/140,aim=-.12+Math.max(-.5,Math.min(.5,wind*.01)),ang=aim+(Math.random()-.5)*(.45+E*.9),sp=(.5+Math.random()*1.5)*k*(1+E*.4),glit=Math.random()<.62,
-          f0=(m1+Math.random()*(m2-m1))/100;
-      return{x:-.1*R+gw*f0,y:H*(.475+Math.random()*.165),vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,a:1,ph:Math.random()*6.3,
+      /* born inside the r's strokes, where the black fades into the white beside it: the letter leaks */
+      var k=R/140,aim=-.12+Math.max(-.5,Math.min(.5,wind*.01)),ang=aim+(Math.random()-.5)*(.45+E*.9),sp=(.3+Math.random()*1.3)*k*(1+E*.4),glit=Math.random()<.62,
+          lo=(m1-6)/100,hi=m2/100,pt=null;
+      for(var n=0;n<14&&!pt;n++){var q=ink[Math.random()*ink.length|0];if(q&&q[2]>=lo&&q[2]<=hi)pt=q}
+      if(!pt)pt=ink.length?ink.reduce(function(a,b){return b[0]>a[0]?b:a}):[R*.2,H*.55];
+      return{x:pt[0],y:pt[1],vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,a:1,ph:Math.random()*6.3,
         f:glit?Math.max(1.2,R*(.006+Math.random()*.016)):Math.max(3.5,R*(.02+Math.pow(Math.random(),2)*.07)),
         c:glit?'':(Math.random()<.5?'0':'1')};
     }
