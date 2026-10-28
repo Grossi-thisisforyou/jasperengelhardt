@@ -74,6 +74,10 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .read .three p{font-size:clamp(19px,1.55vw,24px);line-height:1.3;max-width:20em}
 .read .three .who{display:block;margin-bottom:14px;color:var(--mute);border:0}
 .read .three .who:hover{color:var(--ink)}
+.read .three .enter{display:inline-block;margin-top:16px;font-size:14px;border-bottom:1px solid var(--ink)}
+.read .ask{margin:clamp(40px,7vh,72px) 0 0;font-family:var(--serif);font-size:clamp(25px,2.6vw,40px);line-height:1.15}
+.umb-name a{border:0}
+.umb-name a:hover{opacity:1;font-style:italic}
 
 /* recognition */
 .recog{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:22px var(--pad);border-top:1px solid var(--line);border-bottom:1px solid var(--line);align-items:baseline}
@@ -293,10 +297,12 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <section class="block read" id="read">
   <div class="label">J · R · A</div>
   <div class="three">
-    <div><button class="label who" data-scroll="jasper">J · Jasper, the actor</button><p>Trained as an actor in Zurich, he works on screen and stage: a <i>Polizeiruf&nbsp;110</i> for Jan Bonny, a lead for Netflix, Kafka and Bernhard in Vienna.</p></div>
-    <div><button class="label who" data-scroll="ruben">R · Ruben, the artist</button><p>In the museum he performs for Marina Abramović, at Kunsthaus Zürich and Park Avenue Armory, and makes original work: performance, directing, readings and writing.</p></div>
-    <div><button class="label who" data-scroll="alvar">A · Alvar, becoming</button><p>Study: an MFA at The New School in New York, as a DAAD scholar, and work alongside the curator Klaus Biesenbach. The rest is still becoming.</p></div>
+    <div><button class="label who" data-scroll="jasper">J · Jasper, the actor</button><p>Trained as an actor in Zurich, he works on screen and stage: a <i>Polizeiruf&nbsp;110</i> for Jan Bonny, a lead for Netflix, Kafka and Bernhard in Vienna.</p><a class="enter" href="jasper.html">Enter Jasper <span aria-hidden="true">→</span></a></div>
+    <div><button class="label who" data-scroll="ruben">R · Ruben, the artist</button><p>In the museum he performs for Marina Abramović, at Kunsthaus Zürich and Park Avenue Armory, and makes original work: performance, directing, readings and writing.</p><a class="enter" href="ruben.html">Enter Ruben <span aria-hidden="true">→</span></a></div>
+    <div><button class="label who" data-scroll="alvar">A · Alvar, becoming</button><p>Study: an MFA at The New School in New York, as a DAAD scholar, and work alongside the curator Klaus Biesenbach. The rest is still becoming.</p><a class="enter" href="alvar.html">Enter Alvar <span aria-hidden="true">→</span></a></div>
   </div>
+  <div></div>
+  <p class="ask">Now you know me. What are you most interested in?</p>
 </section>
 
 <!-- ================= RECOGNITION ================= -->
@@ -317,7 +323,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <p></p>
   </div>
   <div class="umb" id="jasper">
-    <div class="umb-head"><div class="label">I</div><div><h2 class="umb-name"><span class="ini">J</span><span class="rest" aria-hidden="true">asper</span></h2></div></div>
+    <div class="umb-head"><div class="label">I</div><div><h2 class="umb-name"><a href="jasper.html"><span class="ini">J</span><span class="rest" aria-hidden="true">asper</span></a></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="screen" data-img="img/polizeiruf-2017-a.jpg"><span class="n">01</span><span class="t">Screen</span><span class="d">Lead roles for ARD, Netflix and BR. Deutscher Schauspielpreis nomination.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-screen" data-n="Jasper" data-title="Screen" aria-label="Screen">
@@ -420,7 +426,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="ruben">
-    <div class="umb-head"><div class="label">II</div><div><h2 class="umb-name"><span class="ini">R</span><span class="rest" aria-hidden="true">uben</span></h2></div></div>
+    <div class="umb-head"><div class="label">II</div><div><h2 class="umb-name"><a href="ruben.html"><span class="ini">R</span><span class="rest" aria-hidden="true">uben</span></a></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="own" data-img="img/work/berghein-pass-1600.jpg"><span class="n">03</span><span class="t">Own work</span><span class="d">An AI-automated performance, solo work, directing, readings and writing.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-own" data-n="Ruben" data-title="Own work" aria-label="Own work">
@@ -569,7 +575,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     </div>
   </div>
   <div class="umb" id="alvar">
-    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a<i class="o"></i></span><span class="r"><span class="g">r</span><canvas></canvas></span></span></h2></div></div>
+    <div class="umb-head"><div class="label">III</div><div><h2 class="umb-name"><a href="alvar.html"><span class="ini">A</span><span class="rest alv" aria-hidden="true">l<span class="v">v</span><span class="a">a<i class="o"></i></span><span class="r"><span class="g">r</span><canvas></canvas></span></span></a></h2></div></div>
     <div class="rooms">
     <button class="row" data-layer="study" data-img="img/mju/1054-1200.jpg"><span class="n">06</span><span class="t">Study</span><span class="d">MFA, The New School, New York. DAAD scholar.</span><span class="a" aria-hidden="true">+</span></button>
 <article class="layer" id="l-study" data-n="Alvar" data-title="Study" aria-label="Study">

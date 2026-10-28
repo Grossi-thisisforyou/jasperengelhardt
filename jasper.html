@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jasper · JRA Engelhardt</title>
+<meta name="description" content="JRA Engelhardt (Jasper Engelhardt). Performance artist and actor. Berlin / New York.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#0c0c0c;
+  --mute:#767671;
+  --line:#e6e6e2;
+  --soft:#f5f5f2;
+  --serif:"Instrument Serif","Times New Roman",serif;
+  --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --pad:clamp(20px,4.2vw,64px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;font-synthesis:none}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-kerning:normal;text-rendering:optimizeLegibility}
+p,figcaption,.d,.m,.lead,.sub{text-wrap:pretty}
+h1,h2,h3,h4,.what,.w{text-wrap:balance}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;transition:opacity .2s}
+a:hover{opacity:.55}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left}
+img{display:block;max-width:100%;height:auto}
+em,i{font-style:italic}
+.label{font-family:var(--sans);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-feature-settings:"case";color:var(--mute)}
+.serif{font-family:var(--serif);font-weight:400}
+
+/* ---------- header ---------- */
+.head{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:baseline;justify-content:space-between;padding:18px var(--pad);color:#fff;transition:color .4s var(--ease),background .4s var(--ease)}
+.head.onlight{color:var(--ink);background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.head .name{font-family:var(--serif);font-size:23px;line-height:1;letter-spacing:.005em;border:0}
+.head nav{display:flex;gap:22px;font-size:13.5px}
+.head nav button,.head nav a{border:0;opacity:1}
+.head nav button:hover,.head nav a:hover{opacity:.55}
+
+/* ---------- hero: the gaze ---------- */
+.gaze{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0c1416;color:#fff}
+.gaze picture,.gaze img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 38%}
+.gaze img{transform:scale(1.04);animation:settle 2.4s var(--ease) forwards}
+@keyframes settle{to{transform:scale(1)}}
+.gaze::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 38%),linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 18%);pointer-events:none}
+.gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.4vw,92px);line-height:.98;letter-spacing:-.012em}
+.gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
+.gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
+.gaze .next .label{color:rgba(255,255,255,.62);display:block;margin-bottom:6px}
+.gaze .next a{border-color:rgba(255,255,255,.5)}
+
+/* ---------- page sections ---------- */
+section.block{padding:clamp(80px,14vh,160px) var(--pad)}
+.read{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px}
+.read p{margin:0;font-family:var(--serif);font-size:clamp(25px,2.9vw,44px);line-height:1.17;letter-spacing:-.006em;max-width:23em}
+.read p + p{margin-top:.7em;color:var(--mute)}
+
+.bleed{margin:0;position:relative}
+.bleed img{width:100%;height:auto}
+.bleed figcaption{padding:12px var(--pad) 0;font-size:12.5px;color:var(--mute);display:flex;justify-content:space-between}
+
+/* the three sentences */
+.read .three{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.read .three p{font-size:clamp(19px,1.55vw,24px);line-height:1.3;max-width:20em}
+.read .three .who{display:block;margin-bottom:14px;color:var(--mute);border:0}
+.read .three .who:hover{color:var(--ink)}
+.read .three .enter{display:inline-block;margin-top:16px;font-size:14px;border-bottom:1px solid var(--ink)}
+.read .ask{margin:clamp(40px,7vh,72px) 0 0;font-family:var(--serif);font-size:clamp(25px,2.6vw,40px);line-height:1.15}
+.umb-name a{border:0}
+.umb-name a:hover{opacity:1;font-style:italic}
+
+/* recognition */
+.recog{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:22px var(--pad);border-top:1px solid var(--line);border-bottom:1px solid var(--line);align-items:baseline}
+.recog ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;font-size:14px}
+.recog li:not(:last-child)::after{content:"·";margin:0 12px;color:var(--mute)}
+
+/* rooms index */
+.rooms{border-top:1px solid var(--ink)}
+.rooms .row{display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr 24px;gap:32px;align-items:baseline;width:100%;padding:22px 0 20px;border-bottom:1px solid var(--line);transition:padding .5s var(--ease)}
+.rooms .row .n{font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+.rooms .row .t{font-family:var(--serif);font-size:clamp(40px,5.6vw,88px);line-height:.95;letter-spacing:-.015em}
+.rooms .row .d{font-size:14.5px;color:var(--ink);max-width:28em}
+.rooms .row .a{font-size:22px;font-weight:300;line-height:1;text-align:right;transition:transform .5s var(--ease)}
+.rooms .row:hover .t{font-style:italic}
+.rooms-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:28px}
+.rooms-head p{margin:0;max-width:34em;color:var(--mute)}
+
+/* the three umbrellas */
+.umb{margin-top:clamp(56px,10vh,120px);scroll-margin-top:84px}
+#contact{scroll-margin-top:60px}
+.umb-head{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;margin-bottom:18px;align-items:end}
+.umb-name{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(72px,11vw,176px);line-height:.85;letter-spacing:-.025em;white-space:nowrap}
+.umb-name .rest{display:inline-block;overflow:hidden;vertical-align:bottom;max-width:0;opacity:0;transition:max-width 1.6s var(--ease) .25s,opacity 1.2s var(--ease) .45s}
+.umb.seen .umb-name .rest{max-width:5em;opacity:1}
+/* Alvar is not finished: the a shows its construction lines, the v starts to break at its tip,
+   and the r dissolves into tiny ones and zeros that drift off like pixels */
+#alvar .umb-name .rest{padding-right:2.6em}
+.alv .a,.alv .v,.alv .r{display:inline-block;position:relative}
+.alv .a::before,.alv .a::after{content:"";position:absolute;left:-.07em;right:-.07em;border-top:1px solid currentColor;opacity:.4}
+.alv .a::before{top:.764em}
+.alv .a::after{top:.334em}
+.alv .a .o{position:absolute;left:-.015em;top:.33em;width:.44em;height:.44em;border:1px solid currentColor;border-radius:50%;opacity:.45}
+.alv .v::after{content:"";position:absolute;left:50%;top:.75em;width:.028em;height:.028em;background:currentColor;box-shadow:.045em .035em 0 currentColor,-.035em .07em 0 currentColor,.02em .11em 0 rgba(12,12,12,.5)}
+.alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 60%,transparent 90%);mask-image:linear-gradient(to right,#000 60%,transparent 90%)}
+.alv .r canvas{position:absolute;left:.1em;top:-.9em;width:2.8em;height:2.6em;pointer-events:none}
+#alvar .umb-name .rest.free{overflow:visible}
+.layer .owner{margin-bottom:14px}
+
+/* floating image (desktop hover) */
+.float{position:fixed;left:0;top:0;width:min(26vw,380px);pointer-events:none;z-index:40;opacity:0;transition:opacity .35s var(--ease);will-change:transform}
+.float.on{opacity:1}
+.float img{width:100%;height:auto;box-shadow:0 30px 60px -20px rgba(0,0,0,.35)}
+
+/* upcoming */
+.dates .row{display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr;gap:32px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.dates .row:first-of-type{border-top:1px solid var(--ink)}
+.dates .when{font-size:14px;font-variant-numeric:tabular-nums}
+.dates .what{font-family:var(--serif);font-size:clamp(26px,2.6vw,40px);line-height:1.08}
+.dates .what small{display:block;font-family:var(--sans);font-size:14px;color:var(--mute);margin-top:6px;line-height:1.45}
+.dates .where{font-size:14px}
+
+/* footer */
+footer{padding:clamp(80px,12vh,140px) var(--pad) 36px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr;gap:32px;font-size:14px}
+footer .big{font-family:var(--serif);font-size:clamp(30px,3.4vw,52px);line-height:1.05;margin:0 0 18px}
+footer .big a{border-bottom-width:1px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:0 0 4px}
+footer .invite{margin-top:40px;max-width:30em}
+footer .invite .label{display:block;margin-bottom:10px}
+footer .invite div{display:flex;border-bottom:1px solid var(--ink)}
+footer .invite input{flex:1;min-width:0;font:inherit;font-size:16px;color:inherit;background:none;border:0;padding:8px 0;outline:0}
+footer .invite button{padding:8px 0 8px 16px;white-space:nowrap}
+footer .invite button:hover{opacity:.55}
+footer .invite .note{margin:8px 0 0;color:var(--mute);font-size:12.5px}
+.bio p{margin:0 0 1em;max-width:34em;font-size:16px;line-height:1.55}
+footer .fine{grid-column:1/-1;margin-top:64px;display:flex;justify-content:space-between;color:var(--mute);font-size:12.5px}
+
+/* ---------- chapters, opened in place under their row ---------- */
+.layer{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .6s var(--ease),visibility 0s .6s}
+.layer.open{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .6s var(--ease),visibility 0s}
+.layer.now{transition:none}
+.layer .wrap{overflow:hidden;min-height:0}
+.layer .in{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:44px 0 72px;border-bottom:1px solid var(--line)}
+.layer .side{position:sticky;top:84px;align-self:start}
+.layer .side .owner{margin-bottom:10px}
+.layer .shut{font-size:13.5px;border-bottom:1px solid var(--line)}
+.layer .shut:hover{opacity:.55}
+.layer .body{min-width:0}
+.layer h2{display:none}
+.layer .lead{font-family:var(--serif);font-size:clamp(23px,2.35vw,34px);line-height:1.2;max-width:24em;margin:0}
+.layer .sub{max-width:34em;margin:22px 0 0;color:var(--mute)}
+.layer h3{margin:clamp(48px,8vh,80px) 0 18px;font-family:var(--sans);font-weight:400;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+.rooms .row.open .t{font-style:italic}
+.rooms .row.open .a{transform:rotate(45deg)}
+
+.figs{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(40px,7vh,72px)}
+.figs figure{margin:0;grid-column:span var(--s,12)}
+.figs .w12{--s:12}.figs .w8{--s:8}.figs .w7{--s:7}.figs .w6{--s:6}.figs .w5{--s:5}.figs .w4{--s:4}
+.figs .push2{grid-column:3 / span var(--s)}.figs .push5{grid-column:5 / span var(--s)}
+.figs figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+.zoom{cursor:zoom-in}
+
+.hl .row{display:grid;grid-template-columns:96px 1fr 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hl .row:first-child{border-top:1px solid var(--ink)}
+.hl .y{font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--mute)}
+.hl .w{font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.1}
+.hl .m{font-size:14px}
+
+table.rec{width:100%;border-collapse:collapse;font-size:14px}
+table.rec td{padding:9px 24px 9px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+table.rec td:last-child{padding-right:0;color:var(--mute)}
+table.rec td.y{width:96px;font-variant-numeric:tabular-nums;color:var(--mute)}
+table.rec tr:first-child td{border-top:1px solid var(--ink)}
+
+.cont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(64px,10vh,112px)}
+.cont button{display:block;padding:22px 24px 26px;background:var(--soft);transition:background .4s var(--ease)}
+.cont button:hover{background:#ecece8}
+.cont .label{display:block;margin-bottom:10px}
+.cont .serif{font-size:clamp(34px,3.6vw,56px);line-height:1}
+
+/* own-work projects */
+.proj{margin-top:clamp(56px,9vh,104px);padding-top:16px;border-top:1px solid var(--ink)}
+.proj h4{margin:10px 0 14px;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.2vw,64px);line-height:1;letter-spacing:-.012em}
+.proj p{margin:0;max-width:34em}
+.proj .figs{margin-top:28px}
+
+/* photographs sequence */
+.seq{margin-top:clamp(48px,8vh,88px);display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,8vh,96px) 14px}
+.seq figure{margin:0}
+.seq .full{grid-column:1/-1}
+.seq .l{grid-column:1/span 8}
+.seq .r{grid-column:5/span 8}
+.seq .c{grid-column:3/span 8}
+.seq .np{grid-column:4/span 6}
+.seq .npl{grid-column:1/span 5}
+.seq .npr{grid-column:8/span 5}
+.seq .half{grid-column:span 6}
+.seq figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(255,255,255,.97);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
+.lb.on{opacity:1;pointer-events:auto}
+.lb .lbbar{display:flex;justify-content:space-between;padding:18px var(--pad);font-size:13.5px}
+.lb .lbbar .lbcap{color:var(--mute)}
+.lb .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:0 var(--pad) var(--pad);min-height:0;cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  body{font-size:15px}
+  .head{padding:14px 18px}
+  .head nav{gap:16px;font-size:13px}
+  .head .name{font-size:21px}
+  .gaze .cap{flex-direction:column;align-items:flex-start;gap:22px;left:18px;right:18px}
+  .gaze .next{text-align:left}
+  .gaze h1{font-size:clamp(38px,11vw,56px)}
+  section.block{padding:72px 18px}
+  .read,.rooms-head,.umb-head{grid-template-columns:1fr;gap:18px}
+  .head nav .nav-contact{display:none}
+  .rooms .row{grid-template-columns:28px 1fr 18px;gap:12px;padding:18px 0}
+  .rooms .row .d{grid-column:2/3;font-size:14px;margin-top:4px}
+  .rooms .row .a{grid-row:1;grid-column:3}
+  .dates .row{grid-template-columns:1fr;gap:6px}
+  footer{grid-template-columns:1fr;padding:72px 18px 28px;gap:28px}
+  footer .fine{flex-direction:column;gap:6px;margin-top:24px}
+  .bleed figcaption{padding:10px 18px 0;flex-direction:column}
+  .float{display:none}
+  .layer .in{grid-template-columns:1fr;gap:18px;padding:28px 0 56px}
+  .layer .side{position:static;display:flex;justify-content:space-between;align-items:baseline}
+  .layer .side .owner{margin:0}
+  .read .three{grid-template-columns:1fr;gap:28px}
+  .recog{grid-template-columns:1fr;gap:14px;padding:20px 18px}
+  .recog ul{flex-direction:column}
+  .recog li:not(:last-child)::after{content:none}
+  .figs{gap:10px}
+  .figs figure{grid-column:1/-1 !important}
+  .hl .row{grid-template-columns:1fr;gap:4px}
+  table.rec,table.rec tbody,table.rec tr,table.rec td{display:block;width:auto}
+  table.rec tr{border-bottom:1px solid var(--line);padding:10px 0}
+  table.rec tr:first-child{border-top:1px solid var(--ink)}
+  table.rec td{border:0 !important;padding:0}
+  table.rec td.y{width:auto}
+  .cont{grid-template-columns:1fr;gap:10px}
+  .seq{gap:36px 10px}
+  .seq figure{grid-column:1/-1 !important}
+  .lb .stage{padding:0 10px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .umb-name .rest{max-width:none;opacity:1}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+
+/* ---------- a page of its own ---------- */
+.head{color:var(--ink);background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.head nav a{border:0;opacity:.4}
+.head nav a.cur,.head nav a:hover{opacity:1}
+.ptop{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:clamp(120px,20vh,200px) var(--pad) clamp(48px,8vh,88px)}
+.ptop h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(84px,13vw,208px);line-height:.85;letter-spacing:-.025em}
+.ptop .sub{margin:22px 0 0;max-width:30em;font-size:16px}
+.chap{display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px;padding:clamp(48px,8vh,80px) var(--pad);border-top:1px solid var(--ink)}
+.chap > .label{position:sticky;top:84px;align-self:start}
+.chap h2{display:none}
+.chap .lead{font-family:var(--serif);font-size:clamp(23px,2.35vw,34px);line-height:1.2;max-width:24em;margin:0}
+.chap .sub{max-width:34em;margin:22px 0 0;color:var(--mute)}
+.chap h3{margin:clamp(48px,8vh,80px) 0 18px;font-family:var(--sans);font-weight:400;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+.chap .body{min-width:0}
+.strip{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:0 var(--pad)}
+.strip img{width:100%;height:clamp(220px,34vw,520px);object-fit:cover}
+.p-ruben .figs figure{grid-column:1/-1 !important}
+.p-ruben .figs{gap:clamp(28px,5vh,56px) 14px}
+.p-alvar .ptop h1 .rest{display:inline-block;padding-right:2.6em}
+.doors{border-top:1px solid var(--ink);padding:clamp(56px,9vh,96px) var(--pad);display:grid;grid-template-columns:minmax(120px,1fr) 4fr;gap:32px}
+.doors .go{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.doors a{border:0;display:block}
+.doors a .label{display:block;margin-bottom:10px}
+.doors a .serif{font-size:clamp(40px,5vw,80px);line-height:.95}
+.doors a:hover .serif{font-style:italic}
+.doors a.here{opacity:.25;pointer-events:none}
+@media (max-width:760px){
+  .ptop,.chap,.doors{grid-template-columns:1fr;gap:18px}
+  .ptop{padding:110px 18px 40px}
+  .chap{padding:40px 18px}
+  .chap > .label{position:static}
+  .strip{grid-template-columns:1fr;padding:0 18px}
+  .doors{padding:56px 18px}
+  .doors .go{grid-template-columns:1fr;gap:22px}
+}
+</style>
+</head>
+<body class="p-jasper">
+
+<header class="head" id="head">
+  <a class="name" href="index.html">Jasper Ruben Alvar Engelhardt</a>
+  <nav>
+    <a href="jasper.html" class="cur">J</a><a href="ruben.html">R</a><a href="alvar.html">A</a>
+    <a href="index.html#contact" style="opacity:1">Contact</a>
+  </nav>
+</header>
+
+<section class="ptop">
+  <div class="label">Actor</div>
+  <div>
+    <h1 aria-label="Jasper">Jasper</h1>
+    <p class="sub">Screen and stage, in German, Swiss German and English. Represented by <a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider</a>, Berlin.</p>
+  </div>
+</section>
+
+<div class="strip">
+  <img class="zoom" src="img/polizeiruf-2017-a.jpg" alt="Polizeiruf 110, 2017">
+  <img class="zoom" src="img/kafka-wien-2024-a.jpg" alt="Im Panoptikum des Franz K., 2024">
+  <img class="zoom" src="img/nicht-nur-koerper-2020.jpg" alt="Nicht nur Körper, 2020">
+</div>
+
+<section class="chap" id="screen">
+  <div class="label">Screen</div>
+  <div class="body">
+    <h2>Screen</h2>
+    <p class="lead">A screen actor with lead credits across German public television, streaming and film-school features, first noticed as Farim in Jan Bonny’s <i>Polizeiruf&nbsp;110</i>.</p>
+    <p class="sub">Works in German, Swiss German and English. Showreel through <a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider</a>.</p>
+
+    <div class="figs">
+      <figure class="w12"><img class="zoom" src="img/polizeiruf-2017-a.jpg" alt="Two men face to face in an empty room" width="1280" height="720" loading="lazy"><figcaption><i>Polizeiruf&nbsp;110 – Das Gespenst der Freiheit</i>, dir. Jan Bonny, ARD, 2017.</figcaption></figure>
+      <figure class="w5"><img class="zoom" src="img/polizeiruf-2017-b.jpg" alt="Man curled up on the floor" width="632" height="415" loading="lazy"></figure>
+      <figure class="w7"><img class="zoom" src="img/polizeiruf-2017-c.jpg" alt="Man in a light jacket raising one hand" width="1088" height="725" loading="lazy"><figcaption><i>Polizeiruf&nbsp;110</i>, 2017.</figcaption></figure>
+      <figure class="w8 push5"><img class="zoom" src="img/nicht-nur-koerper-2020.jpg" alt="Young man with headphones on a train" width="1682" height="1009" loading="lazy"><figcaption><i>Nicht nur Körper</i>, dir. Frédéric Jaeger, UdK Berlin, 2020.</figcaption></figure>
+    </div>
+
+    <h3>Selected</h3>
+    <div class="hl">
+      <div class="row"><span class="y">2017</span><span class="w"><i>Polizeiruf&nbsp;110 – Das Gespenst der Freiheit</i></span><span class="m">Farim, lead · ARD, dir. Jan Bonny<br>Deutscher Schauspielpreis 2019, nomination Best Newcomer</span></div>
+      <div class="row"><span class="y">2023</span><span class="w"><i>The Grimm Reality</i></span><span class="m">Hänsel, lead · Netflix, dir. Sven Bohse</span></div>
+      <div class="row"><span class="y">2024</span><span class="w"><i>Herr L.</i></span><span class="m">Philipp L., lead · HFF München / BR, dir. Ivan Dubrovin</span></div>
+      <div class="row"><span class="y">2025</span><span class="w"><i>Der Kroatien-Krimi: Mord am Jadro</i></span><span class="m">Miran · ARD, dir. Carolina Hellsgård</span></div>
+    </div>
+
+    <h3>Complete</h3>
+    <table class="rec">
+      <tr><td class="y">2025</td><td><i>Der Kroatien-Krimi: Mord am Jadro</i>, Miran</td><td>ARD, dir. Carolina Hellsgård</td></tr>
+      <tr><td class="y">2024</td><td><i>Herr L.</i>, Philipp L. (lead)</td><td>HFF München / BR, dir. Ivan Dubrovin</td></tr>
+      <tr><td class="y">2023</td><td><i>The Grimm Reality</i>, Hänsel (lead)</td><td>Netflix, dir. Sven Bohse</td></tr>
+      <tr><td class="y">2023</td><td><i>Der totale Traum</i>, Romeo</td><td>dir. Roman Toulany</td></tr>
+      <tr><td class="y">2023</td><td><i>Morden im Norden – Niemandsland</i></td><td>ARD, dir. Christoph Eichhorn</td></tr>
+      <tr><td class="y">2022</td><td><i>Tańcząca chmura</i>, short</td><td>Łódź Film School, dir. Platon Ogareov</td></tr>
+      <tr><td class="y">2021</td><td><i>Die Heiland – Wir sind Anwalt: Brandstiftung</i></td><td>ARD, dir. Oliver Schmitz</td></tr>
+      <tr><td class="y">2021</td><td><i>SOKO Köln – Party bis zum bitteren Ende</i></td><td>ZDF, dir. Ulrike Hamacher</td></tr>
+      <tr><td class="y">2021</td><td><i>Ununterbrochen reden</i>, short</td><td>dir. Frédéric Jaeger</td></tr>
+      <tr><td class="y">2021</td><td><i>Der Geruch von nassem Stein</i>, short</td><td>dir. Moritz Buchmann</td></tr>
+      <tr><td class="y">2020</td><td><i>Nicht nur Körper</i>, Levi (lead), short</td><td>UdK Berlin, dir. Frédéric Jaeger</td></tr>
+      <tr><td class="y">2019</td><td><i>Der gute Bulle – Nur Tote reden nicht</i>, Don Quixote</td><td>ZDF / Arte, dir. Lars Becker</td></tr>
+      <tr><td class="y">2019</td><td><i>Blind ermittelt</i>, Uli</td><td>ORF, dir. Jano Ben Chaabane</td></tr>
+      <tr><td class="y">2018</td><td><i>Beats</i>, Sefi (lead), short</td><td>HFF München, dir. Simon Pfister</td></tr>
+      <tr><td class="y">2017</td><td><i>Polizeiruf&nbsp;110 – Das Gespenst der Freiheit</i>, Farim (lead)</td><td>ARD, dir. Jan Bonny</td></tr>
+    </table>
+    </div>
+</section>
+
+<section class="chap" id="stage">
+  <div class="label">Stage</div>
+  <div class="body">
+    <h2>Stage</h2>
+    <p class="lead">Leading roles in the German-language repertory system, from Kafka and Thomas Bernhard at Theater der Jugend Wien to Staatstheater Darmstadt and Schauspielhaus Zürich. Since 2025, New York’s experimental stages.</p>
+
+    <div class="figs">
+      <figure class="w12"><img class="zoom" src="img/kafka-wien-2024-a.jpg" alt="Actor in a white shirt shouting, black feathers behind him" width="1632" height="1005" loading="lazy"><figcaption><i>Im Panoptikum des Franz K.</i>, Theater der Jugend Wien, 2024.</figcaption></figure>
+      <figure class="w6"><img class="zoom" src="img/kafka-wien-2024-b.jpg" alt="Actor in a grey coat looking up" width="1613" height="1073" loading="lazy"><figcaption>Franz Kafka, 2024.</figcaption></figure>
+      <figure class="w6"><img class="zoom" src="img/bernhard-wien-2023.jpg" alt="Actor emptying a crate of apples over his head" width="1613" height="1075" loading="lazy"><figcaption><i>Ein Kind</i>, Thomas Bernhard, 2023.</figcaption></figure>
+      <figure class="w8 push5"><img class="zoom" src="img/endstation-sehnsucht-dessau-2022.jpg" alt="Stage with a glowing moon and four actors" width="2400" height="1601" loading="lazy"><figcaption><i>Endstation Sehnsucht</i>, Anhaltisches Theater Dessau, dir. Mîzgîn Bilmen, 2022.</figcaption></figure>
+    </div>
+
+    <h3>Selected</h3>
+    <div class="hl">
+      <div class="row"><span class="y">2026</span><span class="w"><i>Douglass: The Reckoning</i></span><span class="m">A working process · <a href="https://www.lamama.org">La MaMa</a> and 651 ARTS, New York, dir. Charlotte Brathwaite</span></div>
+      <div class="row"><span class="y">2025</span><span class="w"><i>Robin Hood</i></span><span class="m">Red Squirrel · Schauspielhaus Zürich, Moved by the Motion / Wu Tsang</span></div>
+      <div class="row"><span class="y">2024</span><span class="w"><i>Im Panoptikum des Franz K.</i></span><span class="m">Franz Kafka, lead · Theater der Jugend Wien, dir. Gerald Maria Bauer</span></div>
+      <div class="row"><span class="y">2023</span><span class="w"><i>Ein Kind</i></span><span class="m">Thomas Bernhard, lead · Theater der Jugend Wien, dir. Gerald Maria Bauer</span></div>
+    </div>
+
+    <h3>Complete</h3>
+    <table class="rec">
+      <tr><td class="y">2026</td><td><i>Douglass: The Reckoning</i>, a working process</td><td>La MaMa / 651 ARTS, New York, dir. Charlotte Brathwaite</td></tr>
+      <tr><td class="y">2026</td><td><i>The Seagull, New York, 2029</i>, director</td><td>Advanced Directing, The New School, New York</td></tr>
+      <tr><td class="y">2026</td><td><i>Die Cute</i>, Cute Bunny</td><td>The Brick, New York, dir. Yiseul LeMieux</td></tr>
+      <tr><td class="y">2025</td><td><i>Robin Hood</i>, Red Squirrel</td><td>Schauspielhaus Zürich, Moved by the Motion / Wu Tsang</td></tr>
+      <tr><td class="y">2024</td><td><i>Zwei Fleischfachverkäuferinnen</i></td><td>HfS Ernst Busch, Berlin, dir. Michi Jansky</td></tr>
+      <tr><td class="y">2024</td><td><i>Im Panoptikum des Franz K.</i>, Franz Kafka (lead)</td><td>Theater der Jugend Wien, dir. Gerald Maria Bauer</td></tr>
+      <tr><td class="y">2023</td><td><i>Ein Kind</i>, Thomas Bernhard (lead)</td><td>Theater der Jugend Wien, dir. Gerald Maria Bauer</td></tr>
+      <tr><td class="y">2022</td><td><i>Endstation Sehnsucht</i>, Alan Grey</td><td>Anhaltisches Theater Dessau, dir. Mîzgîn Bilmen</td></tr>
+      <tr><td class="y">2022</td><td><i>Supergute Tage</i>, Christopher Boone (lead)</td><td>Theater der Jugend Wien, dir. Carmen Schwarz</td></tr>
+      <tr><td class="y">2021</td><td><i>Tom und Huck</i>, Alfred</td><td>Theater der Jugend Wien, dir. Felix Metzner</td></tr>
+      <tr><td class="y">2020</td><td><i>Aladin</i>, Aladin (lead)</td><td>Staatstheater Darmstadt, dir. Annette Raffalt</td></tr>
+      <tr><td class="y">2019</td><td><i>Der Process</i>, Titorelli</td><td>Theater der Künste Zürich, dir. Mélanie Huber</td></tr>
+      <tr><td class="y">2018</td><td><i>Aleppo. A Portrait of Absence</i>, Adam (lead)</td><td>Theater Spektakel Zürich, dir. Mohammad Al Attar</td></tr>
+      <tr><td class="y">2017</td><td><i>Peter Pan</i>, Curly</td><td>Schauspielhaus Zürich, dir. Ingo Berk</td></tr>
+    </table>
+    </div>
+</section>
+
+<section class="doors">
+  <div class="label">Now</div>
+  <div class="go"><a href="jasper.html" class="here"><span class="label">Actor</span><span class="serif">Jasper</span></a><a href="ruben.html"><span class="label">Artist</span><span class="serif">Ruben</span></a><a href="alvar.html"><span class="label">Becoming</span><span class="serif">Alvar</span></a></div>
+</section>
+
+<footer id="contact" style="display:block;padding:40px var(--pad)"><div class="fine" style="margin:0"><span><a href="index.html">Back to the start</a> · <a href="index.html#contact">Contact</a></span><span>© 2026 JRA Engelhardt</span></div></footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image">
+  <div class="lbbar"><span class="lbcap" id="lbcap"></span><button id="lbclose">Close</button></div>
+  <div class="stage" id="lbstage"><img id="lbimg" alt=""></div>
+
+<script>
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- lightbox: full resolution on demand ---------- */
+  var lb=$('#lb'),lbimg=$('#lbimg'),lbcap=$('#lbcap');
+  function lightbox(img){
+    var cap=img.closest('figure');cap=cap&&cap.querySelector('figcaption');
+    lbcap.textContent=cap?cap.textContent:'';
+    lbimg.alt=img.alt;
+    lbimg.src=img.currentSrc||img.src;
+    var full=img.getAttribute('data-full');
+    if(full){var pre=new Image();pre.onload=function(){if(lb.classList.contains('on'))lbimg.src=full};pre.src=full}
+    lb.classList.add('on');
+  }
+  function closeLb(){lb.classList.remove('on')}
+  $('#lbclose').addEventListener('click',closeLb);
+  $('#lbstage').addEventListener('click',closeLb);
+
+  document.addEventListener('click',function(e){var z=e.target.closest('img.zoom');if(z){e.preventDefault();lightbox(z)}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});
+})();
+</script>
+</body>
+</html>
