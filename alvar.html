@@ -323,7 +323,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <a class="name" href="index.html">Jasper Ruben Alvar Engelhardt</a>
   <nav>
     <a href="jasper.html">J</a><a href="ruben.html">R</a><a href="alvar.html" class="cur">A</a>
-    <a href="index.html#contact" style="opacity:1">Contact</a>
+    <a href="#contact" style="opacity:1">Contact</a>
   </nav>
 </header>
 
@@ -396,10 +396,29 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 
 <section class="doors">
   <div class="label">Now</div>
-  <div class="go"><a href="jasper.html"><span class="label">Actor</span><span class="serif">Jasper</span></a><a href="ruben.html"><span class="label">Artist</span><span class="serif">Ruben</span></a><a href="alvar.html" class="here"><span class="label">Becoming</span><span class="serif">Alvar</span></a></div>
+  <div class="go"><a href="jasper.html" aria-label="Jasper"><span class="label">Actor</span><span class="serif">Jasper</span></a><a href="ruben.html" aria-label="Ruben"><span class="label">Artist</span><span class="serif">Ruben</span></a><a href="alvar.html" class="here" aria-label="Alvar"><span class="label">Becoming</span><span class="serif">Alvar</span></a></div>
 </section>
 
-<footer id="contact" style="display:block;padding:40px var(--pad)"><div class="fine" style="margin:0"><span><a href="index.html">Back to the start</a> · <a href="index.html#contact">Contact</a></span><span>© 2026 JRA Engelhardt</span></div></footer>
+<footer id="contact">
+  <div class="label">Contact</div>
+  <div>
+    <p class="big"><a id="mail" href="#contact" data-u="tdrahlegnerepsaj" data-h="moc.liamnotorp">Email</a></p>
+    <p style="margin:0">Berlin and New York</p>
+    <form class="invite" id="invite" action="https://buttondown.com/api/emails/embed-subscribe/engelhardt" method="post" target="invite-sink">
+      <label class="label" for="invite-mail">Invite me to the next showing</label>
+      <div><input id="invite-mail" type="email" name="email" placeholder="Your email" required autocomplete="email"><button type="submit">Invite me</button></div>
+      <p class="note" id="invite-note">A few times a year, only when there is something to see.</p>
+      <input type="hidden" value="1" name="embed">
+    </form>
+    <iframe name="invite-sink" title="" hidden></iframe>
+  </div>
+  <ul>
+    <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram @jasper_engelhardt</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Press</span><a href="index.html#press">Press kit: bios and photographs</a></li>
+  </ul>
+  <div class="fine"><span>© 2026 JRA Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
+</footer>
 
 <!-- lightbox -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image">
@@ -434,6 +453,24 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
       document.getElementById('invite-mail').value='';
     },400);
   });
+
+  /* ---------- the invite goes straight onto the mailing list (Buttondown), the page stays ---------- */
+  var inv=document.getElementById('invite');
+  inv.addEventListener('submit',function(){
+    setTimeout(function(){
+      document.getElementById('invite-note').textContent='Thank you. Please confirm in the email that just arrived, and you are on the list.';
+      document.getElementById('invite-mail').value='';
+    },400);
+  });
+
+  /* ---------- email, assembled here so it never sits in the page source ---------- */
+  var mail=document.getElementById('mail');
+  if(mail){
+    var rev=function(x){return x.split('').reverse().join('')};
+    var addr=rev(mail.getAttribute('data-u'))+String.fromCharCode(64)+rev(mail.getAttribute('data-h'));
+    mail.textContent=addr;
+    mail.addEventListener('click',function(e){e.preventDefault();location.href='mai'+'lto:'+addr});
+  }
 
   document.addEventListener('click',function(e){var z=e.target.closest('img.zoom');if(z){e.preventDefault();lightbox(z)}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});

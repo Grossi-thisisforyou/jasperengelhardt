@@ -323,7 +323,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <a class="name" href="index.html">Jasper Ruben Alvar Engelhardt</a>
   <nav>
     <a href="jasper.html">J</a><a href="ruben.html" class="cur">R</a><a href="alvar.html">A</a>
-    <a href="index.html#contact" style="opacity:1">Contact</a>
+    <a href="#contact" style="opacity:1">Contact</a>
   </nav>
 </header>
 
@@ -460,10 +460,29 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 
 <section class="doors">
   <div class="label">Now</div>
-  <div class="go"><a href="jasper.html"><span class="label">Actor</span><span class="serif">Jasper</span></a><a href="ruben.html" class="here"><span class="label">Artist</span><span class="serif">Ruben</span></a><a href="alvar.html"><span class="label">Becoming</span><span class="serif">Alvar</span></a></div>
+  <div class="go"><a href="jasper.html" aria-label="Jasper"><span class="label">Actor</span><span class="serif">Jasper</span></a><a href="ruben.html" class="here" aria-label="Ruben"><span class="label">Artist</span><span class="serif">Ruben</span></a><a href="alvar.html" aria-label="Alvar"><span class="label">Becoming</span><span class="serif door-alv">A<span class="rest alv free" aria-hidden="true">l<span class="v">v</span><span class="a">a<i class="o"></i></span><span class="r"><span class="g">r</span><canvas></canvas></span></span></span></a></div>
 </section>
 
-<footer id="contact" style="display:block;padding:40px var(--pad)"><div class="fine" style="margin:0"><span><a href="index.html">Back to the start</a> · <a href="index.html#contact">Contact</a></span><span>© 2026 JRA Engelhardt</span></div></footer>
+<footer id="contact">
+  <div class="label">Contact</div>
+  <div>
+    <p class="big"><a id="mail" href="#contact" data-u="tdrahlegnerepsaj" data-h="moc.liamnotorp">Email</a></p>
+    <p style="margin:0">Berlin and New York</p>
+    <form class="invite" id="invite" action="https://buttondown.com/api/emails/embed-subscribe/engelhardt" method="post" target="invite-sink">
+      <label class="label" for="invite-mail">Invite me to the next showing</label>
+      <div><input id="invite-mail" type="email" name="email" placeholder="Your email" required autocomplete="email"><button type="submit">Invite me</button></div>
+      <p class="note" id="invite-note">A few times a year, only when there is something to see.</p>
+      <input type="hidden" value="1" name="embed">
+    </form>
+    <iframe name="invite-sink" title="" hidden></iframe>
+  </div>
+  <ul>
+    <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Elsewhere</span><a href="https://www.instagram.com/jasper_engelhardt/">Instagram @jasper_engelhardt</a></li>
+    <li style="margin-top:18px"><span class="label" style="display:block;margin-bottom:4px">Press</span><a href="index.html#press">Press kit: bios and photographs</a></li>
+  </ul>
+  <div class="fine"><span>© 2026 JRA Engelhardt</span><span>Portrait by benjakon. Illustrations by Helga Gebert. Photographs by Jasper Engelhardt unless noted.</span></div>
+</footer>
 
 <!-- lightbox -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image">
@@ -499,8 +518,75 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     },400);
   });
 
+  /* ---------- the invite goes straight onto the mailing list (Buttondown), the page stays ---------- */
+  var inv=document.getElementById('invite');
+  inv.addEventListener('submit',function(){
+    setTimeout(function(){
+      document.getElementById('invite-note').textContent='Thank you. Please confirm in the email that just arrived, and you are on the list.';
+      document.getElementById('invite-mail').value='';
+    },400);
+  });
+
+  /* ---------- email, assembled here so it never sits in the page source ---------- */
+  var mail=document.getElementById('mail');
+  if(mail){
+    var rev=function(x){return x.split('').reverse().join('')};
+    var addr=rev(mail.getAttribute('data-u'))+String.fromCharCode(64)+rev(mail.getAttribute('data-h'));
+    mail.textContent=addr;
+    mail.addEventListener('click',function(e){e.preventDefault();location.href='mai'+'lto:'+addr});
+  }
+
   document.addEventListener('click',function(e){var z=e.target.closest('img.zoom');if(z){e.preventDefault();lightbox(z)}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});
+  /* ---------- Alvar's r runs out into code, like a garden hose spraying glitter ----------
+     the scroll aims it and is its wind; fast scrolling widens the spray, stillness lets the bitten r close again */
+  $$('.alv').forEach(function(rest){
+    var cv=rest.querySelector('.r canvas'),g=rest.querySelector('.r .g');if(!cv)return;
+    var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,R=0,ps=[],run=false,raf2=null,t=0;
+    var lastY=window.scrollY,wind=0,E=.25,acc=0,m1=88,m2=100;
+    var bites='radial-gradient(circle at 92% 30%,#0000 .07em,#000 .075em),radial-gradient(circle at 74% 12%,#0000 .05em,#000 .055em),radial-gradient(circle at 98% 52%,#0000 .045em,#000 .05em),radial-gradient(circle at 60% 96%,#0000 .04em,#000 .045em)';
+    var gw=0;
+    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;R=W/6.5;gw=g.getBoundingClientRect().width;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    function spawn(){
+      /* born where the r comes apart: anywhere in its fading part, between x-height and baseline */
+      var k=R/140,aim=-.12+Math.max(-.5,Math.min(.5,wind*.01)),ang=aim+(Math.random()-.5)*(.45+E*.9),sp=(.5+Math.random()*1.5)*k*(1+E*.4),glit=Math.random()<.62,
+          f0=(m1+Math.random()*(m2-m1))/100;
+      return{x:-.1*R+gw*f0,y:H*(.475+Math.random()*.165),vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,a:1,ph:Math.random()*6.3,
+        f:glit?Math.max(1.2,R*(.006+Math.random()*.016)):Math.max(3.5,R*(.02+Math.pow(Math.random(),2)*.07)),
+        c:glit?'':(Math.random()<.5?'0':'1')};
+    }
+    function mask(){
+      m1=10+78*(1-E);m2=60+40*(1-E);var v=bites+',linear-gradient(to right,#000 '+m1.toFixed(1)+'%,transparent '+m2.toFixed(1)+'%)';
+      g.style.webkitMaskImage=v;g.style.maskImage=v;g.style.webkitMaskComposite='source-in';g.style.maskComposite='intersect';
+    }
+    function frame(){
+      var y=window.scrollY,dv=y-lastY;lastY=y;t++;
+      wind+=(dv-wind)*.06;
+      E=Math.min(1,Math.max(0,E*.995+Math.abs(dv)*.0015));
+      mask();
+      cx.clearRect(0,0,W,H);
+      acc+=.6+E*5;
+      while(acc>=1&&ps.length<420){ps.push(spawn());acc--}
+      var grav=.009*R/140;
+      ps.forEach(function(p){
+        p.vy+=grav+wind*.0006;p.vx*=.993;p.vy*=.993;
+        p.x+=p.vx;p.y+=p.vy;
+        p.a-=.002+p.x/W*.003+(1-E)*.002;
+        var al=Math.max(0,p.a)*(p.c?1:.55+.45*Math.sin(t*.35+p.ph));
+        cx.fillStyle='rgba(12,12,12,'+al+')';
+        if(p.c){cx.font=p.f+'px "Instrument Sans",Helvetica,sans-serif';cx.fillText(p.c,p.x,p.y)}
+        else cx.fillRect(p.x,p.y,p.f,p.f);
+      });
+      ps=ps.filter(function(p){return p.a>0&&p.x<W&&p.y>-20&&p.y<H+20});
+      raf2=run?requestAnimationFrame(frame):null;
+    }
+    /* once the name has unfolded, the spray may leave the letter's box */
+    rest.addEventListener('transitionend',function(e){if(e.propertyName==='max-width')rest.classList.add('free')});
+    size();window.addEventListener('resize',size);
+    if(reduce){rest.classList.add('free');size();E=.3;mask();for(var i=0;i<90;i++){var p=spawn();var n=20+Math.random()*120;p.x+=p.vx*n;p.y+=p.vy*n+.011*n*n*R/140;p.a=.8-p.x/W;ps.push(p)}run=false;frame();return}
+    new IntersectionObserver(function(e){run=e[0].isIntersecting;if(run){size();lastY=window.scrollY;if(!raf2)raf2=requestAnimationFrame(frame)}}).observe(cv);
+  });
+
 })();
 </script>
 </body>
