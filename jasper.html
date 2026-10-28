@@ -200,6 +200,9 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 .cont button{display:block;padding:22px 24px 26px;background:var(--soft);transition:background .4s var(--ease)}
 .cont button:hover{background:#ecece8}
 .cont .label{display:block;margin-bottom:10px}
+.cont.doors3{grid-template-columns:repeat(3,1fr)}
+.cont a{display:block;padding:22px 24px 26px;background:var(--soft);border:0;transition:background .4s var(--ease)}
+.cont a:hover{opacity:1;background:#ecece8}
 .cont .serif{font-size:clamp(34px,3.6vw,56px);line-height:1}
 
 /* own-work projects */
@@ -264,7 +267,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   table.rec tr:first-child{border-top:1px solid var(--ink)}
   table.rec td{border:0 !important;padding:0}
   table.rec td.y{width:auto}
-  .cont{grid-template-columns:1fr;gap:10px}
+  .cont,.cont.doors3{grid-template-columns:1fr;gap:10px}
   .seq{gap:36px 10px}
   .seq figure{grid-column:1/-1 !important}
   .lb .stage{padding:0 10px 10px}
