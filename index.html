@@ -112,7 +112,8 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .alv .a .o{position:absolute;left:-.015em;top:.33em;width:.44em;height:.44em;border:1px solid currentColor;border-radius:50%;opacity:.45}
 .alv .v::after{content:"";position:absolute;left:50%;top:.75em;width:.028em;height:.028em;background:currentColor;box-shadow:.045em .035em 0 currentColor,-.035em .07em 0 currentColor,.02em .11em 0 rgba(12,12,12,.5)}
 .alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 60%,transparent 90%);mask-image:linear-gradient(to right,#000 60%,transparent 90%)}
-.alv .r canvas{position:absolute;left:.1em;top:-.9em;width:2.8em;height:2.6em;pointer-events:none}
+.alv .r canvas{position:absolute;left:.1em;top:-.9em;width:6.5em;height:2.6em;pointer-events:none}
+#alvar{overflow-x:clip}
 #alvar .umb-name .rest.free{overflow:visible}
 .layer .owner{margin-bottom:14px}
 
@@ -301,8 +302,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <div><button class="label who" data-scroll="ruben">R · Ruben, the artist</button><p>In the museum he performs for Marina Abramović, at Kunsthaus Zürich and Park Avenue Armory, and makes original work: performance, directing, readings and writing.</p><a class="enter" href="ruben.html">Enter Ruben <span aria-hidden="true">→</span></a></div>
     <div><button class="label who" data-scroll="alvar">A · Alvar, becoming</button><p>Study: an MFA at The New School in New York, as a DAAD scholar, and work alongside the curator Klaus Biesenbach. The rest is still becoming.</p><a class="enter" href="alvar.html">Enter Alvar <span aria-hidden="true">→</span></a></div>
   </div>
-  <div></div>
-  <p class="ask">Now you know me. What are you most interested in?</p>
 </section>
 
 <!-- ================= RECOGNITION ================= -->
@@ -824,15 +823,13 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
      gentle scrolling sways the digits, fast scrolling scatters them, stillness lets the r close again */
   (function(){
     var cv=document.querySelector('.alv .r canvas'),g=document.querySelector('.alv .r .g'),rest=document.querySelector('#alvar .rest');if(!cv)return;
-    var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,L=0,ps=[],run=false,raf2=null;
-    var lastY=window.scrollY,wind=0,E=.35,acc=0;
-    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;L=H/2.6;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
-    function spawn(burst){
-      var k=Math.random(),f=Math.max(4,L*(.03+k*k*.15)),y0=H*(.47+Math.random()*.17);
-      return{x:W*(.02+Math.random()*.06),y:y0,
-        vx:burst?(Math.random()*3-.8):(.15+Math.random()*.7),
-        vy:burst?(Math.random()*4-2):(Math.random()-.5)*.18,
-        a:.95,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')};
+    var R=0,cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,L=0,ps=[],run=false,raf2=null;
+    var lastY=window.scrollY,wind=0,E=.25,acc=0;
+    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;L=H/2.6;R=W/6.5;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    function spawn(){
+      var k=Math.random(),f=Math.max(3.5,L*(.02+k*k*.08));
+      return{x:R*(.05+Math.random()*.2),y:H*(.47+Math.random()*.17),vx:.25+Math.random()*.8,vy:(Math.random()-.5)*.1,
+        a:.9,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')};
     }
     function mask(){
       var m1=(10+78*(1-E)).toFixed(1),m2=(60+40*(1-E)).toFixed(1),v='linear-gradient(to right,#000 '+m1+'%,transparent '+m2+'%)';
@@ -840,23 +837,21 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     }
     function frame(){
       var y=window.scrollY,dv=y-lastY;lastY=y;
-      wind+=(dv-wind)*.15;
-      E=Math.min(1,Math.max(0,E*.985+Math.abs(dv)*.0035));
+      wind+=(dv-wind)*.035;
+      E=Math.min(1,Math.max(0,E*.996+Math.abs(dv)*.0012));
       mask();
       cx.clearRect(0,0,W,H);
-      acc+=.25+E*4;
-      while(acc>=1&&ps.length<220){ps.push(spawn(Math.abs(dv)>18));acc--}
+      acc+=.08+E*2.6;
+      while(acc>=1&&ps.length<260){ps.push(spawn());acc--}
       ps.forEach(function(p){
-        p.vy+=wind*.012+(Math.random()-.5)*E*.3;
-        p.vx+=(Math.random()-.5)*E*.15;
-        p.vy*=.985;p.vx*=.995;
+        p.vy+=(wind*.004-p.vy)*.03+(Math.random()-.5)*.02;
         p.x+=p.vx;p.y+=p.vy;
-        p.a-=.0012+p.x/W*.003+(1-E)*.004;
+        p.a-=.0006+p.x/W*.0016+(1-E)*.0012;
         cx.fillStyle='rgba(12,12,12,'+Math.max(0,p.a)+')';
         if(p.c){cx.font=p.f+'px "Instrument Sans",Helvetica,sans-serif';cx.fillText(p.c,p.x,p.y)}
         else cx.fillRect(p.x,p.y-p.f*.6,p.f*.5,p.f*.5);
       });
-      ps=ps.filter(function(p){return p.a>0&&p.x>-20&&p.x<W&&p.y>-20&&p.y<H+20});
+      ps=ps.filter(function(p){return p.a>0&&p.x<W&&p.y>-20&&p.y<H+20});
       raf2=run?requestAnimationFrame(frame):null;
     }
     /* once the name has unfolded, the digits may leave the letter's box */
