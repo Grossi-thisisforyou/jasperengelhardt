@@ -740,11 +740,13 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   <div>
     <p class="big"><a id="mail" href="#contact" data-u="tdrahlegnerepsaj" data-h="moc.liamnotorp">Email</a></p>
     <p style="margin:0">Berlin and New York</p>
-    <form class="invite" id="invite">
+    <form class="invite" id="invite" action="https://buttondown.com/api/emails/embed-subscribe/engelhardt" method="post" target="invite-sink">
       <label class="label" for="invite-mail">Invite me to the next showing</label>
       <div><input id="invite-mail" type="email" name="email" placeholder="Your email" required autocomplete="email"><button type="submit">Invite me</button></div>
       <p class="note" id="invite-note">A few times a year, only when there is something to see.</p>
+      <input type="hidden" value="1" name="embed">
     </form>
+    <iframe name="invite-sink" title="" hidden></iframe>
   </div>
   <ul>
     <li><span class="label" style="display:block;margin-bottom:4px">Representation</span><a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider, Berlin</a></li>
@@ -936,6 +938,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   $('#lbclose').addEventListener('click',closeLb);
   $('#lbstage').addEventListener('click',closeLb);
 
+  /* ---------- the invite goes straight onto the mailing list (Buttondown), the page stays ---------- */
+  var inv=document.getElementById('invite');
+  inv.addEventListener('submit',function(){
+    setTimeout(function(){
+      document.getElementById('invite-note').textContent='Thank you. Please confirm in the email that just arrived, and you are on the list.';
+      document.getElementById('invite-mail').value='';
+    },400);
+  });
+
   /* ---------- email, assembled here so it never sits in the page source ---------- */
   var mail=document.getElementById('mail');
   if(mail){
@@ -943,14 +954,6 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     var addr=rev(mail.getAttribute('data-u'))+String.fromCharCode(64)+rev(mail.getAttribute('data-h'));
     mail.textContent=addr;
     mail.addEventListener('click',function(e){e.preventDefault();location.href='mai'+'lto:'+addr});
-    /* the invite opens a short email to the same address */
-    var inv=document.getElementById('invite');
-    inv.addEventListener('submit',function(e){
-      e.preventDefault();
-      var who=document.getElementById('invite-mail').value;
-      location.href='mai'+'lto:'+addr+'?subject='+encodeURIComponent('Invite me to the next showing')+'&body='+encodeURIComponent('Please add '+who+' to the invitations for your next showing.');
-      document.getElementById('invite-note').textContent='Your mail app opens with the request. Send it and you are on the list.';
-    });
   }
 
   /* ---------- deep links: #museum, #screen … (runs last) ---------- */
