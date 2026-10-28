@@ -202,6 +202,9 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 .cont button{display:block;padding:22px 24px 26px;background:var(--soft);transition:background .4s var(--ease)}
 .cont button:hover{background:#ecece8}
 .cont .label{display:block;margin-bottom:10px}
+.cont.doors3{grid-template-columns:repeat(3,1fr)}
+.cont a{display:block;padding:22px 24px 26px;background:var(--soft);border:0;transition:background .4s var(--ease)}
+.cont a:hover{opacity:1;background:#ecece8}
 .cont .serif{font-size:clamp(34px,3.6vw,56px);line-height:1}
 
 /* own-work projects */
@@ -266,7 +269,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   table.rec tr:first-child{border-top:1px solid var(--ink)}
   table.rec td{border:0 !important;padding:0}
   table.rec td.y{width:auto}
-  .cont{grid-template-columns:1fr;gap:10px}
+  .cont,.cont.doors3{grid-template-columns:1fr;gap:10px}
   .seq{gap:36px 10px}
   .seq figure{grid-column:1/-1 !important}
   .lb .stage{padding:0 10px 10px}
@@ -735,9 +738,10 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
     <h3>CV and further material</h3>
     <p class="sub" style="margin-top:0">Full CV, high-resolution production photographs and the showreel on request. Write to the address under Contact, or for screen to <a href="https://www.agentur-schneider-berlin.de/jasper-engelhardt">Agentur Schneider</a>.</p>
 
-    <div class="cont">
-      <button data-layer="own"><span class="label">See · Ruben</span><span class="serif">Own work</span></button>
-      <button data-close-all><span class="label">Or</span><span class="serif">Contact</span></button>
+    <div class="cont doors3">
+      <a href="jasper.html"><span class="label">Actor</span><span class="serif">Jasper</span></a>
+      <a href="ruben.html"><span class="label">Artist</span><span class="serif">Ruben</span></a>
+      <a href="alvar.html"><span class="label">Becoming</span><span class="serif">Alvar</span></a>
     </div>
     </div>
   </div></div>
