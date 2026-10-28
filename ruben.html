@@ -82,6 +82,16 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .recog ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;font-size:14px}
 .recog li:not(:last-child)::after{content:"·";margin:0 12px;color:var(--mute)}
 
+/* the three as doors, at the end */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:clamp(64px,11vh,120px) var(--pad);border-top:1px solid var(--ink)}
+.doors a{border:0;display:block}
+.doors a .label{display:block;margin-bottom:12px}
+.doors a .serif{font-size:clamp(56px,8vw,128px);line-height:.9;letter-spacing:-.02em}
+.doors a:hover{opacity:1}
+.doors a:hover .serif{font-style:italic}
+.presswrap{padding:0 var(--pad)}
+@media (max-width:760px){.doors{grid-template-columns:1fr;gap:28px;padding:56px 18px}.presswrap{padding:0 18px}}
+
 /* rooms index */
 .rooms{border-top:1px solid var(--ink)}
 .rooms .row{display:grid;grid-template-columns:minmax(120px,1fr) 2.2fr 1.8fr 24px;gap:32px;align-items:baseline;width:100%;padding:22px 0 20px;border-bottom:1px solid var(--line);transition:padding .5s var(--ease)}
