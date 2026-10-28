@@ -107,8 +107,9 @@ section.block{padding:clamp(80px,14vh,160px) var(--pad)}
 .alv .a::after{top:.334em}
 .alv .a .o{position:absolute;left:-.015em;top:.33em;width:.44em;height:.44em;border:1px solid currentColor;border-radius:50%;opacity:.45}
 .alv .v::after{content:"";position:absolute;left:50%;top:.75em;width:.028em;height:.028em;background:currentColor;box-shadow:.045em .035em 0 currentColor,-.035em .07em 0 currentColor,.02em .11em 0 rgba(12,12,12,.5)}
-.alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 30%,transparent 92%);mask-image:linear-gradient(to right,#000 30%,transparent 92%)}
-.alv .r canvas{position:absolute;left:.1em;top:0;width:2.8em;height:100%;pointer-events:none}
+.alv .r .g{-webkit-mask-image:linear-gradient(to right,#000 60%,transparent 90%);mask-image:linear-gradient(to right,#000 60%,transparent 90%)}
+.alv .r canvas{position:absolute;left:.1em;top:-.9em;width:2.8em;height:2.6em;pointer-events:none}
+#alvar .umb-name .rest.free{overflow:visible}
 .layer .owner{margin-bottom:14px}
 
 /* floating image (desktop hover) */
@@ -813,27 +814,50 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   }
   function closeAll(){closeCh(false)}
 
-  /* ---------- Alvar's r runs out into code ---------- */
+  /* ---------- Alvar's r runs out into code, and the scroll is its wind ----------
+     gentle scrolling sways the digits, fast scrolling scatters them, stillness lets the r close again */
   (function(){
-    var cv=document.querySelector('.alv .r canvas');if(!cv)return;
-    var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,ps=[],run=false,raf2=null;
-    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
-    function spawn(){var k=Math.random(),f=Math.max(4,H*(.025+k*k*.13));return{x:Math.random()*W*.07,y:H*(.38+Math.random()*.44),vx:.15+Math.random()*.7,vy:(Math.random()-.5)*.18,a:.95,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')}}
+    var cv=document.querySelector('.alv .r canvas'),g=document.querySelector('.alv .r .g'),rest=document.querySelector('#alvar .rest');if(!cv)return;
+    var cx=cv.getContext('2d'),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0,L=0,ps=[],run=false,raf2=null;
+    var lastY=window.scrollY,wind=0,E=.35,acc=0;
+    function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;L=H/2.6;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+    function spawn(burst){
+      var k=Math.random(),f=Math.max(4,L*(.03+k*k*.15)),y0=H*(.47+Math.random()*.17);
+      return{x:W*(.02+Math.random()*.06),y:y0,
+        vx:burst?(Math.random()*3-.8):(.15+Math.random()*.7),
+        vy:burst?(Math.random()*4-2):(Math.random()-.5)*.18,
+        a:.95,f:f,c:Math.random()<.12?'':Math.random()<.08?'2':(Math.random()<.5?'0':'1')};
+    }
+    function mask(){
+      var m1=(10+78*(1-E)).toFixed(1),m2=(60+40*(1-E)).toFixed(1),v='linear-gradient(to right,#000 '+m1+'%,transparent '+m2+'%)';
+      g.style.webkitMaskImage=v;g.style.maskImage=v;
+    }
     function frame(){
+      var y=window.scrollY,dv=y-lastY;lastY=y;
+      wind+=(dv-wind)*.15;
+      E=Math.min(1,Math.max(0,E*.985+Math.abs(dv)*.0035));
+      mask();
       cx.clearRect(0,0,W,H);
-      if(ps.length<130)ps.push(spawn(),spawn());
+      acc+=.25+E*4;
+      while(acc>=1&&ps.length<220){ps.push(spawn(Math.abs(dv)>18));acc--}
       ps.forEach(function(p){
-        p.x+=p.vx;p.y+=p.vy;p.a-=.0012+p.x/W*.004;
+        p.vy+=wind*.012+(Math.random()-.5)*E*.3;
+        p.vx+=(Math.random()-.5)*E*.15;
+        p.vy*=.985;p.vx*=.995;
+        p.x+=p.vx;p.y+=p.vy;
+        p.a-=.0012+p.x/W*.003+(1-E)*.004;
         cx.fillStyle='rgba(12,12,12,'+Math.max(0,p.a)+')';
         if(p.c){cx.font=p.f+'px "Instrument Sans",Helvetica,sans-serif';cx.fillText(p.c,p.x,p.y)}
         else cx.fillRect(p.x,p.y-p.f*.6,p.f*.5,p.f*.5);
       });
-      ps=ps.filter(function(p){return p.a>0&&p.x<W});
+      ps=ps.filter(function(p){return p.a>0&&p.x>-20&&p.x<W&&p.y>-20&&p.y<H+20});
       raf2=run?requestAnimationFrame(frame):null;
     }
+    /* once the name has unfolded, the digits may leave the letter's box */
+    rest.addEventListener('transitionend',function(e){if(e.propertyName==='max-width'&&rest.closest('.umb').classList.contains('seen'))rest.classList.add('free')});
     size();window.addEventListener('resize',size);
-    if(reduce){for(var i=0;i<60;i++){var p=spawn();p.x+=Math.random()*W*.6;p.a=.7-p.x/W*.6;ps.push(p)}run=false;frame();return}
-    new IntersectionObserver(function(e){run=e[0].isIntersecting;if(run){size();if(!raf2)raf2=requestAnimationFrame(frame)}}).observe(cv);
+    if(reduce){rest.classList.add('free');size();E=.3;mask();for(var i=0;i<60;i++){var p=spawn();p.x+=Math.random()*W*.4;p.a=.7-p.x/W;ps.push(p)}run=false;frame();return}
+    new IntersectionObserver(function(e){run=e[0].isIntersecting;if(run){size();lastY=window.scrollY;if(!raf2)raf2=requestAnimationFrame(frame)}}).observe(cv);
   })();
 
   /* ---------- clicks ---------- */
