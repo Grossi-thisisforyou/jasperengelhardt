@@ -418,6 +418,15 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   $('#lbclose').addEventListener('click',closeLb);
   $('#lbstage').addEventListener('click',closeLb);
 
+  /* ---------- the invite goes straight onto the mailing list (Buttondown), the page stays ---------- */
+  var inv=document.getElementById('invite');
+  inv.addEventListener('submit',function(){
+    setTimeout(function(){
+      document.getElementById('invite-note').textContent='Thank you. Please confirm in the email that just arrived, and you are on the list.';
+      document.getElementById('invite-mail').value='';
+    },400);
+  });
+
   document.addEventListener('click',function(e){var z=e.target.closest('img.zoom');if(z){e.preventDefault();lightbox(z)}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});
   /* ---------- Alvar's r runs out into code, and the scroll is its wind ----------
