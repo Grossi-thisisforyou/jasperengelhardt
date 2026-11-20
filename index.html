@@ -55,6 +55,7 @@ em,i{font-style:italic}
 .gaze .cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,5vh,56px);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .gaze h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.4vw,92px);line-height:.98;letter-spacing:-.012em}
 .gaze h1 .nm{white-space:nowrap}
+.head .name .e,.gaze h1 .e{display:inline-block;overflow:hidden;vertical-align:bottom;white-space:pre;max-width:calc((1 - var(--p,0)) * 6em);opacity:calc(1 - var(--p,0))}
 .head .name .u,.gaze h1 .u{display:inline-block;overflow:hidden;vertical-align:bottom;white-space:pre;max-width:calc(var(--p,0) * 3.4em);opacity:var(--p,0)}
 .gaze .role{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
 .gaze .next{max-width:300px;font-size:13.5px;line-height:1.45;text-align:right;color:rgba(255,255,255,.92)}
@@ -297,7 +298,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
 <body>
 
 <header class="head" id="head">
-  <a class="name unfold" href="#" data-top aria-label="Jasper Ruben Alvar Engelhardt">J<span class="u" aria-hidden="true">asper&nbsp;</span>R<span class="u" aria-hidden="true">uben&nbsp;</span>A<span class="u" aria-hidden="true">lvar</span> Engelhardt</a>
+  <a class="name unfold" href="#" data-top aria-label="Jasper Ruben Alvar Engelhardt">J<span class="u" aria-hidden="true">asper&nbsp;</span>R<span class="u" aria-hidden="true">uben&nbsp;</span>A<span class="u" aria-hidden="true">lvar</span><span class="e"> Engelhardt</span></a>
   <nav>
     <button data-scroll="jasper" aria-label="J">J</button>
     <button data-scroll="ruben" aria-label="R">R</button>
@@ -314,7 +315,7 @@ table.rec tr:first-child td{border-top:1px solid var(--ink)}
   </picture>
   <div class="cap">
     <div>
-      <h1 class="unfold" aria-label="Jasper Ruben Alvar Engelhardt"><span class="nm">J<span class="u" aria-hidden="true">asper&nbsp;</span></span><wbr><span class="nm">R<span class="u" aria-hidden="true">uben&nbsp;</span></span><wbr><span class="nm">A<span class="u" aria-hidden="true">lvar</span></span> Engelhardt</h1>
+      <h1 class="unfold" aria-label="Jasper Ruben Alvar Engelhardt"><span class="nm">J<span class="u" aria-hidden="true">asper&nbsp;</span></span><wbr><span class="nm">R<span class="u" aria-hidden="true">uben&nbsp;</span></span><wbr><span class="nm">A<span class="u" aria-hidden="true">lvar</span></span><span class="e"> Engelhardt</span></h1>
       <p class="role">Performance artist and actor. Berlin / New York.</p>
     </div>
     <div class="next">
