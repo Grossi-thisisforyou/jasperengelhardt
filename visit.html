@@ -259,6 +259,9 @@ const SETTINGS = {
   // Google Apps Script web app URL (see booking/README.md).
   // While empty, the live page says bookings open soon; add ?preview to the URL to try it.
   endpoint: "",
+  // Or: a Web3Forms access key (web3forms.com). Each booking is then emailed to
+  // Jasper's inbox. No slot counts and no automatic emails to guests in this mode.
+  web3formsKey: "9ffd1bc9-21e9-4103-a7b2-fedfc977db79",
   place: "The New School",
   address: "72 Fifth Avenue, New York, NY 10011",
   room: "Room 401, 4th floor",
@@ -452,6 +455,24 @@ $("#form").addEventListener("submit", async e => {
         renderDays(); renderSlots(); update();
         return say(j.message || "Something went wrong. Please try again.", true);
       }
+    } else if (SETTINGS.web3formsKey) {
+      const [d, t] = data.slot.split("T");
+      const yn = v => v ? "yes" : "no";
+      const r = await fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: SETTINGS.web3formsKey,
+          subject: `Infinite Jest booking: ${dayLong(d)}, ${fmtTime(t)}${data.guests > 1 ? ` (${data.guests} people)` : ""}${isAway(data.slot) ? " [Armory time]" : ""}`,
+          from_name: "Infinite Jest bookings", replyto: data.email, botcheck: data.website,
+          "When": `${dayLong(d)}, ${fmtTime(t)}`, "Slot": data.slot, "People": data.guests,
+          "Name": data.name, "Email": data.email, "New School": data.newschool, "Word": data.word,
+          "Accounts": data.accounts || "-", "Access needs / notes": data.note || "-",
+          "Read the terms": yn(data.terms), "Research (Section 11)": yn(data.research), "Photo": yn(data.photo), "Video": yn(data.video),
+          "Artist away": yn(isAway(data.slot))
+        })
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false) { btn.disabled = false; return say("Your booking did not go through. Please try again, or write to Jasper.", true); }
     } else preview = true;
   } catch (err) {
     btn.disabled = false;
@@ -500,9 +521,14 @@ $("#again").onclick = () => {
 
 (function mail() { const a = $("#mail"); a.href = "mailto:" + "jasperengelhardt".split("").join("") + "@" + "protonmail.com"; })();
 
-const PREVIEW_OK = !SETTINGS.endpoint && (location.search.includes("preview") || !/jasperengelhardt\.com$/.test(location.hostname));
+const LIVE = !!(SETTINGS.endpoint || SETTINGS.web3formsKey);
+if (SETTINGS.web3formsKey && !SETTINGS.endpoint) {
+  $("#email").previousElementSibling.textContent = "So Jasper can reach you if anything changes.";
+  $("#d-mail").textContent = "Save the time in your calendar below. Jasper has your booking.";
+}
+const PREVIEW_OK = !LIVE && (location.search.includes("preview") || !/jasperengelhardt\.com$/.test(location.hostname));
 renderFacts(); renderDays(); renderSlots(); update();
-if (!SETTINGS.endpoint && !PREVIEW_OK) {
+if (!LIVE && !PREVIEW_OK) {
   const b = $("#book"); b.textContent = "Booking opens very soon";
   b.disabled = true; b.dataset.closed = "1";
   say("The booking list is being set up. Please check back in a day or two, or write to Jasper.");
