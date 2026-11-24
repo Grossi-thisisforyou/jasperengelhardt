@@ -5,298 +5,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Infinite Jest · Book a visit</title>
 <meta name="description" content="Book your visit to Infinite Jest, the best performance you have ever seen, made live for each visitor by JRA Engelhardt. New York, December 2026.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0c0c0c">
 <meta property="og:title" content="Infinite Jest · Book a visit">
-<meta property="og:description" content="A performance made live for each visitor. Pick a time, it takes a minute.">
+<meta property="og:description" content="The best performance you have ever seen. Pick a time, it takes a minute.">
+<meta property="og:image" content="https://jasperengelhardt.com/img/mju/0491-1200.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/mju/0491-1200.jpg">
 <style>
 :root{
-  --bg:#ffffff;
-  --ink:#0c0c0c;
-  --mute:#6b6b66;
-  --line:#e6e6e2;
-  --soft:#f5f5f2;
-  --ok:#1f5f3a;
-  --warn:#8a2a1c;
+  --bg:#ffffff; --ink:#0c0c0c; --mute:#6b6b66; --line:#e3e3df; --soft:#f4f4f1; --warn:#8a2a1c;
   --serif:"Instrument Serif","Times New Roman",serif;
   --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --pad:clamp(16px,4.2vw,64px);
-  --ease:cubic-bezier(.2,.7,.1,1);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
-p{text-wrap:pretty}
-h1,h2{text-wrap:balance;font-family:var(--serif);font-weight:400;margin:0}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
 a:hover{opacity:.6}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-button{font:inherit;color:inherit;cursor:pointer}
-.label{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button,input,select{font:inherit;color:inherit}
 
-.head{display:flex;justify-content:space-between;align-items:baseline;padding:18px var(--pad);border-bottom:1px solid var(--line)}
-.head .name{font-family:var(--serif);font-size:23px;line-height:1;border:0}
-.head nav a{border:0;font-size:14px}
+.wrap{display:grid;grid-template-columns:1fr;min-height:100vh;min-height:100dvh}
+.photo{position:relative;height:clamp(150px,24dvh,230px);background:#111;color:#fff;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:grayscale(1) contrast(1.05)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 60%),linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,0) 30%)}
+.photo .home{position:absolute;top:12px;left:16px;z-index:2;font-family:var(--serif);font-size:19px;border:0;color:#fff}
+.photo .cap{position:absolute;left:16px;right:16px;bottom:12px;z-index:2}
+.photo h1{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(38px,6vw,64px);line-height:.95;letter-spacing:-.01em}
+.photo p{margin:4px 0 0;font-size:14.5px;opacity:.92}
 
-main{max-width:880px;margin:0 auto;padding:clamp(40px,8vh,96px) var(--pad) 80px}
-.intro h1{font-size:clamp(46px,8vw,96px);line-height:.95;letter-spacing:-.012em;font-style:italic}
-.intro .lead{font-size:clamp(18px,2.2vw,22px);max-width:32em;margin:22px 0 0}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:44px 0 0;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.facts div p{margin:6px 0 0}
-.facts .small{color:var(--mute);font-size:14px}
+main{padding:12px 16px 14px;max-width:520px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.info{font-size:13px;color:var(--mute);margin:0}
+.row{display:grid;gap:8px}
+.r3{grid-template-columns:1.25fr 1fr .62fr}
+.r2{grid-template-columns:1fr 1fr}
 
-section.step{margin-top:64px}
-.step h2{font-size:clamp(28px,3.6vw,40px);line-height:1.05;display:flex;gap:14px;align-items:baseline}
-.step h2 .n{font-family:var(--sans);font-size:13px;letter-spacing:.09em;color:var(--mute)}
-.step .hint{color:var(--mute);margin:8px 0 0;font-size:15px}
+.f{position:relative;display:block;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-width:0}
+.f:focus-within{border-color:var(--ink)}
+.f span{position:absolute;top:5px;left:11px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);pointer-events:none}
+.f input,.f select{display:block;width:100%;height:46px;border:0;background:none;padding:17px 11px 4px;font-size:16px;outline:0;border-radius:10px;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
+.f input::placeholder{color:#b3b3ad}
+.f select{padding-right:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236b6b66' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 10px center}
 
-.days{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.day{border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 16px;min-width:118px;text-align:left;transition:border-color .2s,background .2s}
-.day b{display:block;font-weight:500}
-.day span{display:block;font-size:13.5px;color:var(--mute)}
-.day:hover{border-color:var(--ink)}
-.day[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.day[aria-pressed="true"] span{color:#c9c9c4}
-.day:disabled{opacity:.4;cursor:not-allowed}
+.ns{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:0 6px 0 11px;height:48px}
+.ns b{font-weight:400;font-size:13px;color:var(--mute);line-height:1.15;flex:1}
+.ns label{cursor:pointer}
+.ns input{position:absolute;opacity:0;width:1px;height:1px}
+.ns i{font-style:normal;display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14px}
+.ns input:checked+i{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ns input:focus-visible+i{outline:2px solid var(--ink);outline-offset:2px}
 
-.slots{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px;max-width:720px}
-.slot{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 6px;text-align:center;font-variant-numeric:tabular-nums;transition:border-color .2s,background .2s}
-.slot small{display:block;font-size:11.5px;color:var(--mute);margin-top:1px}
-.slot:hover{border-color:var(--ink)}
-.slot[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.slot[aria-pressed="true"] small{color:#c9c9c4}
-.slot:disabled{background:var(--soft);color:#a9a9a3;border-color:var(--soft);cursor:not-allowed;text-decoration:line-through}
-.slot:disabled small{text-decoration:none}
-.empty{color:var(--mute);margin-top:18px}
-.slot.away,.hour.away{border-style:dashed}
-.hours{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.hour{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:9px 16px;font-variant-numeric:tabular-nums;transition:border-color .2s,background .2s}
-.hour:hover{border-color:var(--ink)}
-.hour[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);border-style:solid}
-.hour:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
-.away-note{margin:18px 0 0;padding:14px 16px;background:var(--soft);border-radius:12px;font-size:15px;max-width:620px}
+.note{margin:0;font-size:12.5px;color:var(--mute)}
+.note a{color:var(--ink)}
+.box{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13.5px;line-height:1.35;padding:2px 0}
+.box input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--ink);cursor:pointer}
+#acc-wrap[hidden]{display:none}
 
-form{margin:0}
-.field{margin-top:22px;max-width:520px}
-.field label{display:block;font-weight:500}
-.field .help{display:block;color:var(--mute);font-size:14px;margin-top:2px}
-.field input{width:100%;font:inherit;font-size:17px;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:8px}
-.field input:focus,.field textarea:focus{border-color:var(--ink);outline:0}
-.field .lbl{display:block;font-weight:500}
-.field textarea{width:100%;font:inherit;font-size:16px;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:8px;resize:vertical}
-.seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.seg label{cursor:pointer}
-.seg input{position:absolute;opacity:0;width:1px;height:1px}
-.seg span{display:inline-block;min-width:58px;text-align:center;border:1px solid var(--line);border-radius:999px;padding:9px 18px;transition:background .2s,border-color .2s}
-.seg label:hover span{border-color:var(--ink)}
-.seg input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.seg input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
-.opt{color:var(--mute);font-weight:400}
-
-.boxes{margin-top:30px;max-width:620px;border-top:1px solid var(--line)}
-.box{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.box input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--ink);cursor:pointer}
-.box span small{display:block;color:var(--mute);font-size:14px;margin-top:2px}
-.boxes .note{color:var(--mute);font-size:14px;margin:14px 0 0}
-details{margin-top:18px;max-width:620px}
-details summary{cursor:pointer;font-weight:500}
-details p,details li{color:#3a3a37;font-size:15px}
-details ul{padding-left:20px}
-
-.summary{margin-top:40px;padding:20px 22px;background:var(--soft);border-radius:14px;max-width:620px}
-.summary p{margin:0}
-.book{margin-top:18px;font-size:18px;font-weight:500;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:15px 34px;transition:opacity .2s}
-.book:hover{opacity:.82}
+.book{height:50px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font-size:17px;font-weight:500;cursor:pointer;transition:opacity .2s}
+.book:hover{opacity:.85}
 .book:disabled{opacity:.35;cursor:not-allowed}
-.msg{margin:14px 0 0;min-height:1.5em}
+.msg{margin:0;font-size:13px;min-height:1.2em;text-align:center}
 .msg.err{color:var(--warn)}
+.terms{margin:0;text-align:center;font-size:12px;color:var(--mute)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
-.done{display:none;margin-top:56px;padding:34px 30px;border:1px solid var(--ink);border-radius:18px;max-width:620px}
-.done h2{font-size:clamp(34px,4.6vw,52px);font-style:italic}
-.done p{margin:14px 0 0}
-.done .when{font-size:20px}
-.done .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
-.done .actions button{border:1px solid var(--ink);background:var(--bg);border-radius:999px;padding:10px 20px}
-.done .actions button:hover{background:var(--ink);color:var(--bg)}
-.preview{margin-top:18px;font-size:14px;color:var(--warn)}
+.done{display:none;flex-direction:column;gap:10px;padding:6px 0}
+.done h2{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:40px;line-height:1}
+.done p{margin:0}
+.done .when{font-size:19px}
+.done .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.done .act button{border:1px solid var(--ink);background:var(--bg);border-radius:999px;padding:10px 18px;cursor:pointer}
+.done .act button:hover{background:var(--ink);color:var(--bg)}
+.done small{color:var(--warn)}
 
-footer{max-width:880px;margin:0 auto;padding:28px var(--pad) 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:var(--mute);font-size:13.5px}
-
-@media (max-width:640px){
-  .facts{grid-template-columns:1fr;gap:16px}
-  .day{min-width:calc(50% - 5px);flex:1 1 calc(50% - 5px)}
-  .slots{grid-template-columns:repeat(3,1fr)}
-  .book{width:100%}
-  footer{flex-direction:column}
+@media (min-width:900px){
+  .wrap{grid-template-columns:1.1fr 1fr;height:100vh;height:100dvh}
+  .photo{height:auto}
+  .photo .home{top:22px;left:28px;font-size:23px}
+  .photo .cap{left:28px;right:28px;bottom:26px}
+  .photo p{font-size:17px}
+  main{justify-content:center;padding:28px 40px;gap:10px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-
-<header class="head">
-  <a class="name" href="index.html">JRA Engelhardt</a>
-  <nav><a href="index.html">Home</a></nav>
-</header>
-
-<main>
-  <div class="intro">
-    <div class="label">Book a visit</div>
-    <h1>Infinite Jest</h1>
-    <p class="lead">The best performance you have ever seen. Made live, for you and no one else. Pick a time to arrive and stay as long as you like. Jasper will meet you in the lobby.</p>
+<div class="wrap">
+  <div class="photo">
+    <img src="img/mju/0491-1200.jpg" srcset="img/mju/0491-1200.jpg 1200w, img/mju/0491-2400.jpg 2400w" sizes="(min-width:900px) 55vw, 100vw" alt="A traffic mirror at night, black and white. Photograph by Jasper Engelhardt.">
+    <a class="home" href="index.html">JRA Engelhardt</a>
+    <div class="cap">
+      <h1>Infinite Jest</h1>
+      <p>The best performance you have ever seen.</p>
+    </div>
   </div>
 
-  <div class="facts">
-    <div><div class="label">Where</div><p id="f-where"></p><p class="small" id="f-where2"></p></div>
-    <div><div class="label">When</div><p id="f-when"></p><p class="small" id="f-when2"></p></div>
-    <div><div class="label">Arriving</div><p>Check in at the front desk</p><p class="small">Jasper meets you in the lobby. Questions? <a id="mail" href="index.html#contact">Write to Jasper</a></p></div>
-  </div>
+  <main>
+    <p class="info" id="info"></p>
 
-  <section class="step" aria-labelledby="s1">
-    <h2 id="s1"><span class="n">1</span>Pick a day</h2>
-    <div class="days" id="days" role="group" aria-label="Days"></div>
-  </section>
-
-  <section class="step" aria-labelledby="s2">
-    <h2 id="s2"><span class="n">2</span>Pick a time</h2>
-    <p class="hint">Pick the hour, then when you arrive. Each time is a five-minute window, and you can stay as long as you like.</p>
-    <p class="away-note" id="away-note" hidden></p>
-    <div class="hours" id="hours" role="group" aria-label="Hour"></div>
-    <div class="slots" id="slots" role="group" aria-label="Times"></div>
-    <p class="empty" id="slots-empty" hidden>Pick a day first.</p>
-  </section>
-
-  <form id="form" novalidate>
-    <section class="step" aria-labelledby="s3">
-      <h2 id="s3"><span class="n">3</span>About you</h2>
-      <div class="field">
-        <label for="name">Your name</label>
-        <input id="name" name="name" autocomplete="name" required maxlength="80">
+    <form id="form" novalidate style="display:flex;flex-direction:column;gap:8px">
+      <div class="row r3">
+        <label class="f"><span>Day</span><select id="day" name="day" required></select></label>
+        <label class="f"><span>Arrive</span><select id="time" name="time" required></select></label>
+        <label class="f"><span>People</span><select id="guests" name="guests"></select></label>
       </div>
-      <div class="field">
-        <label for="email">Your email</label>
-        <span class="help">For your confirmation and a reminder the day before.</span>
-        <input id="email" name="email" type="email" autocomplete="email" required maxlength="120">
+      <p class="note" id="away" hidden></p>
+      <div class="row r2">
+        <label class="f"><span>Name</span><input id="name" name="name" autocomplete="name" required maxlength="80"></label>
+        <label class="f"><span>Email</span><input id="email" name="email" type="email" autocomplete="email" required maxlength="120"></label>
       </div>
-      <div class="field">
-        <span class="lbl" id="guests-l">How many of you?</span>
-        <span class="help">Including you. The piece is made for each person, so groups stay small, up to four.</span>
-        <div class="seg" id="guests" role="radiogroup" aria-labelledby="guests-l"></div>
-      </div>
-      <div class="field">
-        <span class="lbl" id="ns-l">Are you a New School student, faculty or staff member?</span>
-        <span class="help">Guests from outside are signed in at the front desk with Jasper.</span>
-        <div class="seg" role="radiogroup" aria-labelledby="ns-l">
-          <label><input type="radio" name="newschool" value="yes" required><span>Yes</span></label>
-          <label><input type="radio" name="newschool" value="no"><span>No</span></label>
+      <div class="row r2">
+        <label class="f"><span>Your word</span><input id="word" name="word" required maxlength="30" autocomplete="off" autocapitalize="off" placeholder="say it as you walk in"></label>
+        <div class="ns" role="radiogroup" aria-label="Are you a New School student, faculty or staff member?">
+          <b>New School?</b>
+          <label><input type="radio" name="newschool" value="yes"><i>Yes</i></label>
+          <label><input type="radio" name="newschool" value="no"><i>No</i></label>
         </div>
       </div>
-      <div class="field">
-        <label for="word">Your word <span class="opt">(any word; you’ll say it to the room so it knows it’s you)</span></label>
-        <span class="help" id="word-help">One word, no spaces.</span>
-        <input id="word" name="word" required maxlength="30" autocomplete="off" aria-describedby="word-help">
-      </div>
-      <div class="field">
-        <label for="accounts">Accounts <span class="opt">(optional)</span></label>
-        <span class="help">Only used if you tick the research box below. For example an Instagram handle.</span>
-        <input id="accounts" name="accounts" maxlength="200" autocomplete="off">
-      </div>
-      <div class="field">
-        <label for="note">Access needs <span class="opt">(optional)</span></label>
-        <span class="help">Anything that helps your visit, for example if you prefer not to speak. Names of your guests or a question are welcome here too.</span>
-        <textarea id="note" name="note" maxlength="500" rows="3"></textarea>
-      </div>
-      <div class="hp" aria-hidden="true"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
-    </section>
+      <label class="f"><span>Access needs (optional)</span><input id="note" name="note" maxlength="300" autocomplete="off" placeholder="anything that helps, e.g. I prefer not to speak"></label>
+      <label class="box"><input type="checkbox" name="research" id="research"><span>I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23. <span style="color:var(--mute)">Optional.</span></span></label>
+      <label class="f" id="acc-wrap" hidden><span>Accounts to look at</span><input id="accounts" name="accounts" maxlength="200" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
+      <div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
+      <button class="book" id="book" type="submit">Book my visit</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      <p class="terms">By booking you accept the <a href="terms.html" target="_blank" rel="noopener">Terms of Participation</a> and confirm you are 18 or older.</p>
+    </form>
 
-    <section class="step" aria-labelledby="s4">
-      <h2 id="s4"><span class="n">4</span>Your choices</h2>
-      <p class="hint">Only the first box is needed to book. The rest are up to you.</p>
-      <div class="boxes">
-        <label class="box"><input type="checkbox" name="terms" id="c-terms" required><span>I have read the <a href="terms.html" target="_blank" rel="noopener">Terms of Participation</a>.<small>Needed to book. You confirm you are 18 or older (<a href="terms.html#s15" target="_blank" rel="noopener">Section 15</a>).</small></span></label>
-        <label class="box"><input type="checkbox" name="research" id="c-research"><span><b style="font-weight:500">I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23.</b><small>Optional. <a href="terms.html#s11" target="_blank" rel="noopener">Section 11</a> explains how.</small></span></label>
-        <label class="box"><input type="checkbox" name="photo" id="c-photo"><span>Photos of me may be used to document the Work.<small>Optional.</small></span></label>
-        <label class="box"><input type="checkbox" name="video" id="c-video"><span>Video of me may be used to document the Work.<small>Optional.</small></span></label>
-        <p class="note">Unticked boxes mean no. You get the full show either way.</p>
-      </div>
-    </section>
-
-    <div class="summary" id="summary" aria-live="polite"><p>Pick a day and a time above.</p></div>
-    <button class="book" id="book" type="submit" disabled>Book my visit</button>
-    <p class="msg" id="msg" role="status" aria-live="polite"></p>
-  </form>
-
-  <div class="done" id="done" tabindex="-1" aria-live="polite">
-    <div class="label">You are booked</div>
-    <h2>See you soon</h2>
-    <p class="when" id="d-when"></p>
-    <p id="d-where"></p>
-    <p id="d-meet">Check in at the front desk. Jasper will meet you in the lobby.</p>
-    <p>Your word is <b id="d-word"></b>. Say it when you walk in.</p>
-    <p id="d-mail">A confirmation is on its way to your inbox, and a reminder will follow the day before.</p>
-    <div class="actions">
-      <button type="button" id="ics">Add to my calendar</button>
-      <button type="button" id="again">Book for someone else</button>
+    <div class="done" id="done" tabindex="-1" aria-live="polite">
+      <div class="info">You are booked</div>
+      <h2>See you soon</h2>
+      <p class="when" id="d-when"></p>
+      <p id="d-where"></p>
+      <p id="d-meet"></p>
+      <p>Your word is <b id="d-word"></b>.</p>
+      <div class="act"><button type="button" id="ics">Add to calendar</button><button type="button" id="again">Book another</button></div>
+      <small id="d-preview" hidden>Preview mode: this booking was not saved.</small>
     </div>
-    <p class="preview" id="d-preview" hidden>Preview mode: this booking was not saved yet.</p>
-  </div>
-</main>
-
-<footer>
-  <span>Infinite Jest by JRA Engelhardt</span>
-  <span>The New School, 72 Fifth Avenue, New York</span>
-</footer>
+  </main>
+</div>
 
 <script>
 /* =====================================================================
    SETTINGS. Change dates, hours, room and capacity here.
-   Times are New York time. Copy the same SCHEDULE into booking/Code.gs.
+   Times are New York time.
    ===================================================================== */
 const SETTINGS = {
-  // Google Apps Script web app URL (see booking/README.md).
-  // While empty, the live page says bookings open soon; add ?preview to the URL to try it.
-  endpoint: "",
-  // Or: a Web3Forms access key (web3forms.com). Each booking is then emailed to
-  // Jasper's inbox. No slot counts and no automatic emails to guests in this mode.
-  web3formsKey: "9ffd1bc9-21e9-4103-a7b2-fedfc977db79",
+  web3formsKey: "9ffd1bc9-21e9-4103-a7b2-fedfc977db79", // bookings are emailed to Jasper; empty = preview
   place: "The New School",
   address: "72 Fifth Avenue, New York, NY 10011",
   room: "Room 401, 4th floor",
-  maxGroup: 4,            // largest group one booking can bring
-  utcOffset: "-05:00"     // New York in December
+  maxGroup: 4,
+  utcOffset: "-05:00"
 };
 const SCHEDULE = {
   firstDay: "2026-12-09",
   lastDay: "2026-12-22",
   closedWeekdays: [6],    // 0 = Sunday ... 6 = Saturday. Saturdays are off.
   slotMinutes: 5,         // a slot is an arrival time; guests stay as long as they like
-  perSlot: 6,             // people (not bookings) arriving in one five-minute window
-  hours: { open: "12:00", close: "22:00" },            // usual day
-  special: {              // days with other hours or a note
-    "2026-12-09": { note: "First preview" },
-    "2026-12-22": { note: "Last day" }
-  },
-  // Armory performances: from 4 hours before curtain until the show ends, Jasper is away.
-  // Those times stay bookable but carry a note. With newSchoolOnly, only New School
-  // people can book them, because outside guests must be signed in by Jasper.
-  // Tue to Sat 7 pm, Sun 3 pm, about 4 hours, Dec 8 to 20 (armoryonpark.org).
+  perSlot: 6,
+  hours: { open: "12:00", close: "22:00" },
+  special: {},            // e.g. "2026-12-09": { open: "14:00" }
+  // Jasper performs at the Armory: from 4 h before curtain until the show ends, times stay
+  // bookable with an "artist away" note. Tue to Sat 7 pm, Sun 3 pm, about 4 h, Dec 8 to 20.
   armory: { first: "2026-12-08", last: "2026-12-20", curtain: { 0: "15:00", 2: "19:00", 3: "19:00", 4: "19:00", 5: "19:00", 6: "19:00" }, before: 4, length: 4,
-            newSchoolOnly: false, link: "https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/" },
-  blocked: [              // any other windows with no visits
-    // { date: "2026-12-10", from: "12:00", to: "13:00" }
-  ]
+            link: "https://www.armoryonpark.org/season-events/2026-season/balkan-erotic-epic/" },
+  blocked: []             // { date: "2026-12-10", from: "12:00", to: "13:00" }
 };
 /* ===================================================================== */
 
 const $ = s => document.querySelector(s);
-const state = { day: null, hour: null, slot: null, taken: {} };
 const pad = n => String(n).padStart(2, "0");
 const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
 const fromMin = m => pad(Math.floor(m / 60)) + ":" + pad(m % 60);
-const at = (date, time) => new Date(`${date}T${time}:00${SETTINGS.utcOffset}`);
+const at = (d, t) => new Date(`${d}T${t}:00${SETTINGS.utcOffset}`);
 const TZ = { timeZone: "America/New_York" };
 const fmtTime = t => { let [h, m] = t.split(":").map(Number); const ap = h >= 12 ? "pm" : "am"; h = h % 12 || 12; return m ? `${h}:${pad(m)} ${ap}` : `${h} ${ap}`; };
 const dayShort = d => at(d, "12:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", ...TZ });
@@ -312,152 +195,83 @@ function days() {
   }
   return out;
 }
-function blocksFor(date) {
-  return SCHEDULE.blocked.filter(b => b.date === date).map(b => ({ from: toMin(b.from), to: toMin(b.to) }));
-}
-function awayFor(date) {            // Jasper performing at the Armory
+function awayFor(date) {
   const a = SCHEDULE.armory, wd = new Date(date + "T12:00:00Z").getUTCDay();
   if (!a || date < a.first || date > a.last || !a.curtain[wd]) return null;
-  const c = toMin(a.curtain[wd]);
-  return { from: c - a.before * 60, to: c + a.length * 60 };
+  const c = toMin(a.curtain[wd]); return { from: c - a.before * 60, to: c + a.length * 60 };
 }
 const isAway = id => { const [d, t] = id.split("T"), w = awayFor(d), m = toMin(t); return !!w && m < w.to && m + SCHEDULE.slotMinutes > w.from; };
-const nsAnswer = () => (document.querySelector('input[name="newschool"]:checked') || {}).value || "";
-const awayClosed = id => isAway(id) && SCHEDULE.armory.newSchoolOnly && nsAnswer() === "no";
-function openRange(day) {          // first and last open minute, for the day card
-  const t = slotsFor(day);
-  return t.length ? [t[0], fromMin(toMin(t[t.length - 1]) + SCHEDULE.slotMinutes)] : null;
-}
 function slotsFor(day) {
-  const out = [], step = SCHEDULE.slotMinutes;
-  for (let m = toMin(day.open); m + step <= toMin(day.close); m += step) {
-    const busy = blocksFor(day.date).some(b => m < b.to && m + step > b.from);
-    if (!busy) out.push(fromMin(m));
+  const out = [], s = SCHEDULE.slotMinutes;
+  for (let m = toMin(day.open); m + s <= toMin(day.close); m += s) {
+    const t = fromMin(m);
+    if (SCHEDULE.blocked.some(b => b.date === day.date && m < toMin(b.to) && m + s > toMin(b.from))) continue;
+    if (at(day.date, t) < new Date()) continue;
+    out.push(t);
   }
   return out;
 }
-const left = id => SCHEDULE.perSlot - (state.taken[id] || 0);
-const past = (d, t) => at(d, t) < new Date();
-const guests = () => Number((document.querySelector('input[name="guests"]:checked') || {}).value || 1);
+const guests = () => Number($("#guests").value || 1);
+const slot = () => $("#day").value && $("#time").value ? `${$("#day").value}T${$("#time").value}` : "";
 
-function renderFacts() {
-  const d = days();
-  $("#f-where").textContent = SETTINGS.place;
-  $("#f-where2").textContent = [SETTINGS.address, SETTINGS.room].filter(Boolean).join(", ");
-  $("#f-when").textContent = `${dayShort(d[0].date)} to ${dayShort(d[d.length - 1].date)}`;
-  $("#f-when2").textContent = "Closed Saturdays. Stay as long as you like.";
-  const g = $("#guests");
-  for (let i = 1; i <= SETTINGS.maxGroup; i++)
-    g.insertAdjacentHTML("beforeend", `<label><input type="radio" name="guests" value="${i}"${i === 1 ? " checked" : ""}><span>${i === 1 ? "Just me" : i}</span></label>`);
-  document.querySelectorAll('input[name="newschool"]').forEach(r => r.addEventListener("change", () => { if (state.slot && awayClosed(state.slot)) { state.slot = null; say("That time is while Jasper is away, so it is open to New School people only. Please pick another.", true); } renderDays(); renderSlots(); update(); }));
-  g.addEventListener("change", () => { if (state.slot && left(state.slot) < guests()) state.slot = null; renderDays(); renderSlots(); update(); });
-}
-
-function renderDays() {
-  const box = $("#days"); box.innerHTML = "";
-  days().forEach(day => {
-    const free = slotsFor(day).filter(t => { const id = `${day.date}T${t}`; return !past(day.date, t) && left(id) >= guests() && !awayClosed(id); });
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "day";
-    b.setAttribute("aria-pressed", state.day === day.date);
-    b.disabled = !free.length;
-    const r = openRange(day);
-    const info = free.length ? `${fmtTime(r[0])} to ${fmtTime(r[1])}${day.note ? " · " + day.note : ""}` : (r ? "Full" : "No visits");
-    b.innerHTML = `<b>${dayShort(day.date)}</b><span>${info}</span>`;
-    b.onclick = () => { state.day = day.date; state.hour = null; state.slot = null; renderDays(); renderSlots(); update(); };
-    box.appendChild(b);
+function fillDays() {
+  const sel = $("#day"), keep = sel.value; sel.innerHTML = "";
+  days().forEach(d => {
+    const o = new Option(dayShort(d.date), d.date);
+    o.disabled = !slotsFor(d).length; sel.add(o);
   });
+  if (keep && [...sel.options].some(o => o.value === keep && !o.disabled)) sel.value = keep;
+  else { const first = [...sel.options].find(o => !o.disabled); if (first) sel.value = first.value; }
+  fillTimes();
 }
-
-function renderSlots() {
-  const box = $("#slots"), hb = $("#hours"); box.innerHTML = ""; hb.innerHTML = "";
-  const day = days().find(d => d.date === state.day);
-  $("#slots-empty").hidden = !!day;
-  if (!day) { $("#away-note").hidden = true; return; }
-  const ok = t => { const id = `${day.date}T${t}`; return !past(day.date, t) && left(id) >= guests() && !awayClosed(id); };
-  const all = slotsFor(day), hrs = [...new Set(all.map(t => t.slice(0, 2)))];
-  if (state.hour === null || !hrs.includes(state.hour)) { const first = all.find(ok); state.hour = first ? first.slice(0, 2) : hrs[0]; }
-  hrs.forEach(h => {
-    const ts = all.filter(t => t.slice(0, 2) === h);
-    const c = document.createElement("button");
-    c.type = "button"; c.className = "hour" + (ts.every(t => isAway(`${day.date}T${t}`)) ? " away" : "");
-    c.textContent = fmtTime(h + ":00"); c.disabled = !ts.some(ok);
-    c.setAttribute("aria-pressed", state.hour === h);
-    c.onclick = () => { state.hour = h; renderSlots(); };
-    hb.appendChild(c);
+function fillTimes() {
+  const sel = $("#time"), keep = sel.value; sel.innerHTML = "";
+  const day = days().find(d => d.date === $("#day").value);
+  if (!day) return;
+  let group = null;
+  slotsFor(day).forEach(t => {
+    const h = t.slice(0, 2);
+    if (!group || group.dataset.h !== h) {
+      group = document.createElement("optgroup"); group.dataset.h = h;
+      group.label = fmtTime(h + ":00") + (isAway(`${day.date}T${h}:00`) ? " · artist away" : ""); sel.appendChild(group);
+    }
+    group.appendChild(new Option(fmtTime(t) + (isAway(`${day.date}T${t}`) ? "  (artist away)" : ""), t));
   });
-  const w = awayFor(day.date), note = $("#away-note");
-  note.hidden = !w;
-  if (w) note.innerHTML = `${w.from <= toMin(day.open) ? "Until " + fmtTime(fromMin(w.to)) : w.to >= toMin(day.close) ? "From " + fmtTime(fromMin(w.from)) : "From " + fmtTime(fromMin(w.from)) + " to " + fmtTime(fromMin(w.to))}, Jasper is not in the room, because he is performing in <a href="${SCHEDULE.armory.link}" target="_blank" rel="noopener"><i>Balkan Erotic Epic</i> at Park Avenue Armory</a>. The installation keeps running. Times marked <i>artist away</i>${SCHEDULE.armory.newSchoolOnly ? " are open to New School students, faculty and staff, who can enter the building on their own." : " are still open, and you are very welcome."}`;
-  all.filter(t => t.slice(0, 2) === state.hour).forEach(t => {
-    const id = `${day.date}T${t}`, n = left(id), gone = past(day.date, t), away = isAway(id);
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "slot" + (away ? " away" : "");
-    b.disabled = gone || n < guests() || awayClosed(id);
-    b.setAttribute("aria-pressed", state.slot === id);
-    const tag = gone ? "passed" : n < guests() ? (n <= 0 ? "full" : `${n} left`) : away ? "artist away" : n <= 2 ? `${n} left` : "open";
-    b.innerHTML = `${fmtTime(t)}<small>${tag}</small>`;
-    b.setAttribute("aria-label", `${fmtTime(t)}, ${tag}`);
-    b.onclick = () => { state.slot = id; renderSlots(); update(); };
-    box.appendChild(b);
-  });
+  if (keep && [...sel.options].some(o => o.value === keep)) sel.value = keep;
+  showAway();
 }
-
-function update() {
-  const s = $("#summary");
-  if (!state.slot) s.innerHTML = state.day ? "<p>Now pick a time.</p>" : "<p>Pick a day and a time above.</p>";
-  else {
-    const [d, t] = state.slot.split("T"), g = guests();
-    s.innerHTML = `<p><b>${dayLong(d)}, ${fmtTime(t)}</b>${g > 1 ? ` · ${g} people` : ""}</p><p>${placeLine()}</p>${isAway(state.slot) ? "<p>Jasper is performing at the Armory at this time. Check in at the front desk and you will be shown up to the room.</p>" : ""}`;
-  }
-  $("#book").disabled = !state.slot || $("#book").dataset.closed === "1";
-}
-
-async function loadTaken() {
-  if (!SETTINGS.endpoint) return;
-  try {
-    const r = await fetch(SETTINGS.endpoint + "?action=slots", { cache: "no-store" });
-    const j = await r.json();
-    if (j && j.taken) state.taken = j.taken;
-  } catch (e) { /* show all as open; the server still checks */ }
+function showAway() {
+  const n = $("#away"), id = slot();
+  n.hidden = !(id && isAway(id));
+  if (!n.hidden) n.innerHTML = `Jasper is performing in <a href="${SCHEDULE.armory.link}" target="_blank" rel="noopener"><i>Balkan Erotic Epic</i> at Park Avenue Armory</a> then, so he won't be in the room. The piece runs anyway, and you are very welcome.`;
 }
 
 function say(t, err) { const m = $("#msg"); m.textContent = t; m.className = "msg" + (err ? " err" : ""); }
 
+$("#day").addEventListener("change", fillTimes);
+$("#time").addEventListener("change", showAway);
+$("#research").addEventListener("change", e => { $("#acc-wrap").hidden = !e.target.checked; if (e.target.checked) $("#accounts").focus(); });
+
 $("#form").addEventListener("submit", async e => {
   e.preventDefault();
-  const f = e.target;
-  const ns = f.querySelector('input[name="newschool"]:checked');
+  const f = e.target, ns = f.querySelector('input[name="newschool"]:checked');
   const data = {
-    slot: state.slot, guests: guests(),
-    name: f.name.value.trim(), email: f.email.value.trim(),
-    newschool: ns ? ns.value : "",
-    word: f.word.value.trim(), accounts: f.accounts.value.trim(), note: f.note.value.trim(),
-    terms: f.terms.checked, research: f.research.checked, photo: f.photo.checked, video: f.video.checked,
+    slot: slot(), guests: guests(), name: f.name.value.trim(), email: f.email.value.trim(),
+    newschool: ns ? ns.value : "", word: f.word.value.trim(), note: f.note.value.trim(),
+    research: f.research.checked, accounts: f.research.checked ? f.accounts.value.trim() : "",
     website: f.website.value
   };
-  if (!data.slot) return say("Please pick a time first.", true);
-  if (!data.name) { f.name.focus(); return say("Please tell us your name.", true); }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { f.email.focus(); return say("That email does not look quite right.", true); }
-  if (!data.newschool) { f.querySelector('input[name="newschool"]').focus(); return say("Please say whether you are from The New School.", true); }
-  if (!data.word || /\s/.test(data.word)) { f.word.focus(); return say("Your word should be a single word, no spaces.", true); }
-  if (!data.terms) { f.terms.focus(); return say("Please tick that you have read the Terms of Participation.", true); }
+  if (!data.slot) return say("Please pick a day and a time.", true);
+  if (!data.name) { f.name.focus(); return say("Please add your name.", true); }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { f.email.focus(); return say("That email doesn't look quite right.", true); }
+  if (!data.word || /\s/.test(data.word)) { f.word.focus(); return say("Your word should be one word, no spaces.", true); }
+  if (!data.newschool) { f.querySelector('input[name="newschool"]').focus(); return say("Are you from The New School? Tap Yes or No.", true); }
 
   const btn = $("#book"); btn.disabled = true; say("Booking…");
   let preview = false;
   try {
-    if (SETTINGS.endpoint) {
-      const r = await fetch(SETTINGS.endpoint, { method: "POST", body: JSON.stringify(data) });
-      const j = await r.json();
-      if (!j.ok) {
-        btn.disabled = false;
-        if (j.taken) { state.taken = j.taken; if (left(state.slot) < guests()) state.slot = null; }
-        renderDays(); renderSlots(); update();
-        return say(j.message || "Something went wrong. Please try again.", true);
-      }
-    } else if (SETTINGS.web3formsKey) {
-      const [d, t] = data.slot.split("T");
-      const yn = v => v ? "yes" : "no";
+    if (SETTINGS.web3formsKey && !location.search.includes("preview")) {
+      const [d, t] = data.slot.split("T"), yn = v => v ? "yes" : "no";
       const r = await fetch("https://api.web3forms.com/submit", {
         method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -466,74 +280,53 @@ $("#form").addEventListener("submit", async e => {
           from_name: "Infinite Jest bookings", replyto: data.email, botcheck: data.website,
           "When": `${dayLong(d)}, ${fmtTime(t)}`, "Slot": data.slot, "People": data.guests,
           "Name": data.name, "Email": data.email, "New School": data.newschool, "Word": data.word,
-          "Accounts": data.accounts || "-", "Access needs / notes": data.note || "-",
-          "Read the terms": yn(data.terms), "Research (Section 11)": yn(data.research), "Photo": yn(data.photo), "Video": yn(data.video),
-          "Artist away": yn(isAway(data.slot))
+          "Access needs": data.note || "-", "Research (Section 11)": yn(data.research), "Accounts": data.accounts || "-",
+          "Accepted terms": "yes (by booking)", "Artist away": yn(isAway(data.slot))
         })
       });
       const j = await r.json().catch(() => ({}));
-      if (!r.ok || j.success === false) { btn.disabled = false; return say("Your booking did not go through. Please try again, or write to Jasper.", true); }
+      if (!r.ok || j.success === false) { btn.disabled = false; return say("Your booking didn't go through. Please try again, or write to Jasper.", true); }
     } else preview = true;
   } catch (err) {
     btn.disabled = false;
-    return say("We could not reach the booking list. Check your connection and try again, or write to Jasper.", true);
+    return say("We couldn't reach the booking list. Check your connection and try again.", true);
   }
-  showDone(data, preview);
-});
-
-function showDone(data, preview) {
   const [d, t] = data.slot.split("T");
   $("#d-when").textContent = `${dayLong(d)} at ${fmtTime(t)}${data.guests > 1 ? `, ${data.guests} people` : ""}`;
   $("#d-where").textContent = placeLine();
+  $("#d-meet").textContent = isAway(data.slot) ? "Jasper is performing at the Armory then. Check in at the front desk and you'll be shown up. Stay as long as you like." : "Check in at the front desk. Jasper will meet you in the lobby. Stay as long as you like.";
   $("#d-word").textContent = data.word;
-  $("#d-meet").textContent = isAway(data.slot) ? "Jasper is performing at the Armory at this time. Check in at the front desk and you will be shown up to the room. The installation will be waiting for you." : "Check in at the front desk. Jasper will meet you in the lobby.";
   $("#d-preview").hidden = !preview;
-  $("#d-mail").hidden = preview;
-  $("#form").style.display = "none";
-  document.querySelectorAll("section.step").forEach(s => s.style.display = "none");
-  const done = $("#done"); done.style.display = "block"; done.dataset.slot = data.slot;
-  done.focus({ preventScroll: true });
-  window.scrollTo({ top: done.offsetTop - 30, behavior: "smooth" });
+  $("#done").dataset.slot = data.slot;
+  f.style.display = "none"; $("#info").style.display = "none";
+  const done = $("#done"); done.style.display = "flex"; done.focus({ preventScroll: true });
   say("");
-}
+});
 
 $("#ics").onclick = () => {
   const [d, t] = $("#done").dataset.slot.split("T");
-  const s = at(d, t), e = new Date(s.getTime() + 15 * 60000);
+  const s = at(d, t), e = new Date(s.getTime() + 30 * 60000);
   const z = x => x.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   const esc = x => x.replace(/[,;]/g, m => "\\" + m);
   const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//JRA Engelhardt//Infinite Jest//EN", "BEGIN:VEVENT",
     `UID:${z(s)}-${Math.random().toString(36).slice(2)}@jasperengelhardt.com`, `DTSTAMP:${z(new Date())}`,
     `DTSTART:${z(s)}`, `DTEND:${z(e)}`, "SUMMARY:Infinite Jest", `LOCATION:${esc(placeLine())}`,
-    "DESCRIPTION:Check in at the front desk. Jasper will meet you in the lobby. Say your word when you walk in.",
-    "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+    "DESCRIPTION:Check in at the front desk. Say your word when you walk in.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
-  a.download = "infinite-jest.ics"; a.click();
+  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "infinite-jest.ics"; a.click();
 };
-
 $("#again").onclick = () => {
-  const f = $("#form"); f.reset();
-  state.slot = null; $("#done").style.display = "none";
-  f.style.display = ""; document.querySelectorAll("section.step").forEach(s => s.style.display = "");
-  loadTaken().then(() => { renderDays(); renderSlots(); update(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+  const f = $("#form"); f.reset(); $("#acc-wrap").hidden = true;
+  $("#done").style.display = "none"; f.style.display = "flex"; $("#info").style.display = "";
+  $("#book").disabled = false; fillDays();
 };
 
-(function mail() { const a = $("#mail"); a.href = "mailto:" + "jasperengelhardt".split("").join("") + "@" + "protonmail.com"; })();
-
-const LIVE = !!(SETTINGS.endpoint || SETTINGS.web3formsKey);
-if (SETTINGS.web3formsKey && !SETTINGS.endpoint) {
-  $("#email").previousElementSibling.textContent = "So Jasper can reach you if anything changes.";
-  $("#d-mail").textContent = "Save the time in your calendar below. Jasper has your booking.";
-}
-const PREVIEW_OK = !LIVE && (location.search.includes("preview") || !/jasperengelhardt\.com$/.test(location.hostname));
-renderFacts(); renderDays(); renderSlots(); update();
-if (!LIVE && !PREVIEW_OK) {
-  const b = $("#book"); b.textContent = "Booking opens very soon";
-  b.disabled = true; b.dataset.closed = "1";
-  say("The booking list is being set up. Please check back in a day or two, or write to Jasper.");
-}
-loadTaken().then(() => { renderDays(); renderSlots(); });
+(function init() {
+  const d = days();
+  $("#info").textContent = `${SETTINGS.room.split(",")[0]}, ${SETTINGS.address.split(",")[0]} · ${dayShort(d[0].date)} to ${dayShort(d[d.length - 1].date)}, 12 to 10 pm · closed Saturdays · stay as long as you like`;
+  for (let i = 1; i <= SETTINGS.maxGroup; i++) $("#guests").add(new Option(String(i), String(i)));
+  fillDays();
+})();
 </script>
 </body>
 </html>
