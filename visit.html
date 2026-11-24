@@ -47,6 +47,7 @@ button,input,select{font:inherit;color:inherit}
 h1{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:40px;line-height:.95;letter-spacing:-.01em}
 .tag{margin:3px 0 0;font-size:14px}
 .info{font-size:12.5px;color:var(--mute);margin:6px 0 10px}
+.info .addr{display:block;font-size:16px;font-weight:500;color:#fff;margin-bottom:1px}
 .row{display:grid;gap:7px}
 .r3{grid-template-columns:1.25fr 1fr .62fr}
 .r2{grid-template-columns:1fr 1fr}
@@ -74,10 +75,10 @@ form{display:flex;flex-direction:column;gap:7px}
 .box{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13px;line-height:1.35;padding:2px 0}
 .box input{width:19px;height:19px;margin:0;flex:none;accent-color:#fff;cursor:pointer}
 .boxes{display:flex;flex-direction:column;gap:5px}
-.boxes:has(.fine){flex-direction:row;align-items:center;gap:12px}
+.boxes:has(.fine){flex-direction:row;align-items:center;gap:8px}
 .boxes:has(.fine) .box{flex:0 1 auto;max-width:150px}
-@media (min-width:600px){.boxes:has(.fine) .box{max-width:none}.boxes:has(.fine) .fine{flex:0 0 215px;margin-left:auto}}
-.fine{margin:0;flex:1 1 0;min-width:0;font-size:10px;line-height:1.3;color:rgba(255,255,255,.46)}
+@media (min-width:600px){.boxes:has(.fine) .box{max-width:none}.boxes:has(.fine) .box{flex:none}.boxes:has(.fine) .fine{flex:0 1 235px}}
+.fine{margin:0;flex:1 1 0;min-width:0;font-size:9px;line-height:1.3;color:rgba(255,255,255,.52)}
 
 .book{height:48px;border:0;border-radius:999px;background:#fff;color:#0b0b0b;font-size:17px;font-weight:500;cursor:pointer;transition:opacity .2s;margin-top:2px}
 .book:hover{opacity:.88}
@@ -339,7 +340,7 @@ $("#again").onclick = () => {
 
 (function init() {
   const d = days();
-  $("#info").textContent = `${SETTINGS.room.split(",")[0]}, ${SETTINGS.address.split(",")[0]} · ${dayShort(d[0].date)} to ${dayShort(d[d.length - 1].date)}, 12 to 10 pm · closed Saturdays · stay as long as you like`;
+  $("#info").innerHTML = `<b class="addr">${SETTINGS.room.split(",")[0]}, ${SETTINGS.address.split(",")[0]}</b>${dayShort(d[0].date)} to ${dayShort(d[d.length - 1].date)}, 12 to 10 pm · closed Saturdays · stay as long as you like`;
   for (let i = 1; i <= SETTINGS.maxGroup; i++) $("#guests").add(new Option(String(i), String(i)));
   fillDays();
 })();
