@@ -110,6 +110,17 @@ form{display:flex;flex-direction:column;gap:7px}
   .scene>img{object-position:50% 46%;filter:grayscale(1) brightness(.7) contrast(1.05)}
 }
 @media (max-height:640px){h1{font-size:32px}.info{margin:4px 0 8px}.f input,.f select{height:41px}.ns{height:43px}.book{height:44px}}
+/* the window melts into the photo: no frame, soft feathered edges */
+.mirror,.mirror:is(*){background:none!important;box-shadow:none!important;padding:0!important;border-radius:0!important}
+.mirror::before{display:none!important}
+.glass,.glass:is(*){background:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow:visible!important;border-radius:0!important}
+.glass::after{display:none}
+.glass>.veil{position:absolute;inset:-56px -48px;z-index:0;pointer-events:none;
+  background:rgba(5,5,5,.80);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 56px,#000 calc(100% - 56px),transparent),linear-gradient(to bottom,transparent,#000 64px,#000 calc(100% - 64px),transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 56px,#000 calc(100% - 56px),transparent),linear-gradient(to bottom,transparent,#000 64px,#000 calc(100% - 64px),transparent);
+  mask-composite:intersect}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -119,6 +130,7 @@ form{display:flex;flex-direction:column;gap:7px}
   <a class="home" href="index.html">JRA Engelhardt</a>
   <div class="mirror">
    <div class="glass">
+    <div class="veil" aria-hidden="true"></div>
     <h1>Infinite Jest</h1>
     <p class="tag">The best performance you have ever seen.</p>
     <p class="info" id="info"></p>
