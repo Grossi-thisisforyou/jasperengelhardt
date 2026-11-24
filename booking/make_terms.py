@@ -47,7 +47,7 @@ p{{margin:0 0 14px;text-wrap:pretty}} :target{{background:#f5f5f2}}
 <div class="label">Infinite Jest</div>
 <h1>Terms of Participation</h1>
 {body}
-<div class="cta"><p>Pick a time on the booking page. The one tick box is optional.</p><a class="btn" href="visit.html">Book a visit</a></div>
+<div class="cta"><p>Pick a time on the booking page. By booking you agree to be researched online for the piece (Section 11).</p><a class="btn" href="visit.html">Book a visit</a></div>
 </main>
 <script>(function(){{var a=document.getElementById("mail");if(a)a.href="mailto:"+"jasperengelhardt"+"@"+"protonmail.com";}})();</script>
 </body>
