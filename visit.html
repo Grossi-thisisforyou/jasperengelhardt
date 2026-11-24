@@ -74,8 +74,8 @@ form{display:flex;flex-direction:column;gap:7px}
 .box{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13px;line-height:1.35;padding:2px 0}
 .box input{width:19px;height:19px;margin:0;flex:none;accent-color:#fff;cursor:pointer}
 .boxes{display:flex;flex-direction:column;gap:5px}
-.box.small{font-size:11.5px;line-height:1.3;color:rgba(255,255,255,.72)}
-.box.small input{width:15px;height:15px;margin:1px 2px 0}
+.box.small{font-size:10.5px;line-height:1.3;color:rgba(255,255,255,.66)}
+.box.small input{width:14px;height:14px;margin:0 3px 0 2px}
 #acc-wrap[hidden]{display:none}
 
 .book{height:48px;border:0;border-radius:999px;background:#fff;color:#0b0b0b;font-size:17px;font-weight:500;cursor:pointer;transition:opacity .2s;margin-top:2px}
@@ -156,12 +156,12 @@ form{display:flex;flex-direction:column;gap:7px}
       </div>
       <div class="boxes">
         <label class="box"><input type="checkbox" name="terms" id="terms" required><span>Yes, I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms and Conditions</a>. <span style="color:var(--mute);font-size:11.5px">(18+)</span></span></label>
-        <label class="box small"><input type="checkbox" name="research" id="research"><span>Optional: I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23.</span></label>
       </div>
-      <label class="f" id="acc-wrap" hidden><span>Accounts to look at</span><input id="accounts" name="accounts" maxlength="200" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
       <div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
       <button class="book" id="book" type="submit">Book my visit</button>
       <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      <label class="box small"><input type="checkbox" name="research" id="research"><span>I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23.</span></label>
+      <label class="f" id="acc-wrap" hidden><span>Accounts to look at</span><input id="accounts" name="accounts" maxlength="200" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
     </form>
 
     <div class="done" id="done" tabindex="-1" aria-live="polite">
