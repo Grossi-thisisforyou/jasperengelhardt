@@ -143,7 +143,7 @@ form{display:flex;flex-direction:column;gap:7px}
         </div>
       </div>
       <div class="boxes">
-        <label class="box"><input type="checkbox" name="terms" id="terms" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms of Participation</a> and I am 18 or older.</span></label>
+        <label class="box"><input type="checkbox" name="terms" id="terms" required><span>Yes, I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms and Conditions</a>. <span style="color:var(--mute);font-size:11.5px">(18+)</span></span></label>
         <label class="box small"><input type="checkbox" name="research" id="research"><span>Optional: I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23.</span></label>
       </div>
       <label class="f" id="acc-wrap" hidden><span>Accounts to look at</span><input id="accounts" name="accounts" maxlength="200" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
@@ -283,7 +283,7 @@ $("#form").addEventListener("submit", async e => {
   if (!data.slot) return say("Please pick a day and a time.", true);
   if (!data.name) { f.name.focus(); return say("Please add your name.", true); }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { f.email.focus(); return say("That email doesn't look quite right.", true); }
-  if (!f.terms.checked) { f.terms.focus(); return say("Please tick that you agree to the Terms to book.", true); }
+  if (!f.terms.checked) { f.terms.focus(); return say("Please tick that you agree to the Terms and Conditions.", true); }
   if (!data.newschool) { f.querySelector('input[name="newschool"]').focus(); return say("Are you from The New School? Tap Yes or No.", true); }
 
   const btn = $("#book"); btn.disabled = true; say("Booking…");
