@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Infinite Jest · Book a visit</title>
 <meta name="description" content="Book your visit to Infinite Jest, the best performance you have ever seen, made live for each visitor by JRA Engelhardt. New York, December 2026.">
-<meta name="theme-color" content="#0c0c0c">
+<meta name="theme-color" content="#0b0b0b">
 <meta property="og:title" content="Infinite Jest · Book a visit">
 <meta property="og:description" content="The best performance you have ever seen. Pick a time, it takes a minute.">
 <meta property="og:image" content="https://jasperengelhardt.com/img/mju/0491-1200.jpg">
@@ -15,97 +15,111 @@
 <link rel="preload" as="image" href="img/mju/0491-1200.jpg">
 <style>
 :root{
-  --bg:#ffffff; --ink:#0c0c0c; --mute:#6b6b66; --line:#e3e3df; --soft:#f4f4f1; --warn:#8a2a1c;
+  --ink:#fff; --mute:rgba(255,255,255,.62); --line:rgba(255,255,255,.26); --warn:#ffb4a6;
   --serif:"Instrument Serif","Times New Roman",serif;
   --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
+body{margin:0;background:#0b0b0b;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
-a:hover{opacity:.6}
-:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+a:hover{opacity:.7}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
 button,input,select{font:inherit;color:inherit}
 
-.wrap{display:grid;grid-template-columns:1fr;min-height:100vh;min-height:100dvh}
-.photo{position:relative;height:clamp(150px,24dvh,230px);background:#111;color:#fff;overflow:hidden}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:grayscale(1) contrast(1.05)}
-.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 60%),linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,0) 30%)}
-.photo .home{position:absolute;top:12px;left:16px;z-index:2;font-family:var(--serif);font-size:19px;border:0;color:#fff}
-.photo .cap{position:absolute;left:16px;right:16px;bottom:12px;z-index:2}
-.photo h1{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(38px,6vw,64px);line-height:.95;letter-spacing:-.01em}
-.photo p{margin:4px 0 0;font-size:14.5px;opacity:.92}
+/* the photo fills the screen */
+.scene{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));overflow:hidden}
+.scene>img{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) brightness(.55) contrast(1.05);z-index:0}
+.home{position:fixed;top:max(10px,env(safe-area-inset-top));left:14px;z-index:3;font-family:var(--serif);font-size:18px;border:0;color:#fff;opacity:.85}
 
-main{padding:12px 16px 14px;max-width:520px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:8px}
-.info{font-size:13px;color:var(--mute);margin:0}
-.row{display:grid;gap:8px}
+/* the mirror: checkered frame, dark grainy glass */
+.mirror{position:relative;z-index:2;width:100%;max-width:470px;border-radius:30px;padding:9px;
+  background:repeating-linear-gradient(90deg,#f2f2ee 0 22px,#1a1a1a 22px 44px);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.mirror::before{content:"";position:absolute;inset:0;border-radius:30px;background:repeating-linear-gradient(0deg,#f2f2ee 0 22px,#1a1a1a 22px 44px);
+  -webkit-mask:linear-gradient(90deg,#000 9px,transparent 9px calc(100% - 9px),#000 calc(100% - 9px));mask:linear-gradient(90deg,#000 9px,transparent 9px calc(100% - 9px),#000 calc(100% - 9px))}
+.glass{position:relative;border-radius:22px;overflow:hidden;padding:14px 14px 12px;
+  background:linear-gradient(rgba(8,8,8,.80),rgba(8,8,8,.86)),url("img/mju/0491-1200.jpg") 50% 45%/300% auto;
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:inset 0 0 40px rgba(0,0,0,.9)}
+.glass::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 70% at 30% 10%,rgba(255,255,255,.10),transparent 55%)}
+.glass>*{position:relative;z-index:1}
+
+h1{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:40px;line-height:.95;letter-spacing:-.01em}
+.tag{margin:3px 0 0;font-size:14px}
+.info{font-size:12.5px;color:var(--mute);margin:6px 0 10px}
+.row{display:grid;gap:7px}
 .r3{grid-template-columns:1.25fr 1fr .62fr}
 .r2{grid-template-columns:1fr 1fr}
+form{display:flex;flex-direction:column;gap:7px}
 
-.f{position:relative;display:block;border:1px solid var(--line);border-radius:10px;background:var(--bg);min-width:0}
-.f:focus-within{border-color:var(--ink)}
-.f span{position:absolute;top:5px;left:11px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);pointer-events:none}
-.f input,.f select{display:block;width:100%;height:46px;border:0;background:none;padding:17px 11px 4px;font-size:16px;outline:0;border-radius:10px;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
-.f input::placeholder{color:#b3b3ad}
-.f select{padding-right:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236b6b66' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 10px center}
+.f{position:relative;display:block;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.05);min-width:0}
+.f:focus-within{border-color:#fff}
+.f span{position:absolute;top:5px;left:10px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);pointer-events:none}
+.f input,.f select{display:block;width:100%;height:44px;border:0;background:none;padding:16px 10px 4px;font-size:16px;outline:0;border-radius:10px;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
+.f input::placeholder{color:rgba(255,255,255,.35)}
+.f select{padding-right:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-opacity='.6' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 9px center}
+.f select option,.f select optgroup{background:#151515;color:#fff}
 
-.ns{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:0 6px 0 11px;height:48px}
-.ns b{font-weight:400;font-size:13px;color:var(--mute);line-height:1.15;flex:1}
+.ns{display:flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:10px;padding:0 5px 0 10px;height:46px;background:rgba(255,255,255,.05)}
+.ns b{font-weight:400;font-size:12.5px;color:var(--mute);line-height:1.15;flex:1}
 .ns label{cursor:pointer}
 .ns input{position:absolute;opacity:0;width:1px;height:1px}
-.ns i{font-style:normal;display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14px}
-.ns input:checked+i{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.ns input:focus-visible+i{outline:2px solid var(--ink);outline-offset:2px}
+.ns i{font-style:normal;display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px}
+.ns input:checked+i{background:#fff;color:#0b0b0b;border-color:#fff}
+.ns input:focus-visible+i{outline:2px solid #fff;outline-offset:2px}
 
 .note{margin:0;font-size:12.5px;color:var(--mute)}
-.note a{color:var(--ink)}
-.box{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13.5px;line-height:1.35;padding:2px 0}
-.box input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--ink);cursor:pointer}
+.note a{color:#fff}
+.box{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-size:13px;line-height:1.35;padding:2px 0}
+.box input{width:19px;height:19px;margin:0;flex:none;accent-color:#fff;cursor:pointer}
 #acc-wrap[hidden]{display:none}
 
-.book{height:50px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font-size:17px;font-weight:500;cursor:pointer;transition:opacity .2s}
-.book:hover{opacity:.85}
-.book:disabled{opacity:.35;cursor:not-allowed}
-.msg{margin:0;font-size:13px;min-height:1.2em;text-align:center}
+.book{height:48px;border:0;border-radius:999px;background:#fff;color:#0b0b0b;font-size:17px;font-weight:500;cursor:pointer;transition:opacity .2s;margin-top:2px}
+.book:hover{opacity:.88}
+.book:disabled{opacity:.4;cursor:not-allowed}
+.msg{margin:0;font-size:13px;min-height:1.1em;text-align:center}
 .msg.err{color:var(--warn)}
-.terms{margin:0;text-align:center;font-size:12px;color:var(--mute)}
+.terms{margin:0;text-align:center;font-size:11.5px;color:var(--mute)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
-.done{display:none;flex-direction:column;gap:10px;padding:6px 0}
-.done h2{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:40px;line-height:1}
+.done{display:none;flex-direction:column;gap:9px;padding:4px 0 2px}
+.done h2{margin:0;font-family:var(--serif);font-weight:400;font-style:italic;font-size:38px;line-height:1}
 .done p{margin:0}
 .done .when{font-size:19px}
-.done .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.done .act button{border:1px solid var(--ink);background:var(--bg);border-radius:999px;padding:10px 18px;cursor:pointer}
-.done .act button:hover{background:var(--ink);color:var(--bg)}
+.done .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.done .act button{border:1px solid #fff;background:none;border-radius:999px;padding:9px 17px;cursor:pointer}
+.done .act button:hover{background:#fff;color:#0b0b0b}
 .done small{color:var(--warn)}
 
-@media (min-width:900px){
-  .wrap{grid-template-columns:1.1fr 1fr;height:100vh;height:100dvh}
-  .photo{height:auto}
-  .photo .home{top:22px;left:28px;font-size:23px}
-  .photo .cap{left:28px;right:28px;bottom:26px}
-  .photo p{font-size:17px}
-  main{justify-content:center;padding:28px 40px;gap:10px}
+@media (min-width:700px){
+  .mirror{padding:12px;border-radius:40px}
+  .mirror::before{border-radius:40px;-webkit-mask:linear-gradient(90deg,#000 12px,transparent 12px calc(100% - 12px),#000 calc(100% - 12px));mask:linear-gradient(90deg,#000 12px,transparent 12px calc(100% - 12px),#000 calc(100% - 12px))}
+  .glass{padding:24px 26px 18px;border-radius:28px}
+  h1{font-size:54px}
+  .home{top:22px;left:28px;font-size:22px}
 }
+@media (min-width:900px) and (min-aspect-ratio:4/3){
+  /* wide screens: the real mirror in the photo is the frame */
+  .mirror{background:none;box-shadow:none;padding:0;max-width:600px}
+  .mirror::before{display:none}
+  .glass{background:rgba(6,6,6,.58);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);border-radius:30px;box-shadow:inset 0 0 50px rgba(0,0,0,.8);padding:26px 30px 18px}
+  .scene>img{object-position:50% 46%;filter:grayscale(1) brightness(.7) contrast(1.05)}
+}
+@media (max-height:640px){h1{font-size:32px}.info{margin:4px 0 8px}.f input,.f select{height:41px}.ns{height:43px}.book{height:44px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="photo">
-    <img src="img/mju/0491-1200.jpg" srcset="img/mju/0491-1200.jpg 1200w, img/mju/0491-2400.jpg 2400w" sizes="(min-width:900px) 55vw, 100vw" alt="A traffic mirror at night, black and white. Photograph by Jasper Engelhardt.">
-    <a class="home" href="index.html">JRA Engelhardt</a>
-    <div class="cap">
-      <h1>Infinite Jest</h1>
-      <p>The best performance you have ever seen.</p>
-    </div>
-  </div>
-
-  <main>
+<div class="scene">
+  <img src="img/mju/0491-1200.jpg" srcset="img/mju/0491-1200.jpg 1200w, img/mju/0491-2400.jpg 2400w" sizes="100vw" alt="">
+  <a class="home" href="index.html">JRA Engelhardt</a>
+  <div class="mirror">
+   <div class="glass">
+    <h1>Infinite Jest</h1>
+    <p class="tag">The best performance you have ever seen.</p>
     <p class="info" id="info"></p>
 
-    <form id="form" novalidate style="display:flex;flex-direction:column;gap:8px">
+    <form id="form" novalidate>
       <div class="row r3">
         <label class="f"><span>Day</span><select id="day" name="day" required></select></label>
         <label class="f"><span>Arrive</span><select id="time" name="time" required></select></label>
@@ -116,14 +130,11 @@ main{padding:12px 16px 14px;max-width:520px;width:100%;margin:0 auto;display:fle
         <label class="f"><span>Name</span><input id="name" name="name" autocomplete="name" required maxlength="80"></label>
         <label class="f"><span>Email</span><input id="email" name="email" type="email" autocomplete="email" required maxlength="120"></label>
       </div>
-      <div class="row r2">
-        <label class="f"><span>Your word</span><input id="word" name="word" required maxlength="30" autocomplete="off" autocapitalize="off" placeholder="say it as you walk in"></label>
-        <div class="ns" role="radiogroup" aria-label="Are you a New School student, faculty or staff member?">
-          <b>New School?</b>
+      <div class="ns" role="radiogroup" aria-label="Are you a New School student, faculty or staff member?">
+          <b>At The New School (student, faculty, staff)?</b>
           <label><input type="radio" name="newschool" value="yes"><i>Yes</i></label>
           <label><input type="radio" name="newschool" value="no"><i>No</i></label>
         </div>
-      </div>
       <label class="f"><span>Access needs (optional)</span><input id="note" name="note" maxlength="300" autocomplete="off" placeholder="anything that helps, e.g. I prefer not to speak"></label>
       <label class="box"><input type="checkbox" name="research" id="research"><span>I agree that my public posts on the accounts I list are researched to build a personal file that shapes my visit, deleted on Dec 23. <span style="color:var(--mute)">Optional.</span></span></label>
       <label class="f" id="acc-wrap" hidden><span>Accounts to look at</span><input id="accounts" name="accounts" maxlength="200" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
@@ -134,16 +145,16 @@ main{padding:12px 16px 14px;max-width:520px;width:100%;margin:0 auto;display:fle
     </form>
 
     <div class="done" id="done" tabindex="-1" aria-live="polite">
-      <div class="info">You are booked</div>
+      <div class="info" style="margin:0">You are booked</div>
       <h2>See you soon</h2>
       <p class="when" id="d-when"></p>
       <p id="d-where"></p>
       <p id="d-meet"></p>
-      <p>Your word is <b id="d-word"></b>.</p>
       <div class="act"><button type="button" id="ics">Add to calendar</button><button type="button" id="again">Book another</button></div>
       <small id="d-preview" hidden>Preview mode: this booking was not saved.</small>
     </div>
-  </main>
+   </div>
+  </div>
 </div>
 
 <script>
@@ -257,14 +268,13 @@ $("#form").addEventListener("submit", async e => {
   const f = e.target, ns = f.querySelector('input[name="newschool"]:checked');
   const data = {
     slot: slot(), guests: guests(), name: f.name.value.trim(), email: f.email.value.trim(),
-    newschool: ns ? ns.value : "", word: f.word.value.trim(), note: f.note.value.trim(),
+    newschool: ns ? ns.value : "", note: f.note.value.trim(),
     research: f.research.checked, accounts: f.research.checked ? f.accounts.value.trim() : "",
     website: f.website.value
   };
   if (!data.slot) return say("Please pick a day and a time.", true);
   if (!data.name) { f.name.focus(); return say("Please add your name.", true); }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { f.email.focus(); return say("That email doesn't look quite right.", true); }
-  if (!data.word || /\s/.test(data.word)) { f.word.focus(); return say("Your word should be one word, no spaces.", true); }
   if (!data.newschool) { f.querySelector('input[name="newschool"]').focus(); return say("Are you from The New School? Tap Yes or No.", true); }
 
   const btn = $("#book"); btn.disabled = true; say("Booking…");
@@ -279,7 +289,7 @@ $("#form").addEventListener("submit", async e => {
           subject: `Infinite Jest booking: ${dayLong(d)}, ${fmtTime(t)}${data.guests > 1 ? ` (${data.guests} people)` : ""}${isAway(data.slot) ? " [Armory time]" : ""}`,
           from_name: "Infinite Jest bookings", replyto: data.email, botcheck: data.website,
           "When": `${dayLong(d)}, ${fmtTime(t)}`, "Slot": data.slot, "People": data.guests,
-          "Name": data.name, "Email": data.email, "New School": data.newschool, "Word": data.word,
+          "Name": data.name, "Email": data.email, "New School": data.newschool,
           "Access needs": data.note || "-", "Research (Section 11)": yn(data.research), "Accounts": data.accounts || "-",
           "Accepted terms": "yes (by booking)", "Artist away": yn(isAway(data.slot))
         })
@@ -295,7 +305,6 @@ $("#form").addEventListener("submit", async e => {
   $("#d-when").textContent = `${dayLong(d)} at ${fmtTime(t)}${data.guests > 1 ? `, ${data.guests} people` : ""}`;
   $("#d-where").textContent = placeLine();
   $("#d-meet").textContent = isAway(data.slot) ? "Jasper is performing at the Armory then. Check in at the front desk and you'll be shown up. Stay as long as you like." : "Check in at the front desk. Jasper will meet you in the lobby. Stay as long as you like.";
-  $("#d-word").textContent = data.word;
   $("#d-preview").hidden = !preview;
   $("#done").dataset.slot = data.slot;
   f.style.display = "none"; $("#info").style.display = "none";
@@ -311,7 +320,7 @@ $("#ics").onclick = () => {
   const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//JRA Engelhardt//Infinite Jest//EN", "BEGIN:VEVENT",
     `UID:${z(s)}-${Math.random().toString(36).slice(2)}@jasperengelhardt.com`, `DTSTAMP:${z(new Date())}`,
     `DTSTART:${z(s)}`, `DTEND:${z(e)}`, "SUMMARY:Infinite Jest", `LOCATION:${esc(placeLine())}`,
-    "DESCRIPTION:Check in at the front desk. Say your word when you walk in.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+    "DESCRIPTION:Check in at the front desk. Stay as long as you like.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "infinite-jest.ics"; a.click();
 };
